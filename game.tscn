@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://btux4vr61q4gb"]
 
 [ext_resource type="PackedScene" uid="uid://c2r2tappmuhxu" path="res://UI/ui.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://b1nys2se2yywj" path="res://computer.tscn" id="2_boyg6"]
 [ext_resource type="Script" uid="uid://bs5xx8o2g86g8" path="res://player_camera.gd" id="2_e2o6t"]
-[ext_resource type="PackedScene" uid="uid://ctw1baeruv1jx" path="res://UI/monitor_ui.tscn" id="2_fc0e3"]
 [ext_resource type="PackedScene" uid="uid://cpk1wa3h1m1gp" path="res://cameras/game_camera.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://cbap2audnaov1" path="res://screen_glow.gd" id="4_7jktm"]
 [ext_resource type="Texture2D" uid="uid://c1rhouvicefxt" path="res://enemies/radio/radio_idle.png" id="6_hve3p"]
@@ -26,6 +26,9 @@ background_energy_multiplier = 0.0
 ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.01
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
+size = Vector3(0.533, 0.40078124, 0.05)
 
 [sub_resource type="Animation" id="Animation_e2o6t"]
 length = 0.001
@@ -294,7 +297,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 2, 0), Vector3(0, 1.977, -1.541)]
+"values": [Vector3(0, 2, 0), Vector3(0, 1.977, -1.4289446)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e2o6t"]
@@ -311,7 +314,7 @@ _data = {
 }
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ryrav"]
-viewport_path = NodePath("World/GameCameras/SubViewport")
+viewport_path = NodePath("SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jktm"]
 transparency = 1
@@ -1168,11 +1171,25 @@ environment = SubResource("Environment_v2341")
 
 [node name="UI" parent="." unique_id=2022876943 instance=ExtResource("1_80nbo")]
 
-[node name="MonitorUI" parent="." unique_id=1827021731 instance=ExtResource("2_fc0e3")]
-visible = false
+[node name="ComputerScreenCollider" type="Area3D" parent="." unique_id=1669292061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9833543, -1.8165946)
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerScreenCollider" unique_id=1652638677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.006033063, -0.002452135)
+shape = SubResource("BoxShape3D_tqooj")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=1332587724]
+scaling_3d_mode = 5
+anisotropic_filtering_level = 0
+canvas_item_default_texture_filter = 0
+size = Vector2i(683, 512)
+
+[node name="Computer" parent="SubViewport" unique_id=1946148648 instance=ExtResource("2_boyg6")]
 
 [node name="PlayerCamera" type="Camera3D" parent="." unique_id=1599950133]
-transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000001, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 current = true
 size = 0.4
 script = ExtResource("2_e2o6t")
@@ -1189,6 +1206,7 @@ libraries/ = SubResource("AnimationLibrary_e2o6t")
 [node name="InteractRay" type="RayCast3D" parent="PlayerCamera" unique_id=2016579000]
 target_position = Vector3(0, 0, -4)
 collision_mask = 2
+collide_with_areas = true
 
 [node name="World" type="Node3D" parent="." unique_id=1931835241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
@@ -1250,7 +1268,7 @@ collision_mask = 0
 
 [node name="Monitor" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=82323884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
-size = Vector3(0.889, 0.5, 0.5)
+size = Vector3(0.667, 0.5, 0.5)
 
 [node name="Stand" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=431819875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
@@ -1259,12 +1277,12 @@ size = Vector3(0.178, 0.1, 0.1)
 [node name="ScreenHole" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=1149731310]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
 operation = 2
-size = Vector3(0.711, 0.4, 0.1)
+size = Vector3(0.533, 0.4, 0.1)
 
 [node name="ScreenGlow" type="Sprite3D" parent="World/ProtagCubicle/Table/Computer" unique_id=1584323245]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.20357716)
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.64, 0.20357716)
 flip_h = true
-pixel_size = 0.0008
+pixel_size = 0.0007813
 texture = SubResource("ViewportTexture_ryrav")
 script = ExtResource("4_7jktm")
 

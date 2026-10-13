@@ -21,12 +21,19 @@ func _process(_delta: float) -> void:
 	flashlight.visible = Input.is_action_pressed("flashlight")
 	if Input.is_action_just_pressed("flashlight"):
 		UIEvent.flashlight_triggered.emit()
-	if Input.is_action_just_pressed("interact") and interact_ray.is_colliding():
+	if interact_ray.is_colliding():
 		var object := interact_ray.get_collider()
+		print(object)
 		# TODO
-		if object.name == "Computer":
+		if object.name == "Computer" and Input.is_action_just_pressed("interact"):
 			UIEvent.on_change_state.emit(UIEvent.CameraState.FORWARD, UIEvent.CameraState.CAMERAS)
 			UIEvent.showUIButtons = false
+			interact_ray.collision_mask = 0x4
+			return
+		if UIEvent.currentCameraState == UIEvent.CameraState.CAMERAS:
+			Input.set_custom_mouse_cursor(preload("uid://csvk2jnhd6v0t"))
+	else:
+		Input.set_custom_mouse_cursor(null)
 
 var _changingToForward := false
 func _on_camera_change_state(oldState: UIEvent.CameraState, newState: UIEvent.CameraState) -> void:
@@ -49,7 +56,7 @@ func _on_camera_change_state(oldState: UIEvent.CameraState, newState: UIEvent.Ca
 			elif oldState == UIEvent.CameraState.HIDE:
 				camera_animator.play("return_from_hide")
 		UIEvent.CameraState.CAMERAS:
-			interact_ray.enabled = false
+			interact_ray.enabled = true
 			camera_animator.play("show_monitor")
 		UIEvent.CameraState.HIDE:
 			interact_ray.enabled = false
