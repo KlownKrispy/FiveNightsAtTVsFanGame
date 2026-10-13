@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://c2r2tappmuhxu"]
+
+[ext_resource type="Script" uid="uid://bx3kj0af5s45t" path="res://UI/ui.gd" id="1_e6gg6"]
+[ext_resource type="Texture2D" uid="uid://dnkqlijetmr5j" path="res://icon.svg" id="1_m6e0p"]
+[ext_resource type="Script" uid="uid://xpbk8nm6g7ci" path="res://UI/buttons/hover_button.gd" id="2_27fn8"]
+
+[node name="UI" type="Control" unique_id=2022876943]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_e6gg6")
+
+[node name="LeftButton" type="TextureRect" parent="." unique_id=1291864474]
+layout_mode = 0
+offset_top = 135.0
+offset_right = 128.0
+offset_bottom = 945.0
+size_flags_horizontal = 3
+texture = ExtResource("1_m6e0p")
+expand_mode = 1
+script = ExtResource("2_27fn8")
+
+[node name="DownButton" type="TextureRect" parent="." unique_id=582433688]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 952.0
+offset_right = 1440.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
+texture = ExtResource("1_m6e0p")
+expand_mode = 1
+script = ExtResource("2_27fn8")
+
+[node name="UpButton" type="TextureRect" parent="." unique_id=2078892369]
+layout_mode = 0
+offset_left = 480.0
+offset_right = 1440.0
+offset_bottom = 128.0
+size_flags_horizontal = 3
+texture = ExtResource("1_m6e0p")
+expand_mode = 1
+script = ExtResource("2_27fn8")
+
+[node name="RightButton" type="TextureRect" parent="." unique_id=2000449642]
+layout_mode = 0
+offset_left = 1792.0
+offset_top = 135.0
+offset_right = 1920.0
+offset_bottom = 945.0
+size_flags_horizontal = 3
+texture = ExtResource("1_m6e0p")
+expand_mode = 1
+script = ExtResource("2_27fn8")
+
+[connection signal="mouse_entered" from="LeftButton" to="LeftButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="LeftButton" to="LeftButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="mouse_entered" from="DownButton" to="DownButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="DownButton" to="DownButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="DownButton" to="." method="_on_down_button_pressed"]
+[connection signal="mouse_entered" from="UpButton" to="UpButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="UpButton" to="UpButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="UpButton" to="." method="_on_up_button_pressed"]
+[connection signal="mouse_entered" from="RightButton" to="RightButton" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="RightButton" to="RightButton" method="_on_mouse_exited"]
+[connection signal="pressed" from="RightButton" to="." method="_on_right_button_pressed"]

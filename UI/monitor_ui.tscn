@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://ctw1baeruv1jx"]
+
+[ext_resource type="Script" uid="uid://b77tikn41uaar" path="res://UI/monitor_ui.gd" id="1_l1vpo"]
+[ext_resource type="Texture2D" uid="uid://dnkqlijetmr5j" path="res://icon.svg" id="1_m0ftm"]
+[ext_resource type="Texture2D" uid="uid://db718jv60towd" path="res://circle_black.png" id="3_cwa4l"]
+[ext_resource type="Texture2D" uid="uid://ct2w81j8ygks7" path="res://circle.png" id="4_hos36"]
+
+[node name="MonitorUI" type="Control" unique_id=1697029340]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+script = ExtResource("1_l1vpo")
+
+[node name="StorageCamButton" type="TextureButton" parent="." unique_id=861649379]
+layout_mode = 0
+offset_left = 954.0
+offset_top = 412.0
+offset_right = 1082.0
+offset_bottom = 540.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label" type="Label" parent="StorageCamButton" unique_id=1104301148]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 92.0
+offset_bottom = 151.0
+text = "Storage"
+
+[node name="ExitCamButton" type="TextureButton" parent="." unique_id=1416884159]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 412.0
+offset_right = 186.0
+offset_bottom = 540.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label" type="Label" parent="ExitCamButton" unique_id=594808816]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 128.0
+offset_right = 84.0
+offset_bottom = 151.0
+text = "Exit"
+
+[node name="PrinterCamButton" type="TextureButton" parent="." unique_id=916847356]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 46.0
+offset_right = 186.0
+offset_bottom = 174.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label" type="Label" parent="PrinterCamButton" unique_id=887461197]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 128.0
+offset_right = 84.0
+offset_bottom = 151.0
+text = "Printer"
+
+[node name="CorridorCamButton" type="TextureButton" parent="." unique_id=92597369]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 560.0
+offset_right = 920.0
+offset_bottom = 688.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label" type="Label" parent="CorridorCamButton" unique_id=124959698]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 128.0
+offset_right = 97.0
+offset_bottom = 151.0
+text = "Corridor"
+
+[node name="BreakRoomCamButton" type="TextureButton" parent="." unique_id=932209660]
+layout_mode = 0
+offset_left = 792.0
+offset_top = 769.0
+offset_right = 920.0
+offset_bottom = 897.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label" type="Label" parent="BreakRoomCamButton" unique_id=1456883098]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 128.0
+offset_right = 108.0
+offset_bottom = 151.0
+text = "Break Room"
+
+[node name="BreakRoomDoorCamButton" type="TextureButton" parent="." unique_id=1711040144]
+layout_mode = 0
+offset_left = 601.0
+offset_top = 897.0
+offset_right = 729.0
+offset_bottom = 1025.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label" type="Label" parent="BreakRoomDoorCamButton" unique_id=1275018614]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 137.0
+offset_bottom = 151.0
+text = "Break Room Door"
+
+[node name="CubicleCamButton" type="TextureButton" parent="." unique_id=1154957068]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 412.0
+offset_right = 456.0
+offset_bottom = 540.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label2" type="Label" parent="CubicleCamButton" unique_id=41553623]
+layout_mode = 0
+offset_top = 128.0
+offset_right = 129.0
+offset_bottom = 151.0
+text = "Adjacent Cubicle"
+
+[node name="BossCamButton" type="TextureButton" parent="." unique_id=979485259]
+layout_mode = 0
+offset_left = 328.0
+offset_top = 157.0
+offset_right = 456.0
+offset_bottom = 285.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="Label3" type="Label" parent="BossCamButton" unique_id=235114095]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 128.0
+offset_right = 173.0
+offset_bottom = 151.0
+text = "Boss"
+
+[node name="ExitButton" type="TextureButton" parent="." unique_id=1547135422]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 0
+offset_left = 1751.0
+offset_top = 29.0
+offset_right = 1879.0
+offset_bottom = 157.0
+texture_normal = ExtResource("1_m0ftm")
+
+[node name="WindButton" type="Button" parent="." unique_id=412265178]
+visible = false
+layout_mode = 0
+offset_left = 58.0
+offset_top = 769.0
+offset_right = 122.0
+offset_bottom = 833.0
+flat = true
+
+[node name="WindProgress" type="TextureProgressBar" parent="WindButton" unique_id=559932499]
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+step = 0.001
+fill_mode = 4
+texture_under = ExtResource("3_cwa4l")
+texture_progress = ExtResource("4_hos36")
+
+[connection signal="pressed" from="StorageCamButton" to="." method="_on_cam_1_button_pressed"]
+[connection signal="pressed" from="ExitCamButton" to="." method="_on_exit_cam_button_pressed"]
+[connection signal="pressed" from="PrinterCamButton" to="." method="_on_printer_cam_button_pressed"]
+[connection signal="pressed" from="CorridorCamButton" to="." method="_on_corridor_cam_button_pressed"]
+[connection signal="pressed" from="BreakRoomCamButton" to="." method="_on_break_room_cam_button_pressed"]
+[connection signal="pressed" from="BreakRoomDoorCamButton" to="." method="_on_break_room_door_cam_button_pressed"]
+[connection signal="pressed" from="CubicleCamButton" to="." method="_on_cam_2_button_pressed"]
+[connection signal="pressed" from="BossCamButton" to="." method="_on_cam_3_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="button_down" from="WindButton" to="." method="_on_wind_button_button_down"]
+[connection signal="button_up" from="WindButton" to="." method="_on_wind_button_button_up"]
