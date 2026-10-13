@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dw34emg0nn3d7" path="res://power.png" id="3_gcbbq"]
 [ext_resource type="Texture2D" uid="uid://js8km225reqk" path="res://tvos.png" id="4_4xfga"]
 [ext_resource type="Texture2D" uid="uid://dh7c8nb3kp8ol" path="res://tab.png" id="4_jr5mb"]
+[ext_resource type="Texture2D" uid="uid://csvk2jnhd6v0t" path="res://cc0_assets/slick_arrow-arrow enlarged.png" id="6_wy26k"]
 
 [node name="Computer" type="Node2D" unique_id=1946148648]
 script = ExtResource("1_18hgq")
@@ -16,6 +17,7 @@ offset_right = 683.0
 offset_bottom = 512.0
 
 [node name="TextureRect" type="TextureRect" parent="UI" unique_id=1850259209]
+z_index = -1
 layout_mode = 0
 offset_right = 683.0
 offset_bottom = 512.0
@@ -39,8 +41,9 @@ offset_right = 32.0
 offset_bottom = 512.0
 texture_normal = ExtResource("4_4xfga")
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
-[node name="Tab1" type="TextureButton" parent="UI" unique_id=89113343]
+[node name="CamerasTab" type="TextureButton" parent="UI" unique_id=89113343]
 layout_mode = 0
 offset_left = 32.0
 offset_top = 480.0
@@ -48,8 +51,9 @@ offset_right = 160.0
 offset_bottom = 512.0
 texture_normal = ExtResource("4_jr5mb")
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/Tab1" unique_id=1593619941]
+[node name="Label" type="Label" parent="UI/CamerasTab" unique_id=1593619941]
 z_index = 1
 layout_mode = 0
 offset_left = 33.0
@@ -58,9 +62,9 @@ offset_right = 88.0
 offset_bottom = 22.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
-text = "the camera"
+text = "the cameras"
 
-[node name="Tab2" type="TextureButton" parent="UI" unique_id=615822567]
+[node name="GamesTab" type="TextureButton" parent="UI" unique_id=615822567]
 layout_mode = 0
 offset_left = 160.0
 offset_top = 480.0
@@ -68,8 +72,9 @@ offset_right = 288.0
 offset_bottom = 512.0
 texture_normal = ExtResource("4_jr5mb")
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/Tab2" unique_id=1671520254]
+[node name="Label" type="Label" parent="UI/GamesTab" unique_id=1671520254]
 z_index = 1
 layout_mode = 0
 offset_left = 33.0
@@ -80,7 +85,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "the games"
 
-[node name="Tab3" type="TextureButton" parent="UI" unique_id=1237005857]
+[node name="MailTab" type="TextureButton" parent="UI" unique_id=1237005857]
 layout_mode = 0
 offset_left = 288.0
 offset_top = 480.0
@@ -88,8 +93,9 @@ offset_right = 416.0
 offset_bottom = 512.0
 texture_normal = ExtResource("4_jr5mb")
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/Tab3" unique_id=169745985]
+[node name="Label" type="Label" parent="UI/MailTab" unique_id=169745985]
 z_index = 1
 layout_mode = 0
 offset_left = 33.0
@@ -98,9 +104,9 @@ offset_right = 88.0
 offset_bottom = 22.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
-text = "the mail"
+text = "the mails"
 
-[node name="Tab4" type="TextureButton" parent="UI" unique_id=1092353379]
+[node name="HorseTab" type="TextureButton" parent="UI" unique_id=1092353379]
 layout_mode = 0
 offset_left = 416.0
 offset_top = 480.0
@@ -108,8 +114,9 @@ offset_right = 544.0
 offset_bottom = 512.0
 texture_normal = ExtResource("4_jr5mb")
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
-[node name="Label" type="Label" parent="UI/Tab4" unique_id=1524542304]
+[node name="Label" type="Label" parent="UI/HorseTab" unique_id=1524542304]
 z_index = 1
 layout_mode = 0
 offset_left = 33.0
@@ -120,7 +127,7 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "the h̷̢́o̴̗͋r̷̭͘s̵͓͛e̸̳̓"
 
-[node name="PanelContainer" type="TextureRect" parent="UI" unique_id=565849852]
+[node name="TimeDisplay" type="TextureRect" parent="UI" unique_id=565849852]
 layout_mode = 0
 offset_left = 544.0
 offset_top = 480.0
@@ -128,20 +135,28 @@ offset_right = 651.0
 offset_bottom = 512.0
 texture = ExtResource("4_jr5mb")
 expand_mode = 2
+metadata/_edit_lock_ = true
 
-[node name="VBoxContainer" type="VBoxContainer" parent="UI/PanelContainer" unique_id=1095511445]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TimeDisplay" unique_id=1095511445]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Label" type="Label" parent="UI/PanelContainer/VBoxContainer" unique_id=1541643478]
+[node name="Label" type="Label" parent="UI/TimeDisplay/VBoxContainer" unique_id=1541643478]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "happy monday!"
 
-[node name="Label2" type="Label" parent="UI/PanelContainer/VBoxContainer" unique_id=975726168]
+[node name="Label2" type="Label" parent="UI/TimeDisplay/VBoxContainer" unique_id=975726168]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "1 am or something"
+
+[node name="Cursor" type="Sprite2D" parent="." unique_id=948548043]
+position = Vector2(341, 256)
+texture = ExtResource("6_wy26k")
+centered = false
+
+[connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]

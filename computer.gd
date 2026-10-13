@@ -1,6 +1,5 @@
+class_name ComputerScreen
 extends Node2D
-
-var _makeVisibleWhenAnimFinished := false
 
 func _ready() -> void:
 	UIEvent.on_change_state.connect(_on_camera_change_state)
@@ -10,17 +9,25 @@ func show_computer():
 	pass
 
 func hide_computer():
-	pass
+	UIEvent.on_change_state.emit(UIEvent.CameraState.CAMERAS, UIEvent.CameraState.FORWARD)
+	UIEvent.showUIButtons = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_camera_finished_moving() -> void:
-	if _makeVisibleWhenAnimFinished:
-		show_computer()
-		_makeVisibleWhenAnimFinished = false
-	else:
-		hide_computer()
+	pass
+@onready var ui: Control = $UI
 
 func _on_camera_change_state(_oldState: UIEvent.CameraState, newState: UIEvent.CameraState) -> void:
-	if newState == UIEvent.CameraState.CAMERAS:
-		_makeVisibleWhenAnimFinished = true
-	else:
-		_makeVisibleWhenAnimFinished = false
+	pass
+@onready var cursor: Sprite2D = $Cursor
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		cursor.position += event.relative
+		cursor.position.x = clampf(cursor.position.x, 0, 687)
+		cursor.position.y = clampf(cursor.position.y, 0, 512)
+		event.position = cursor.position
+	if event is InputEventMouseButton:
+		event.position = cursor.position
+
+func _on_power_button_pressed() -> void:
+	hide_computer()
