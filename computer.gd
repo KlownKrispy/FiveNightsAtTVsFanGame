@@ -23,11 +23,8 @@ func _on_camera_change_state(_oldState: UIEvent.CameraState, newState: UIEvent.C
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		cursor.position += event.relative
-		cursor.position.x = clampf(cursor.position.x, 0, 687)
-		cursor.position.y = clampf(cursor.position.y, 0, 512)
-		event.position = cursor.position
-	if event is InputEventMouseButton:
-		event.position = cursor.position
+		cursor.position.x = clampf(cursor.position.x, 0, 686)
+		cursor.position.y = clampf(cursor.position.y, 0, 511)
 
 func _on_power_button_pressed() -> void:
 	hide_computer()

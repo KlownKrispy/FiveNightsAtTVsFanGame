@@ -23,6 +23,7 @@ offset_right = 683.0
 offset_bottom = 512.0
 texture = ExtResource("1_gxl5a")
 stretch_mode = 1
+metadata/_edit_lock_ = true
 
 [node name="PowerButton" type="TextureButton" parent="UI" unique_id=1801092069]
 layout_mode = 0
