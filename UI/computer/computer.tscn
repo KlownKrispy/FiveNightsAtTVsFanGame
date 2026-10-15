@@ -1,12 +1,12 @@
 [gd_scene format=3 uid="uid://b1nys2se2yywj"]
 
-[ext_resource type="Script" uid="uid://cd1um2matx5v6" path="res://computer.gd" id="1_18hgq"]
+[ext_resource type="Script" uid="uid://cd1um2matx5v6" path="res://UI/computer/computer.gd" id="1_18hgq"]
 [ext_resource type="Texture2D" uid="uid://cbvjefeslkq2v" path="res://cc0_assets/stone wall 4 shrunk.png" id="1_gxl5a"]
-[ext_resource type="Texture2D" uid="uid://dw34emg0nn3d7" path="res://power.png" id="3_gcbbq"]
-[ext_resource type="Texture2D" uid="uid://js8km225reqk" path="res://tvos.png" id="4_4xfga"]
-[ext_resource type="Texture2D" uid="uid://dh7c8nb3kp8ol" path="res://tab.png" id="4_jr5mb"]
+[ext_resource type="Texture2D" uid="uid://dw34emg0nn3d7" path="res://UI/computer/power.png" id="3_gcbbq"]
+[ext_resource type="Texture2D" uid="uid://js8km225reqk" path="res://UI/computer/tvos.png" id="4_4xfga"]
+[ext_resource type="Texture2D" uid="uid://dh7c8nb3kp8ol" path="res://UI/computer/tab.png" id="4_jr5mb"]
 [ext_resource type="Texture2D" uid="uid://csvk2jnhd6v0t" path="res://cc0_assets/slick_arrow-arrow enlarged.png" id="6_wy26k"]
-[ext_resource type="PackedScene" uid="uid://c0lwy7nh17rfn" path="res://cameras_ui.tscn" id="7_k1uhn"]
+[ext_resource type="PackedScene" uid="uid://c0lwy7nh17rfn" path="res://UI/computer/cameras/cameras_ui.tscn" id="7_kkndh"]
 
 [node name="Computer" type="Node2D" unique_id=1946148648]
 script = ExtResource("1_18hgq")
@@ -163,7 +163,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_wy26k")
 centered = false
 
-[node name="CamerasUI" parent="." unique_id=1509086770 instance=ExtResource("7_k1uhn")]
+[node name="CamerasUI" parent="." unique_id=1509086770 instance=ExtResource("7_kkndh")]
 
 [connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="UI/CamerasTab" to="." method="_on_cameras_tab_pressed"]
