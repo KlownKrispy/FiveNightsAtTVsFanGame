@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://js8km225reqk" path="res://tvos.png" id="4_4xfga"]
 [ext_resource type="Texture2D" uid="uid://dh7c8nb3kp8ol" path="res://tab.png" id="4_jr5mb"]
 [ext_resource type="Texture2D" uid="uid://csvk2jnhd6v0t" path="res://cc0_assets/slick_arrow-arrow enlarged.png" id="6_wy26k"]
+[ext_resource type="PackedScene" uid="uid://c0lwy7nh17rfn" path="res://cameras_ui.tscn" id="7_k1uhn"]
 
 [node name="Computer" type="Node2D" unique_id=1946148648]
 script = ExtResource("1_18hgq")
@@ -156,8 +157,13 @@ theme_override_font_sizes/font_size = 10
 text = "1 am or something"
 
 [node name="Cursor" type="Sprite2D" parent="." unique_id=948548043]
+z_index = 1
 position = Vector2(341, 256)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_wy26k")
 centered = false
 
+[node name="CamerasUI" parent="." unique_id=1509086770 instance=ExtResource("7_k1uhn")]
+
 [connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]
+[connection signal="pressed" from="UI/CamerasTab" to="." method="_on_cameras_tab_pressed"]

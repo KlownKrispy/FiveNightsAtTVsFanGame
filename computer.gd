@@ -11,6 +11,8 @@ func hide_computer():
 
 @onready var ui: Control = $UI
 @onready var cursor: Sprite2D = $Cursor
+@onready var cameras_ui: Control = $CamerasUI
+
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		cursor.position += event.relative
@@ -19,3 +21,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_power_button_pressed() -> void:
 	hide_computer()
+
+func _on_cameras_tab_pressed() -> void:
+	cameras_ui.visible = not cameras_ui.visible
+
+func _on_cameras_exit_button_pressed() -> void:
+	cameras_ui.visible = false

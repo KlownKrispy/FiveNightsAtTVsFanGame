@@ -1375,7 +1375,7 @@ fov = 37.849285
 [node name="SubViewport2" type="SubViewport" parent="World/GameCameras" unique_id=358467103]
 size = Vector2i(910, 512)
 
-[node name="OtherCamera" parent="World/GameCameras/SubViewport2" unique_id=1859055145 instance=ExtResource("3_feb5d")]
+[node name="CubicleCamera" parent="World/GameCameras/SubViewport2" unique_id=1859055145 instance=ExtResource("3_feb5d")]
 transform = Transform3D(0.70710677, 0.5000001, -0.49999994, 0, 0.7071067, 0.70710695, 0.7071067, -0.5000001, 0.49999988, -9.5, 4, 0.5)
 
 [node name="SubViewport3" type="SubViewport" parent="World/GameCameras" unique_id=508462810]

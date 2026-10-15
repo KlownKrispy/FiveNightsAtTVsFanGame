@@ -1,0 +1,194 @@
+[gd_scene format=3 uid="uid://c0lwy7nh17rfn"]
+
+[ext_resource type="Script" uid="uid://cyoxp56qig2c3" path="res://cameras_ui.gd" id="1_mnvpd"]
+[ext_resource type="Texture2D" uid="uid://bv46c2o1seh2k" path="res://window.png" id="2_o1xnb"]
+[ext_resource type="Texture2D" uid="uid://c0gaan5mjkgyv" path="res://exit.png" id="3_l2shl"]
+[ext_resource type="Shader" uid="uid://chifq81gjtsp1" path="res://white_noise.gdshader" id="4_l2shl"]
+[ext_resource type="Texture2D" uid="uid://b7eadamb48ac4" path="res://white.png" id="4_o1xnb"]
+[ext_resource type="Texture2D" uid="uid://db718jv60towd" path="res://circle_black.png" id="6_k4jpt"]
+[ext_resource type="Texture2D" uid="uid://ct2w81j8ygks7" path="res://circle.png" id="7_72yk7"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_iiass"]
+viewport_path = NodePath("TMP")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l2shl"]
+shader = ExtResource("4_l2shl")
+
+[sub_resource type="Animation" id="Animation_oa5x0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_l2shl"]
+resource_name = "run"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oa5x0"]
+_data = {
+&"RESET": SubResource("Animation_oa5x0"),
+&"run": SubResource("Animation_l2shl")
+}
+
+[node name="CamerasUI" type="Control" unique_id=1509086770]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 683.0
+offset_bottom = 480.0
+script = ExtResource("1_mnvpd")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=410614654]
+layout_mode = 0
+offset_right = 341.5
+offset_bottom = 240.0
+scale = Vector2(2, 2)
+texture = ExtResource("2_o1xnb")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+
+[node name="CameraView" type="Sprite2D" parent="." unique_id=1911620503]
+position = Vector2(8, 32)
+texture = SubResource("ViewportTexture_iiass")
+centered = false
+
+[node name="NoiseOverlay" type="Sprite2D" parent="." unique_id=1241051938]
+modulate = Color(1, 1, 1, 0)
+material = SubResource("ShaderMaterial_l2shl")
+position = Vector2(8, 32)
+scale = Vector2(667, 440)
+texture = ExtResource("4_o1xnb")
+centered = false
+
+[node name="NoisePlayer" type="AnimationPlayer" parent="NoiseOverlay" unique_id=64466035]
+libraries/ = SubResource("AnimationLibrary_oa5x0")
+autoplay = &"run"
+
+[node name="CamerasExitButton" type="TextureButton" parent="." unique_id=1264597140]
+layout_mode = 0
+offset_left = 666.0
+offset_top = 2.0
+offset_right = 681.0
+offset_bottom = 17.0
+texture_normal = ExtResource("3_l2shl")
+stretch_mode = 0
+
+[node name="PrinterButton" type="Button" parent="." unique_id=401650243]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 55.0
+offset_right = 76.0
+offset_bottom = 86.0
+text = "Printer"
+
+[node name="BossButton" type="Button" parent="." unique_id=571288167]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 86.0
+offset_right = 222.0
+offset_bottom = 117.0
+text = "Boss"
+
+[node name="ExitButton" type="Button" parent="." unique_id=2020878151]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 162.0
+offset_right = 94.0
+offset_bottom = 193.0
+text = "Exit"
+
+[node name="CubicleButton" type="Button" parent="." unique_id=1579928486]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 162.0
+offset_right = 222.0
+offset_bottom = 193.0
+text = "Cubicle"
+
+[node name="StorageButton" type="Button" parent="." unique_id=1266672921]
+layout_mode = 0
+offset_left = 321.0
+offset_top = 162.0
+offset_right = 389.0
+offset_bottom = 193.0
+text = "Storage"
+
+[node name="CorridorButton" type="Button" parent="." unique_id=1382871286]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 256.0
+offset_right = 316.0
+offset_bottom = 287.0
+text = "Corridor"
+
+[node name="BreakRoomButton" type="Button" parent="." unique_id=467495787]
+layout_mode = 0
+offset_left = 248.0
+offset_top = 314.0
+offset_right = 321.0
+offset_bottom = 345.0
+text = "Break"
+
+[node name="BreakRoomDoorButton" type="Button" parent="." unique_id=1761630861]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 364.0
+offset_right = 256.0
+offset_bottom = 395.0
+text = "Break Door"
+
+[node name="TMP" type="SubViewport" parent="." unique_id=1438534746]
+size = Vector2i(667, 440)
+
+[node name="WindButton" type="Button" parent="." unique_id=1170065955]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 769.0
+offset_right = 122.0
+offset_bottom = 833.0
+flat = true
+
+[node name="WindProgress" type="TextureProgressBar" parent="WindButton" unique_id=426134681]
+layout_mode = 0
+offset_left = 493.0
+offset_top = -424.0
+offset_right = 557.0
+offset_bottom = -360.0
+step = 0.001
+fill_mode = 4
+texture_under = ExtResource("6_k4jpt")
+texture_progress = ExtResource("7_72yk7")
+
+[connection signal="pressed" from="CamerasExitButton" to="." method="_on_cameras_exit_button_pressed"]
+[connection signal="pressed" from="PrinterButton" to="." method="_on_printer_button_pressed"]
+[connection signal="pressed" from="BossButton" to="." method="_on_boss_button_pressed"]
+[connection signal="pressed" from="ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="CubicleButton" to="." method="_on_cubicle_button_pressed"]
+[connection signal="pressed" from="StorageButton" to="." method="_on_storage_button_pressed"]
+[connection signal="pressed" from="CorridorButton" to="." method="_on_corridor_button_pressed"]
+[connection signal="pressed" from="BreakRoomButton" to="." method="_on_break_room_button_pressed"]
+[connection signal="pressed" from="BreakRoomDoorButton" to="." method="_on_break_room_door_button_pressed"]
+[connection signal="button_down" from="WindButton" to="." method="_on_wind_button_button_down"]
+[connection signal="button_up" from="WindButton" to="." method="_on_wind_button_button_up"]
