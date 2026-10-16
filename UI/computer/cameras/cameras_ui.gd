@@ -47,7 +47,6 @@ func _on_break_room_door_button_pressed() -> void:
 func _on_cameras_exit_button_pressed() -> void:
 	visible = false
 
-
 func _on_wind_button_button_up() -> void:
 	UIEvent.end_wind_up.emit()
 
