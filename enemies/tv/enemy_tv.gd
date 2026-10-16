@@ -24,6 +24,8 @@ var _readyToAttack := false
 @onready var debug_bar_attack: ProgressBar = $DebugBarAttack
 @onready var debug_bar_hide: ProgressBar = $DebugBarHide
 
+@export var moveChance := 0.35
+
 func _ready() -> void:
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 	UIEvent.on_change_state.connect(_on_camera_change_state)
@@ -78,7 +80,8 @@ func _on_move_timer_timeout() -> void:
 		_readyToAttack = true
 		move_timer.stop()
 		return
-	move()
+	if randf() <= moveChance:
+		move()
 	if currentState == "lose":
 		return
 	if _is_on_attack_state():

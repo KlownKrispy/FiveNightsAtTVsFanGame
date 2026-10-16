@@ -19,6 +19,8 @@ extends AnimatedSprite3D
 @export var currentState := "idle"
 @onready var enemy_progress: ProgressBar = $EnemyProgress
 
+@export var moveChance := 0.3
+
 func _ready() -> void:
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 	UIEvent.on_change_state.connect(_on_camera_change_state)
@@ -63,7 +65,8 @@ func move() -> void:
 		enemy_progress.visible = true
 
 func _on_move_timer_timeout() -> void:
-	move()
+	if randf() <= moveChance:
+		move()
 	if currentState == "lose":
 		return
 	if _is_on_attack_state():
