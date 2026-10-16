@@ -1,0 +1,169 @@
+[gd_scene format=3 uid="uid://b1nys2se2yywj"]
+
+[ext_resource type="Script" uid="uid://cd1um2matx5v6" path="res://UI/computer/computer.gd" id="1_18hgq"]
+[ext_resource type="Texture2D" uid="uid://cbvjefeslkq2v" path="res://cc0_assets/stone wall 4 shrunk.png" id="1_gxl5a"]
+[ext_resource type="Texture2D" uid="uid://dw34emg0nn3d7" path="res://UI/computer/power.png" id="3_gcbbq"]
+[ext_resource type="Texture2D" uid="uid://js8km225reqk" path="res://UI/computer/tvos.png" id="4_4xfga"]
+[ext_resource type="Texture2D" uid="uid://dh7c8nb3kp8ol" path="res://UI/computer/tab.png" id="4_jr5mb"]
+[ext_resource type="Texture2D" uid="uid://csvk2jnhd6v0t" path="res://cc0_assets/slick_arrow-arrow enlarged.png" id="6_wy26k"]
+[ext_resource type="PackedScene" uid="uid://c0lwy7nh17rfn" path="res://UI/computer/cameras/cameras_ui.tscn" id="7_kkndh"]
+
+[node name="Computer" type="Node2D" unique_id=1946148648]
+script = ExtResource("1_18hgq")
+
+[node name="UI" type="Control" parent="." unique_id=1762670608]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 683.0
+offset_bottom = 512.0
+
+[node name="TextureRect" type="TextureRect" parent="UI" unique_id=1850259209]
+z_index = -1
+layout_mode = 0
+offset_right = 683.0
+offset_bottom = 512.0
+texture = ExtResource("1_gxl5a")
+stretch_mode = 1
+metadata/_edit_lock_ = true
+
+[node name="PowerButton" type="TextureButton" parent="UI" unique_id=1801092069]
+layout_mode = 0
+offset_left = 651.0
+offset_top = 480.0
+offset_right = 683.0
+offset_bottom = 512.0
+texture_normal = ExtResource("3_gcbbq")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="OSButton" type="TextureButton" parent="UI" unique_id=391819076]
+layout_mode = 0
+offset_top = 480.0
+offset_right = 32.0
+offset_bottom = 512.0
+texture_normal = ExtResource("4_4xfga")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="CamerasTab" type="TextureButton" parent="UI" unique_id=89113343]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 480.0
+offset_right = 160.0
+offset_bottom = 512.0
+texture_normal = ExtResource("4_jr5mb")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="UI/CamerasTab" unique_id=1593619941]
+z_index = 1
+layout_mode = 0
+offset_left = 33.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "the cameras"
+
+[node name="GamesTab" type="TextureButton" parent="UI" unique_id=615822567]
+layout_mode = 0
+offset_left = 160.0
+offset_top = 480.0
+offset_right = 288.0
+offset_bottom = 512.0
+texture_normal = ExtResource("4_jr5mb")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="UI/GamesTab" unique_id=1671520254]
+z_index = 1
+layout_mode = 0
+offset_left = 33.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "the games"
+
+[node name="MailTab" type="TextureButton" parent="UI" unique_id=1237005857]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 480.0
+offset_right = 416.0
+offset_bottom = 512.0
+texture_normal = ExtResource("4_jr5mb")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="UI/MailTab" unique_id=169745985]
+z_index = 1
+layout_mode = 0
+offset_left = 33.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "the mails"
+
+[node name="HorseTab" type="TextureButton" parent="UI" unique_id=1092353379]
+layout_mode = 0
+offset_left = 416.0
+offset_top = 480.0
+offset_right = 544.0
+offset_bottom = 512.0
+texture_normal = ExtResource("4_jr5mb")
+stretch_mode = 0
+metadata/_edit_lock_ = true
+
+[node name="Label" type="Label" parent="UI/HorseTab" unique_id=1524542304]
+z_index = 1
+layout_mode = 0
+offset_left = 33.0
+offset_top = 8.0
+offset_right = 88.0
+offset_bottom = 22.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "the h̷̢́o̴̗͋r̷̭͘s̵͓͛e̸̳̓"
+
+[node name="TimeDisplay" type="TextureRect" parent="UI" unique_id=565849852]
+layout_mode = 0
+offset_left = 544.0
+offset_top = 480.0
+offset_right = 651.0
+offset_bottom = 512.0
+texture = ExtResource("4_jr5mb")
+expand_mode = 2
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/TimeDisplay" unique_id=1095511445]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="UI/TimeDisplay/VBoxContainer" unique_id=1541643478]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "happy monday!"
+
+[node name="Label2" type="Label" parent="UI/TimeDisplay/VBoxContainer" unique_id=975726168]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 10
+text = "1 am or something"
+
+[node name="Cursor" type="Sprite2D" parent="." unique_id=948548043]
+z_index = 1
+position = Vector2(341, 256)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_wy26k")
+centered = false
+
+[node name="CamerasUI" parent="." unique_id=1509086770 instance=ExtResource("7_kkndh")]
+
+[connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]
+[connection signal="pressed" from="UI/CamerasTab" to="." method="_on_cameras_tab_pressed"]

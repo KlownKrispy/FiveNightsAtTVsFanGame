@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct2w81j8ygks7"
-path="res://.godot/imported/circle.png-10953cad44a8947fbdd4128a631e9e52.ctex"
+uid="uid://bf6gds15juqxi"
+path="res://.godot/imported/stone wall 4.png-ff09edf90d8f70b36a38971047142c36.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://circle.png"
-dest_files=["res://.godot/imported/circle.png-10953cad44a8947fbdd4128a631e9e52.ctex"]
+source_file="res://cc0_assets/stone wall 4.png"
+dest_files=["res://.godot/imported/stone wall 4.png-ff09edf90d8f70b36a38971047142c36.ctex"]
 
 [params]
 

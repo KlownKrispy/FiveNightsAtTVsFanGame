@@ -49,6 +49,7 @@ flashlight={
 [layer_names]
 
 3d_physics/layer_2="Clickable"
+3d_physics/layer_3="Clickable On Screen"
 
 [physics]
 
@@ -56,4 +57,5 @@ flashlight={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
