@@ -43,7 +43,6 @@ func _on_break_room_button_pressed() -> void:
 func _on_break_room_door_button_pressed() -> void:
 	set_camera("BreakRoomDoorCamera")
 
-
 func _on_cameras_exit_button_pressed() -> void:
 	visible = false
 

@@ -48,3 +48,8 @@ func _on_horse_tab_pressed() -> void:
 	mail_ui.visible = false
 	cameras_ui.visible = false
 	games_ui.visible = false
+
+@onready var horse_tab: TextureButton = $UI/HorseTab
+
+func _on_horse_ui_hidden() -> void:
+	horse_tab.button_pressed = false

@@ -693,6 +693,7 @@ autoplay = "default"
 [connection signal="pressed" from="UI/HorseTab" to="." method="_on_horse_tab_pressed"]
 [connection signal="pressed" from="GamesUI/GamesExitButton" to="GamesUI" method="_on_games_exit_button_pressed"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
+[connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]
 [connection signal="visibility_changed" from="HorseUI" to="HorseUI" method="_on_visibility_changed"]
 [connection signal="pressed" from="HorseUI/HorseExitButton" to="HorseUI" method="_on_horse_exit_button_pressed"]
 [connection signal="animation_finished" from="HorseUI/AnimatedSprite2D" to="HorseUI" method="_on_animated_sprite_2d_animation_finished"]
