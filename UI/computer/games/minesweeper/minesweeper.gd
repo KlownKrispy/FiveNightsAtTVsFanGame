@@ -2,7 +2,7 @@ extends TileMapLayer
 
 var hoveringOver := Vector2i(-1, -1)
 var mineMap: Array[Vector2i] = []
-@export var size := Vector2i(4, 4)
+@export var size := Vector2i(13, 13)
 ## Number of mines in the map, set to negative to use difficulty multiplier instead
 @export var mineCount := -1
 ## Used if Mine Count is negative, is a proportion of the map that should be covered in mines.
@@ -33,8 +33,9 @@ func _generate() -> void:
 		mineMap[i] = p
 		freeTiles.erase(p)
 	# reposition to be centered
-	position.x += 0.5 * tile_set.tile_size.x * (25 - size.x)
-	position.y += 0.5 * tile_set.tile_size.y * (25 - size.y)
+	#position.x += 0.5 * tile_set.tile_size.x * (25 - size.x)
+	#position.y += 0.5 * tile_set.tile_size.y * (25 - size.y)
+	scale = Vector2(25.0 / size.x, 25.0 / size.y)
 
 func _reveal(pos: Vector2i, visited: Array[Vector2i] = []) -> void:
 	if not _is_cell_valid(pos):
@@ -98,6 +99,9 @@ func _update_hovered_tile() -> void:
 		floori(mousePos.x / tile_set.tile_size.x),
 		floori(mousePos.y / tile_set.tile_size.y)
 	)
+	if not _is_cell_valid(tilePos):
+		_reset_hover()
+		return
 	var current := get_cell_atlas_coords(tilePos)
 	if current.x < 0 or current.y < 0:
 		_reset_hover()
@@ -111,6 +115,7 @@ func _update_hovered_tile() -> void:
 func _reset_hover() -> void:
 	if get_cell_atlas_coords(hoveringOver) == Vector2i(13, 0):
 		set_cell(hoveringOver, 0, Vector2i(9, 0))
+	hoveringOver = Vector2i(-1, -1)
 
 func _count_mines(pos: Vector2i) -> int:
 	var n = _all_neighbors(pos)
