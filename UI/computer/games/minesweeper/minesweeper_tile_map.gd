@@ -25,12 +25,12 @@ func get_remaining_mines() -> int:
 	return get_mine_count() - get_flag_count()
 
 func _ready() -> void:
-	if mineCount < 0:
-		# Preserve the sign in case we want to generate a differently sized map later!
-		mineCount = -floori(size.x * size.y * difficultyMultiplier)
 	generate()
 
 func generate() -> void:
+	if mineCount < 0:
+		# Preserve the sign in case we want to generate a differently sized map later!
+		mineCount = -floori(size.x * size.y * difficultyMultiplier)
 	var trueMineCount = absi(mineCount)
 	mineMap.clear()
 	mineMap.resize(trueMineCount)
