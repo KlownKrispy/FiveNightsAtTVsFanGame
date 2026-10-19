@@ -48,6 +48,7 @@ func _process(delta: float) -> void:
 	if hideTimeRemaining <= 0.0:
 		currentState = "idle"
 		animation_player.play("leaving")
+		walk_sound.pitch_scale = 0.8 + 0.4 * randf()
 		walk_sound.play()
 		move_timer.start(randf_range(minMoveTime, maxMoveTime))
 		hideTimeRemaining = hideTime
@@ -85,6 +86,10 @@ func _on_move_timer_timeout() -> void:
 		return
 	if randf() <= moveChance:
 		move()
+		var soundEmissionStates = ["move_2", "move_3", "move_4"]
+		if currentState in soundEmissionStates:
+			walk_sound.pitch_scale = 0.8 + 0.4 * randf()
+			walk_sound.play()
 	if currentState == "lose":
 		return
 	if _is_on_attack_state():
