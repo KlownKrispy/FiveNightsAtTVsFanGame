@@ -51,6 +51,7 @@ func generate() -> void:
 	#position.y += 0.5 * tile_set.tile_size.y * (25 - size.y)
 	scale = Vector2(25.0 / size.x, 25.0 / size.y)
 	gameOver = false
+	firstClick = true
 
 func _reveal(pos: Vector2i, visited: Array[Vector2i] = []) -> void:
 	if not _is_cell_valid(pos):
