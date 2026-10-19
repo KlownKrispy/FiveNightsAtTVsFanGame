@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 UIEvent="*uid://duh5kkxnlh7vh"
 CameraRegistry="*uid://sa17ou5lwwbf"
+Night="*uid://dxor37wmh26iq"
 
 [display]
 

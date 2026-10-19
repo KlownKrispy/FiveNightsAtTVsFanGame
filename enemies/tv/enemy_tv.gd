@@ -1,10 +1,15 @@
 extends AnimatedSprite3D
 
-@export var minMoveTime := 5.0
-@export var maxMoveTime := 5.0
-
-@export var attackTime := 10.0
-@export var hideTime := 2.0
+var minMoveTime: float:
+	get: return Night.get_current_night().tvMinMoveTime
+var maxMoveTime: float:
+	get: return Night.get_current_night().tvMaxMoveTime
+var attackTime: float:
+	get: return Night.get_current_night().tvAttackTime
+var hideTime: float:
+	get: return Night.get_current_night().tvHideTime
+var moveChance: float:
+	get: return Night.get_current_night().tvMoveChance
 
 @onready var hideTimeRemaining := hideTime
 
@@ -23,8 +28,6 @@ var _playerIsHiding := false
 var _readyToAttack := false
 @onready var debug_bar_attack: ProgressBar = $DebugBarAttack
 @onready var debug_bar_hide: ProgressBar = $DebugBarHide
-
-@export var moveChance := 0.35
 
 func _ready() -> void:
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))

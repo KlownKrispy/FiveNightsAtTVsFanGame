@@ -1,12 +1,19 @@
 extends AnimatedSprite3D
 
-@export var minMoveTime := 4.0
-@export var maxMoveTime := 8.0
-
-@export var attackTime := 20.0
-@export var maxHealth := 9.0
-@export var regen := 1.0
-@export var damageFromFlashlight := 1.0
+var minMoveTime: float:
+	get: return Night.get_current_night().radioMinMoveTime
+var maxMoveTime: float:
+	get: return Night.get_current_night().radioMaxMoveTime
+var moveChance: float:
+	get: return Night.get_current_night().radioMoveChance
+var attackTime: float:
+	get: return Night.get_current_night().radioAttackTime
+var maxHealth: float:
+	get: return Night.get_current_night().radioMaxHealth
+var regen: float:
+	get: return Night.get_current_night().radioRegen
+var damageFromFlashlight: float:
+	get: return Night.get_current_night().radioDamageFromFlashlight
 
 @onready var health := maxHealth
 
@@ -18,8 +25,6 @@ extends AnimatedSprite3D
 @export var states := ["idle", "move_1", "move_2", "move_3", "lose"]
 @export var currentState := "idle"
 @onready var enemy_progress: ProgressBar = $EnemyProgress
-
-@export var moveChance := 0.3
 
 func _ready() -> void:
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
