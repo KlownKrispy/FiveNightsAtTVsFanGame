@@ -1,6 +1,15 @@
 class_name NightConfig
 extends Resource
 
+#region Time
+## Number of minutes since 12AM, negative should work
+@export var nightTimeStart: int = 0
+## Number of minutes the night lasts normally
+@export var nightLength: int = 60 * 6
+## Number of minutes of overtime maximum
+@export var maxOvertime: int = 60 * 2
+#endregion Time
+
 #region Radio
 @export_category("Radio")
 @export var radioMoveChance := 0.3

@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://ykyxmdmq4jye" path="res://UI/computer/tab_pressed.png" id="6_q5qfc"]
 [ext_resource type="Texture2D" uid="uid://csvk2jnhd6v0t" path="res://cc0_assets/slick_arrow-arrow enlarged.png" id="6_wy26k"]
 [ext_resource type="PackedScene" uid="uid://c0lwy7nh17rfn" path="res://UI/computer/cameras/cameras_ui.tscn" id="7_kkndh"]
+[ext_resource type="Script" uid="uid://cgabs7fhp35go" path="res://UI/computer/time_label.gd" id="8_4sjsw"]
 [ext_resource type="Texture2D" uid="uid://bv46c2o1seh2k" path="res://UI/computer/window.png" id="10_8hgcq"]
 [ext_resource type="Script" uid="uid://bdsdae0wbtkhu" path="res://UI/computer/games/games_ui.gd" id="10_m8u4o"]
 [ext_resource type="Texture2D" uid="uid://c0gaan5mjkgyv" path="res://UI/computer/exit.png" id="12_6bas7"]
@@ -602,11 +603,12 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
 text = "happy monday!"
 
-[node name="Label2" type="Label" parent="UI/TimeDisplay/VBoxContainer" unique_id=975726168]
+[node name="TimeLabel" type="Label" parent="UI/TimeDisplay/VBoxContainer" unique_id=975726168]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 10
-text = "1 am or something"
+text = "12:00 AM"
+script = ExtResource("8_4sjsw")
 
 [node name="Cursor" type="Sprite2D" parent="." unique_id=948548043]
 z_index = 1

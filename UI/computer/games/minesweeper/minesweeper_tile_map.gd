@@ -52,6 +52,7 @@ func generate() -> void:
 	scale = Vector2(25.0 / size.x, 25.0 / size.y)
 	gameOver = false
 	firstClick = true
+	_flagCount = 0
 
 func _reveal(pos: Vector2i, visited: Array[Vector2i] = []) -> void:
 	if not _is_cell_valid(pos):
