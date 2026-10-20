@@ -50,9 +50,12 @@ func _process(_delta: float) -> void:
 			EventBus.on_change_state.emit(EventBus.currentCameraState, EventBus.CameraState.FORWARD)
 		camera_animator.speed_scale = 2.0
 		return
-	flashlight.visible = Input.is_action_pressed("flashlight")
-	if Input.is_action_just_pressed("flashlight"):
-		EventBus.flashlight_triggered.emit()
+	if EventBus.currentCameraState == EventBus.CameraState.LEFT and not camera_animator.is_playing():
+		flashlight.visible = Input.is_action_pressed("flashlight")
+		if Input.is_action_just_pressed("flashlight"):
+			EventBus.flashlight_triggered.emit()
+	else:
+		flashlight.visible = false
 	if interact_ray.is_colliding():
 		var object := interact_ray.get_collider()
 		# TODO
