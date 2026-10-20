@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://dundadaqnd8wo" path="res://UI/computer/cameras/storage_minigame.gd" id="6_fpg8b"]
 [ext_resource type="Texture2D" uid="uid://db718jv60towd" path="res://UI/computer/cameras/circle_black.png" id="6_nacyd"]
 [ext_resource type="Texture2D" uid="uid://ct2w81j8ygks7" path="res://UI/computer/cameras/circle.png" id="7_o63y0"]
+[ext_resource type="Script" uid="uid://jjma0qqysqqw" path="res://UI/computer/cameras/printer_minigame.gd" id="9_hoehb"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_iiass"]
 viewport_path = NodePath("TMP")
@@ -190,6 +191,49 @@ texture_under = ExtResource("6_nacyd")
 texture_progress = ExtResource("7_o63y0")
 
 [node name="WindGraceTimer" type="Timer" parent="StorageMinigame" unique_id=1485020680]
+one_shot = true
+
+[node name="PrinterMinigame" type="Control" parent="." unique_id=593132067]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("9_hoehb")
+
+[node name="StatusLabel" type="Label" parent="PrinterMinigame" unique_id=755532422]
+visible = false
+layout_mode = 0
+offset_left = 58.0
+offset_top = 287.0
+offset_right = 134.0
+offset_bottom = 310.0
+text = "All is well!"
+
+[node name="InkButton" type="Button" parent="PrinterMinigame" unique_id=1158663030]
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 314.0
+offset_right = 130.0
+offset_bottom = 345.0
+text = "Refill Ink"
+
+[node name="PaperButton" type="Button" parent="PrinterMinigame" unique_id=78998708]
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 314.0
+offset_right = 151.0
+offset_bottom = 345.0
+text = "Gather Paper"
+
+[node name="FoodButton" type="Button" parent="PrinterMinigame" unique_id=226993153]
+visible = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 314.0
+offset_right = 144.0
+offset_bottom = 345.0
+text = "Gather Food"
 
 [connection signal="pressed" from="CamerasExitButton" to="." method="_on_cameras_exit_button_pressed"]
 [connection signal="pressed" from="PrinterButton" to="." method="_on_printer_button_pressed"]
@@ -203,3 +247,6 @@ texture_progress = ExtResource("7_o63y0")
 [connection signal="button_down" from="StorageMinigame/WindButton" to="StorageMinigame" method="_on_wind_button_button_down"]
 [connection signal="button_up" from="StorageMinigame/WindButton" to="StorageMinigame" method="_on_wind_button_button_up"]
 [connection signal="timeout" from="StorageMinigame/WindGraceTimer" to="StorageMinigame" method="_on_wind_grace_timer_timeout"]
+[connection signal="pressed" from="PrinterMinigame/InkButton" to="PrinterMinigame" method="_on_ink_button_pressed"]
+[connection signal="pressed" from="PrinterMinigame/PaperButton" to="PrinterMinigame" method="_on_paper_button_pressed"]
+[connection signal="pressed" from="PrinterMinigame/FoodButton" to="PrinterMinigame" method="_on_food_button_pressed"]

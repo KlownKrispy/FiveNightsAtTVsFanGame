@@ -13,12 +13,14 @@ func _process(_delta: float) -> void:
 
 @onready var noise_player: AnimationPlayer = $NoiseOverlay/NoisePlayer
 @onready var storage_minigame: Control = $StorageMinigame
+@onready var printer_minigame: PrinterMinigame = $PrinterMinigame
 
 func set_camera(camID: String):
 	CameraRegistry.change_monitor_camera(camID)
 	noise_player.stop()
 	noise_player.play("run")
 	storage_minigame.visible = (camID == "StorageCamera")
+	printer_minigame.handle_visibility(camID)
 
 func _on_printer_button_pressed() -> void:
 	set_camera("PrinterCamera")

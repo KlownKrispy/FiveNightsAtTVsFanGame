@@ -6,6 +6,7 @@ var _countingOvertime := false
 var _partialOvertime: float = 0.0
 
 enum PrinterError {
+	NONE,
 	LOW_PAPER,
 	LOW_INK,
 	LOW_HUNGER,
@@ -41,7 +42,7 @@ func _on_error_resolved():
 
 @onready var overtime_begin_timer: Timer = $OvertimeBeginTimer
 func _on_error_timer_timeout() -> void:
-	var error: PrinterError = PrinterError.values().pick_random()
+	var error: PrinterError = PrinterError.values().filter(_only_real_errors).pick_random()
 	EventBus.printer_errored.emit(error)
 	var overtimeGrace := Night.get_current_night().printerMinimumIdleForOvertime
 	if overtimeGrace == 0:
@@ -51,3 +52,6 @@ func _on_error_timer_timeout() -> void:
 
 func _on_overtime_begin_timer_timeout() -> void:
 	_countingOvertime = true
+
+func _only_real_errors(e: Printer.PrinterError) -> bool:
+	return e != PrinterError.NONE
