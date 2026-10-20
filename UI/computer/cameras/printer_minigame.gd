@@ -14,7 +14,7 @@ var _lastCamID := "BossCamera"
 func handle_visibility(camID: String) -> void:
 	_lastCamID = camID
 	status_label.visible = (camID == "PrinterCamera")
-	ink_button.visible = (camID == "PrinterCamera") and printerError == Printer.PrinterError.LOW_INK
+	ink_button.visible = (camID == "CubicleCamera") and printerError == Printer.PrinterError.LOW_INK
 	paper_button.visible = (camID == "StorageCamera") and printerError == Printer.PrinterError.LOW_PAPER
 	food_button.visible = (camID == "BreakRoomCamera") and printerError == Printer.PrinterError.LOW_HUNGER
 
@@ -25,14 +25,13 @@ func _printer_errored(error: Printer.PrinterError) -> void:
 			status_label.text = "Low on paper!"
 		Printer.PrinterError.LOW_INK:
 			status_label.text = "Low on ink!"
-			if _lastCamID == "PrinterCamera":
-				handle_visibility(_lastCamID)
 		Printer.PrinterError.LOW_HUNGER:
 			status_label.text = "Low on food!"
 		Printer.PrinterError.NONE:
 			status_label.text = "All is well!"
 		_:
 			status_label.text = "Unknown error!"
+	handle_visibility(_lastCamID)
 
 func _resolve_error() -> void:
 	EventBus.printer_error_resolved.emit()
