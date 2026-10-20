@@ -24,6 +24,7 @@
 [ext_resource type="Texture2D" uid="uid://rdfpjwmvkxnb" path="res://UI/computer/games/minesweeper/mine.png" id="16_pdqbt"]
 [ext_resource type="Texture2D" uid="uid://cs3ex3at8gs2k" path="res://curiosities/horse/frame_3.png" id="17_a4omk"]
 [ext_resource type="Texture2D" uid="uid://b72jvkvxwe3co" path="res://curiosities/horse/frame_4.png" id="18_6crtk"]
+[ext_resource type="Theme" uid="uid://ctsswtv7yw8l5" path="res://UI/computer/screen_button.tres" id="19_0xhlx"]
 [ext_resource type="Texture2D" uid="uid://bicnarkkqp08k" path="res://curiosities/horse/frame_5.png" id="19_xu4dj"]
 [ext_resource type="Texture2D" uid="uid://bbxx1k5qbadj5" path="res://curiosities/horse/frame_6.png" id="20_pdqbt"]
 [ext_resource type="Texture2D" uid="uid://rpypgev8tkk4" path="res://curiosities/horse/frame_7.png" id="21_4sjsw"]
@@ -650,6 +651,7 @@ texture_normal = ExtResource("12_6bas7")
 stretch_mode = 0
 
 [node name="Minesweeper" type="Node2D" parent="GamesUI" unique_id=552437709]
+visible = false
 position = Vector2(243, 52)
 script = ExtResource("13_pdqbt")
 
@@ -707,6 +709,7 @@ offset_left = 45.0
 offset_top = 65.0
 offset_right = 122.0
 offset_bottom = 118.0
+theme = ExtResource("19_0xhlx")
 theme_override_font_sizes/font_size = 32
 text = "Easy"
 
@@ -715,6 +718,7 @@ offset_left = 26.0
 offset_top = 164.0
 offset_right = 144.0
 offset_bottom = 217.0
+theme = ExtResource("19_0xhlx")
 theme_override_font_sizes/font_size = 32
 text = "Cheasy"
 
@@ -730,8 +734,32 @@ offset_right = 149.0
 offset_bottom = 315.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("19_0xhlx")
 theme_override_font_sizes/font_size = 32
 text = "Queasy"
+
+[node name="GamePicker" type="Control" parent="GamesUI" unique_id=1537891261]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="GamesUI/GamePicker" unique_id=714080433]
+layout_mode = 0
+offset_left = 78.0
+offset_top = 52.0
+offset_right = 154.0
+offset_bottom = 75.0
+theme = ExtResource("19_0xhlx")
+text = "Games!!!!!"
+
+[node name="MinesweeperButton" type="Button" parent="GamesUI/GamePicker" unique_id=423421639]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 86.0
+offset_right = 193.0
+offset_bottom = 126.0
+theme = ExtResource("19_0xhlx")
+text = "Minesweeper"
 
 [node name="MailUI" type="Control" parent="." unique_id=1032281496]
 visible = false
@@ -808,6 +836,7 @@ autoplay = "default"
 [connection signal="pressed" from="GamesUI/Minesweeper/EasyButton" to="GamesUI/Minesweeper" method="_on_easy_button_pressed"]
 [connection signal="pressed" from="GamesUI/Minesweeper/MediumButton" to="GamesUI/Minesweeper" method="_on_medium_button_pressed"]
 [connection signal="pressed" from="GamesUI/Minesweeper/HardButton" to="GamesUI/Minesweeper" method="_on_hard_button_pressed"]
+[connection signal="pressed" from="GamesUI/GamePicker/MinesweeperButton" to="GamesUI" method="_on_minesweeper_button_pressed"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
 [connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]
 [connection signal="visibility_changed" from="HorseUI" to="HorseUI" method="_on_visibility_changed"]

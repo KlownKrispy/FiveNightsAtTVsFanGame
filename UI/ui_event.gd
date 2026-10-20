@@ -18,6 +18,9 @@ signal flashlight_triggered
 signal begin_wind_up
 signal end_wind_up
 signal wind_attack
+
+signal printer_errored(error: Printer.PrinterError)
+signal printer_error_resolved
 @warning_ignore_restore("unused_signal")
 
 var showUIButtons := true
