@@ -42,10 +42,7 @@ extends Resource
 @export_category("Printer")
 ## Maximum amount of errors Printer can have this night
 @export var printerMaxErrors: int = 5
-## For each printerIdleConversion minutes printer is idle, add 1 minute to the night duration, up to overtime
-@export var printerIdleConversion: int = 2
-## If Printer is idle for over this number of minutes, start increasing overtime
-@export var printerMinimumIdleForOvertime: int = 60
+@export var printerWorkload: int = 4 * 60
 ## Amount of variation in Printer's time between errors; in units of (nightLength+maxOvertime) / (maxErrors+1)
 ## In other words, default settings mean she can get errors every:
 ## (0.7 * 8 hours / 6) to (1.3 * 8 hours / 6)

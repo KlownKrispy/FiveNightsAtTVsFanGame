@@ -2,8 +2,8 @@ class_name Printer
 extends AnimatedSprite3D
 @onready var error_timer: Timer = $ErrorTimer
 
-var _countingOvertime := false
-var _partialOvertime: float = 0.0
+var _errored := false
+var _workload: int = 0
 
 enum PrinterError {
 	NONE,
@@ -13,24 +13,24 @@ enum PrinterError {
 }
 
 func _ready() -> void:
+	Night.night_changed.connect(_night_changed)
+	_night_changed()
 	_begin_error_clock()
 	EventBus.printer_error_resolved.connect(_on_error_resolved)
+	Night.minute_passed.connect(_minute_passed)
 
-func _process(delta: float) -> void:
-	if not _countingOvertime:
+func _night_changed() -> void:
+	_workload = Night.get_current_night().printerWorkload
+
+func _minute_passed() -> void:
+	if _errored:
 		return
-	if Night.overtime >= Night.get_current_night().maxOvertime:
-		Night.overtime = Night.get_current_night().maxOvertime
-		_countingOvertime = false
-		return
-	_partialOvertime += delta
-	var overtimeConversion := float(Night.get_current_night().printerIdleConversion)
-	while _partialOvertime >= overtimeConversion:
-		_partialOvertime -= overtimeConversion
-		Night.overtime += 1
+	_workload -= 1
+	if _workload == 0:
+		Night.end_night()
 
 func _begin_error_clock():
-	_countingOvertime = false
+	_errored = false
 	var errorTime := randf_range(
 		Night.get_current_night().printerMinimumErrorTime,
 		Night.get_current_night().printerMaximumErrorTime
@@ -40,18 +40,14 @@ func _begin_error_clock():
 func _on_error_resolved():
 	_begin_error_clock()
 
-@onready var overtime_begin_timer: Timer = $OvertimeBeginTimer
 func _on_error_timer_timeout() -> void:
-	var error: PrinterError = PrinterError.values().filter(_only_real_errors).pick_random()
+	var error: PrinterError = (
+		PrinterError.values()
+			.filter(_only_real_errors)
+			.pick_random()
+	)
 	EventBus.printer_errored.emit(error)
-	var overtimeGrace := Night.get_current_night().printerMinimumIdleForOvertime
-	if overtimeGrace == 0:
-		_countingOvertime = true
-	else:
-		overtime_begin_timer.start(overtimeGrace)
-
-func _on_overtime_begin_timer_timeout() -> void:
-	_countingOvertime = true
+	_errored = true
 
 func _only_real_errors(e: Printer.PrinterError) -> bool:
 	return e != PrinterError.NONE

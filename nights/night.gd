@@ -28,6 +28,16 @@ func get_clock_hour() -> int:
 func get_clock_minute() -> int:
 	return posmod(_currentTime, 60)
 
+func end_night() -> void:
+	var overtime: int = get_current_time() - get_current_night().nightTimeStart - get_current_night().nightLength
+	if overtime >= get_current_night().maxOvertime:
+		print("You beat the debug night! But you had too much overtime...")
+	elif overtime > 0:
+		print("You beat the debug night with %d minutes of overtime!" % overtime)
+	else:
+		print("You beat the debug night with NO overtime!")
+	get_tree().quit()
+
 func _ready() -> void:
 	_minuteTimer = Timer.new()
 	add_child(_minuteTimer)

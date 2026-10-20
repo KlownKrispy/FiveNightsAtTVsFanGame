@@ -1951,12 +1951,8 @@ script = ExtResource("21_hb5m1")
 [node name="ErrorTimer" type="Timer" parent="Enemies/Printer" unique_id=1376786939]
 one_shot = true
 
-[node name="OvertimeBeginTimer" type="Timer" parent="Enemies/Printer" unique_id=1436829355]
-one_shot = true
-
 [connection signal="animation_finished" from="PlayerCamera/CameraAnimator" to="PlayerCamera" method="_on_camera_animator_animation_finished"]
 [connection signal="timeout" from="Enemies/Radio/MoveTimer" to="Enemies/Radio" method="_on_move_timer_timeout"]
 [connection signal="animation_finished" from="Enemies/TV/AnimationPlayer" to="Enemies/TV" method="_on_animation_player_animation_finished"]
 [connection signal="timeout" from="Enemies/TV/MoveTimer" to="Enemies/TV" method="_on_move_timer_timeout"]
 [connection signal="timeout" from="Enemies/Printer/ErrorTimer" to="Enemies/Printer" method="_on_error_timer_timeout"]
-[connection signal="timeout" from="Enemies/Printer/OvertimeBeginTimer" to="Enemies/Printer" method="_on_overtime_begin_timer_timeout"]

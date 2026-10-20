@@ -15,3 +15,7 @@ func _minute_passed() -> void:
 	if adjHour == 0:
 		adjHour = 12
 	text = "%02d:%02d %s" % [adjHour, minute, suffix]
+	var elapsed := Night.get_current_time() - Night.get_current_night().nightTimeStart
+	if elapsed >= Night.get_current_night().nightLength:
+		# overtime!
+		add_theme_color_override("font_color", Color.DARK_RED)
