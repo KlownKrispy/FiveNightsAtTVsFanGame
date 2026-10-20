@@ -5,8 +5,8 @@ func show_computer():
 	pass
 
 func hide_computer():
-	UIEvent.on_change_state.emit(UIEvent.CameraState.CAMERAS, UIEvent.CameraState.FORWARD)
-	UIEvent.showUIButtons = true
+	EventBus.on_change_state.emit(EventBus.CameraState.CAMERAS, EventBus.CameraState.FORWARD)
+	EventBus.showUIButtons = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 @onready var ui: Control = $UI

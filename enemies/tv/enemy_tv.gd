@@ -31,14 +31,14 @@ var _readyToAttack := false
 
 func _ready() -> void:
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
-	UIEvent.on_change_state.connect(_on_camera_change_state)
+	EventBus.on_change_state.connect(_on_camera_change_state)
 
 func _process(delta: float) -> void:
 	if not _is_on_attack_state():
 		return
 	if _playerIsHiding:
 		hideTimeRemaining -= delta
-	if UIEvent.IS_DEBUG_MODE:
+	if EventBus.IS_DEBUG_MODE:
 		debug_bar_attack.visible = true
 		debug_bar_attack.value = move_timer.time_left
 		debug_bar_attack.max_value = move_timer.wait_time
@@ -75,8 +75,8 @@ func move() -> void:
 	currentState = states[idx]
 	animation_player.play(currentState)
 	if currentState == "lose":
-		UIEvent.showUIButtons = false
-		UIEvent.forceCameraForward = true
+		EventBus.showUIButtons = false
+		EventBus.forceCameraForward = true
 		audio_stream_player_3d.play()
 
 func _on_move_timer_timeout() -> void:
@@ -98,8 +98,8 @@ func _on_move_timer_timeout() -> void:
 		return
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 
-func _on_camera_change_state(_oldState: UIEvent.CameraState, newState: UIEvent.CameraState):
-	_playerIsHiding = (newState == UIEvent.CameraState.HIDE)
+func _on_camera_change_state(_oldState: EventBus.CameraState, newState: EventBus.CameraState):
+	_playerIsHiding = (newState == EventBus.CameraState.HIDE)
 	if not _is_on_attack_state():
 		return
 	if not _playerIsHiding and _readyToAttack:

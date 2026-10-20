@@ -5,18 +5,18 @@ var _makeVisibleWhenAnimFinished := false
 @onready var wind_progress: TextureProgressBar = $WindButton/WindProgress
 
 func _ready() -> void:
-	UIEvent.on_change_state.connect(_on_camera_change_state)
-	UIEvent.camera_finished_moving.connect(_on_camera_finished_moving)
+	EventBus.on_change_state.connect(_on_camera_change_state)
+	EventBus.camera_finished_moving.connect(_on_camera_finished_moving)
 	set_camera.call_deferred("BossCamera")
 
 func _process(_delta: float) -> void:
 	if CameraRegistry.activeCamera == "StorageCamera":
 		wind_button.visible = true
-		wind_progress.max_value = UIEvent.maxWind
-		wind_progress.value = UIEvent.windAmount
+		wind_progress.max_value = EventBus.maxWind
+		wind_progress.value = EventBus.windAmount
 	else:
 		wind_button.visible = false
-	if UIEvent.forceCameraForward:
+	if EventBus.forceCameraForward:
 		visible = false
 
 func set_camera(camId: String) -> void:
@@ -30,8 +30,8 @@ func _on_camera_finished_moving() -> void:
 	else:
 		visible = false
 
-func _on_camera_change_state(_oldState: UIEvent.CameraState, newState: UIEvent.CameraState) -> void:
-	if newState == UIEvent.CameraState.CAMERAS:
+func _on_camera_change_state(_oldState: EventBus.CameraState, newState: EventBus.CameraState) -> void:
+	if newState == EventBus.CameraState.CAMERAS:
 		_makeVisibleWhenAnimFinished = true
 	else:
 		_makeVisibleWhenAnimFinished = false
@@ -44,8 +44,8 @@ func _on_cam_2_button_pressed() -> void:
 	set_camera("OtherCamera")
 
 func _on_exit_button_pressed() -> void:
-	UIEvent.on_change_state.emit(UIEvent.CameraState.CAMERAS, UIEvent.CameraState.FORWARD)
-	UIEvent.showUIButtons = true
+	EventBus.on_change_state.emit(EventBus.CameraState.CAMERAS, EventBus.CameraState.FORWARD)
+	EventBus.showUIButtons = true
 	visible = false
 
 func _on_cam_3_button_pressed() -> void:
@@ -69,9 +69,9 @@ func _on_break_room_cam_button_pressed() -> void:
 
 
 func _on_wind_button_button_down() -> void:
-	UIEvent.begin_wind_up.emit()
+	EventBus.begin_wind_up.emit()
 func _on_wind_button_button_up() -> void:
-	UIEvent.end_wind_up.emit()
+	EventBus.end_wind_up.emit()
 
 
 func _on_break_room_door_cam_button_pressed() -> void:

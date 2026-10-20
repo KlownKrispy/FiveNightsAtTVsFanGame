@@ -28,8 +28,8 @@ var damageFromFlashlight: float:
 
 func _ready() -> void:
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
-	UIEvent.on_change_state.connect(_on_camera_change_state)
-	UIEvent.flashlight_triggered.connect(_flashlight_triggered)
+	EventBus.on_change_state.connect(_on_camera_change_state)
+	EventBus.flashlight_triggered.connect(_flashlight_triggered)
 
 func _process(delta: float) -> void:
 	if not _is_on_attack_state():
@@ -63,10 +63,10 @@ func move() -> void:
 	currentState = states[idx]
 	animation_player.play(currentState)
 	if currentState == "lose":
-		UIEvent.showUIButtons = false
-		UIEvent.forceCameraForward = true
+		EventBus.showUIButtons = false
+		EventBus.forceCameraForward = true
 		audio_stream_player_3d.play()
-	if _is_on_attack_state() and UIEvent.currentCameraState == UIEvent.CameraState.LEFT:
+	if _is_on_attack_state() and EventBus.currentCameraState == EventBus.CameraState.LEFT:
 		enemy_progress.visible = true
 
 func _on_move_timer_timeout() -> void:
@@ -80,13 +80,13 @@ func _on_move_timer_timeout() -> void:
 		return
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 
-func _on_camera_change_state(_oldState: UIEvent.CameraState, newState: UIEvent.CameraState):
+func _on_camera_change_state(_oldState: EventBus.CameraState, newState: EventBus.CameraState):
 	if not _is_on_attack_state():
 		return
-	enemy_progress.visible = (newState == UIEvent.CameraState.LEFT)
+	enemy_progress.visible = (newState == EventBus.CameraState.LEFT)
 
 func _flashlight_triggered() -> void:
 	if not _is_on_attack_state():
 		return
-	if UIEvent.currentCameraState == UIEvent.CameraState.LEFT:
+	if EventBus.currentCameraState == EventBus.CameraState.LEFT:
 		health -= damageFromFlashlight

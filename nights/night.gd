@@ -37,6 +37,7 @@ func _ready() -> void:
 func start_night() -> void:
 	_currentTime = get_current_night().nightTimeStart
 	_minuteTimer.start(_secondsPerMinute)
+	night_changed.emit()
 
 func get_current_night() -> NightConfig:
 	return _currentNight

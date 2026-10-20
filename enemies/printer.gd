@@ -13,7 +13,7 @@ enum PrinterError {
 
 func _ready() -> void:
 	_begin_error_clock()
-	UIEvent.printer_error_resolved.connect(_on_error_resolved)
+	EventBus.printer_error_resolved.connect(_on_error_resolved)
 
 func _process(delta: float) -> void:
 	if not _countingOvertime:
@@ -42,7 +42,7 @@ func _on_error_resolved():
 @onready var overtime_begin_timer: Timer = $OvertimeBeginTimer
 func _on_error_timer_timeout() -> void:
 	var error: PrinterError = PrinterError.values().pick_random()
-	UIEvent.printer_errored.emit(error)
+	EventBus.printer_errored.emit(error)
 	var overtimeGrace := Night.get_current_night().printerMinimumIdleForOvertime
 	if overtimeGrace == 0:
 		_countingOvertime = true

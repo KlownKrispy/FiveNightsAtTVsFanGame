@@ -1,8 +1,6 @@
 extends Control
 @onready var camera_view: Sprite2D = $CameraView
 @export var camera_res := Vector2i(667, 440)
-@onready var wind_button: Button = $WindButton
-@onready var wind_progress: TextureProgressBar = $WindButton/WindProgress
 
 func _ready() -> void:
 	CameraRegistry.monitor = camera_view
@@ -10,21 +8,17 @@ func _ready() -> void:
 	CameraRegistry.set_camera_resolution(camera_res)
 
 func _process(_delta: float) -> void:
-	if CameraRegistry.activeCamera == "StorageCamera":
-		wind_button.visible = true
-		wind_progress.max_value = UIEvent.maxWind
-		wind_progress.value = UIEvent.windAmount
-	else:
-		wind_button.visible = false
-	if UIEvent.forceCameraForward:
+	if EventBus.forceCameraForward:
 		visible = false
 
 @onready var noise_player: AnimationPlayer = $NoiseOverlay/NoisePlayer
+@onready var storage_minigame: Control = $StorageMinigame
 
 func set_camera(camID: String):
 	CameraRegistry.change_monitor_camera(camID)
 	noise_player.stop()
 	noise_player.play("run")
+	storage_minigame.visible = (camID == "StorageCamera")
 
 func _on_printer_button_pressed() -> void:
 	set_camera("PrinterCamera")
@@ -45,9 +39,3 @@ func _on_break_room_door_button_pressed() -> void:
 
 func _on_cameras_exit_button_pressed() -> void:
 	visible = false
-
-func _on_wind_button_button_up() -> void:
-	UIEvent.end_wind_up.emit()
-
-func _on_wind_button_button_down() -> void:
-	UIEvent.begin_wind_up.emit()
