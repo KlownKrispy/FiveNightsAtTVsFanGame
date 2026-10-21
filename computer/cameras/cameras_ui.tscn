@@ -5,8 +5,10 @@
 [ext_resource type="Shader" uid="uid://chifq81gjtsp1" path="res://computer/cameras/white_noise.gdshader" id="3_hoehb"]
 [ext_resource type="Texture2D" uid="uid://b7eadamb48ac4" path="res://white.png" id="4_gx54i"]
 [ext_resource type="Texture2D" uid="uid://c0gaan5mjkgyv" path="res://computer/ui_assets/exit.png" id="5_m5rs7"]
+[ext_resource type="Theme" uid="uid://buyfdbvctdoyp" path="res://computer/ui_assets/cameras_button.tres" id="6_0te0h"]
 [ext_resource type="Script" uid="uid://dundadaqnd8wo" path="res://computer/cameras/storage_minigame.gd" id="6_fpg8b"]
 [ext_resource type="Texture2D" uid="uid://db718jv60towd" path="res://computer/cameras/circle_black.png" id="6_nacyd"]
+[ext_resource type="ButtonGroup" uid="uid://cfp6vw4weje70" path="res://computer/cameras_buttongroup.tres" id="7_5m2iq"]
 [ext_resource type="Texture2D" uid="uid://ct2w81j8ygks7" path="res://computer/cameras/circle.png" id="7_o63y0"]
 [ext_resource type="Script" uid="uid://jjma0qqysqqw" path="res://computer/cameras/printer_minigame.gd" id="9_hoehb"]
 
@@ -103,6 +105,9 @@ offset_left = 32.0
 offset_top = 55.0
 offset_right = 76.0
 offset_bottom = 86.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Printer"
 
 [node name="BossButton" type="Button" parent="." unique_id=571288167]
@@ -111,6 +116,9 @@ offset_left = 160.0
 offset_top = 86.0
 offset_right = 222.0
 offset_bottom = 117.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Boss"
 
 [node name="ExitButton" type="Button" parent="." unique_id=2020878151]
@@ -119,6 +127,9 @@ offset_left = 32.0
 offset_top = 162.0
 offset_right = 94.0
 offset_bottom = 193.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Exit"
 
 [node name="CubicleButton" type="Button" parent="." unique_id=1579928486]
@@ -127,6 +138,9 @@ offset_left = 160.0
 offset_top = 162.0
 offset_right = 222.0
 offset_bottom = 193.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Cubicle"
 
 [node name="StorageButton" type="Button" parent="." unique_id=1266672921]
@@ -135,6 +149,9 @@ offset_left = 321.0
 offset_top = 162.0
 offset_right = 389.0
 offset_bottom = 193.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Storage"
 
 [node name="CorridorButton" type="Button" parent="." unique_id=1382871286]
@@ -143,6 +160,9 @@ offset_left = 248.0
 offset_top = 256.0
 offset_right = 316.0
 offset_bottom = 287.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Corridor"
 
 [node name="BreakRoomButton" type="Button" parent="." unique_id=467495787]
@@ -151,6 +171,9 @@ offset_left = 248.0
 offset_top = 314.0
 offset_right = 321.0
 offset_bottom = 345.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Break"
 
 [node name="BreakRoomDoorButton" type="Button" parent="." unique_id=1761630861]
@@ -159,6 +182,9 @@ offset_left = 160.0
 offset_top = 364.0
 offset_right = 256.0
 offset_bottom = 395.0
+theme = ExtResource("6_0te0h")
+toggle_mode = true
+button_group = ExtResource("7_5m2iq")
 text = "Break Door"
 
 [node name="TMP" type="SubViewport" parent="." unique_id=1438534746]

@@ -40,8 +40,9 @@ func generate() -> void:
 @onready var easy_button: Button = $EasyButton
 @onready var medium_button: Button = $MediumButton
 @onready var hard_button: Button = $HardButton
+@onready var exit_button: Button = $ExitButton
 func _change_game_visiblity(gameVisible: bool) -> void:
-	var menu := [game_title_label, easy_button, medium_button, hard_button]
+	var menu := [game_title_label, easy_button, medium_button, hard_button, exit_button]
 	var game := [minesweeper_tiles, mines, flags]
 	for node in menu:
 		node.visible = not gameVisible
@@ -69,6 +70,9 @@ func _on_hard_button_pressed() -> void:
 func _on_minesweeper_tiles_game_lost() -> void:
 	_change_game_visiblity(false)
 
-
 func _on_minesweeper_tiles_game_won() -> void:
 	_change_game_visiblity(false)
+
+signal minesweeper_closed
+func _on_exit_button_pressed() -> void:
+	minesweeper_closed.emit()

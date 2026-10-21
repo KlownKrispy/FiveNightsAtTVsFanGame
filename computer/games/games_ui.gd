@@ -9,3 +9,7 @@ func _on_games_exit_button_pressed() -> void:
 func _on_minesweeper_button_pressed() -> void:
 	minesweeper.visible = true
 	game_picker.visible = false
+
+func _on_minesweeper_minesweeper_closed() -> void:
+	minesweeper.visible = false
+	game_picker.visible = true

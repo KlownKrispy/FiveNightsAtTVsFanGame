@@ -121,6 +121,7 @@
 [ext_resource type="Texture2D" uid="uid://drnn7mlnv7hu3" path="res://curiosities/horse/frame_98.png" id="112_012g8"]
 [ext_resource type="Texture2D" uid="uid://b4mnlf7033hrb" path="res://curiosities/horse/frame_99.png" id="113_16jpe"]
 [ext_resource type="Texture2D" uid="uid://b8yqlu1pwhduk" path="res://curiosities/horse/frame_100.png" id="114_ls0a2"]
+[ext_resource type="AudioStream" uid="uid://cp055afd1eayj" path="res://computer/sfx/click.wav" id="122_qps02"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4omk"]
 texture = ExtResource("13_c1yk6")
@@ -622,7 +623,6 @@ centered = false
 visible = false
 
 [node name="GamesUI" type="Control" parent="." unique_id=14513545]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -651,7 +651,6 @@ texture_normal = ExtResource("12_6bas7")
 stretch_mode = 0
 
 [node name="Minesweeper" type="Node2D" parent="GamesUI" unique_id=552437709]
-visible = false
 position = Vector2(243, 52)
 script = ExtResource("13_pdqbt")
 
@@ -737,6 +736,22 @@ grow_vertical = 2
 theme = ExtResource("19_0xhlx")
 theme_override_font_sizes/font_size = 32
 text = "Queasy"
+
+[node name="ExitButton" type="Button" parent="GamesUI/Minesweeper" unique_id=1094855706]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 301.0
+offset_top = 3.0
+offset_right = 400.0
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("19_0xhlx")
+theme_override_font_sizes/font_size = 32
+text = "Back"
 
 [node name="GamePicker" type="Control" parent="GamesUI" unique_id=1537891261]
 anchors_preset = 0
@@ -825,18 +840,31 @@ scale = Vector2(1.4101479, 1.1428571)
 sprite_frames = SubResource("SpriteFrames_v2341")
 autoplay = "default"
 
+[node name="ComputerSoundOrigin" type="Node3D" parent="." unique_id=512190975]
+
+[node name="ComputerSFXPlayer" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1799294030]
+
+[node name="ComputerClickSound" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1008599039]
+stream = ExtResource("122_qps02")
+autoplay = true
+
 [connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="UI/CamerasTab" to="." method="_on_cameras_tab_pressed"]
 [connection signal="pressed" from="UI/GamesTab" to="." method="_on_games_tab_pressed"]
 [connection signal="pressed" from="UI/MailTab" to="." method="_on_mail_tab_pressed"]
 [connection signal="pressed" from="UI/HorseTab" to="." method="_on_horse_tab_pressed"]
+[connection signal="hidden" from="CamerasUI" to="." method="_on_cameras_ui_hidden"]
+[connection signal="hidden" from="GamesUI" to="." method="_on_games_ui_hidden"]
 [connection signal="pressed" from="GamesUI/GamesExitButton" to="GamesUI" method="_on_games_exit_button_pressed"]
+[connection signal="minesweeper_closed" from="GamesUI/Minesweeper" to="GamesUI" method="_on_minesweeper_minesweeper_closed"]
 [connection signal="game_lost" from="GamesUI/Minesweeper/MinesweeperTiles" to="GamesUI/Minesweeper" method="_on_minesweeper_tiles_game_lost"]
 [connection signal="game_won" from="GamesUI/Minesweeper/MinesweeperTiles" to="GamesUI/Minesweeper" method="_on_minesweeper_tiles_game_won"]
 [connection signal="pressed" from="GamesUI/Minesweeper/EasyButton" to="GamesUI/Minesweeper" method="_on_easy_button_pressed"]
 [connection signal="pressed" from="GamesUI/Minesweeper/MediumButton" to="GamesUI/Minesweeper" method="_on_medium_button_pressed"]
 [connection signal="pressed" from="GamesUI/Minesweeper/HardButton" to="GamesUI/Minesweeper" method="_on_hard_button_pressed"]
+[connection signal="pressed" from="GamesUI/Minesweeper/ExitButton" to="GamesUI/Minesweeper" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="GamesUI/GamePicker/MinesweeperButton" to="GamesUI" method="_on_minesweeper_button_pressed"]
+[connection signal="hidden" from="MailUI" to="." method="_on_mail_ui_hidden"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
 [connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]
 [connection signal="visibility_changed" from="HorseUI" to="HorseUI" method="_on_visibility_changed"]
