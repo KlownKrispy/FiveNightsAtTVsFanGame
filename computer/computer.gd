@@ -1,8 +1,9 @@
 class_name ComputerScreen
 extends Node2D
+@onready var audio_listener_2d: AudioListener2D = $AudioListener2D
 
 func show_computer():
-	pass
+	audio_listener_2d.make_current()
 
 func hide_computer():
 	EventBus.on_change_state.emit(EventBus.CameraState.CAMERAS, EventBus.CameraState.FORWARD)

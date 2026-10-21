@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0lwy7nh17rfn"]
 
 [ext_resource type="Script" uid="uid://cyoxp56qig2c3" path="res://computer/cameras/cameras_ui.gd" id="1_p38g3"]
-[ext_resource type="Texture2D" uid="uid://bv46c2o1seh2k" path="res://computer/ui_assets/window.png" id="2_p38g3"]
+[ext_resource type="Texture2D" uid="uid://bv46c2o1seh2k" path="res://computer/ui_assets/window.png" id="2_m5rs7"]
 [ext_resource type="Shader" uid="uid://chifq81gjtsp1" path="res://computer/cameras/white_noise.gdshader" id="3_hoehb"]
 [ext_resource type="Texture2D" uid="uid://b7eadamb48ac4" path="res://white.png" id="4_gx54i"]
 [ext_resource type="Texture2D" uid="uid://c0gaan5mjkgyv" path="res://computer/ui_assets/exit.png" id="5_m5rs7"]
@@ -64,7 +64,7 @@ layout_mode = 0
 offset_right = 341.5
 offset_bottom = 240.0
 scale = Vector2(2, 2)
-texture = ExtResource("2_p38g3")
+texture = ExtResource("2_m5rs7")
 patch_margin_left = 4
 patch_margin_top = 16
 patch_margin_right = 4

@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bs5xx8o2g86g8" path="res://player_camera.gd" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cpk1wa3h1m1gp" path="res://cameras/game_camera.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://cbap2audnaov1" path="res://screen_glow.gd" id="4_7jktm"]
+[ext_resource type="AudioStream" uid="uid://dpdyiw8uqh3du" path="res://cc0_assets/hard_drive.mp3" id="5_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://c1rhouvicefxt" path="res://enemies/radio/radio_idle.png" id="6_hve3p"]
 [ext_resource type="Texture2D" uid="uid://clxrii44n1c0d" path="res://enemies/radio/radio_lose.png" id="7_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://b1pejd7fqi2m" path="res://enemies/radio/radio_1.png" id="8_iotsf"]
@@ -1303,6 +1304,14 @@ script = ExtResource("4_7jktm")
 [node name="Box" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=2087001535]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
 size = Vector3(0.5, 0.1, 0.5)
+
+[node name="ComputerAmbience" type="AudioStreamPlayer3D" parent="World/ProtagCubicle/Table/Computer" unique_id=1359808474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61336994, 0)
+stream = ExtResource("5_x5p1p")
+volume_db = -35.0
+pitch_scale = 0.75
+autoplay = true
+parameters/looping = true
 
 [node name="OtherCubicle" type="Node3D" parent="World" unique_id=3260728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1)
