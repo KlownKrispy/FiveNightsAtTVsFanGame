@@ -118,6 +118,7 @@ func _flag(pos: Vector2i) -> void:
 	if not _is_cell_revealed(pos):
 		set_cell(pos, 0, Vector2i(10, 0))
 		_flagCount += 1
+		_check_win()
 		return
 	if get_cell_atlas_coords(pos) == Vector2i(10, 0):
 		set_cell(pos, 0, Vector2i(13, 0))

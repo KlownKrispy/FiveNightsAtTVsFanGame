@@ -124,6 +124,8 @@
 [ext_resource type="Texture2D" uid="uid://b4mnlf7033hrb" path="res://curiosities/horse/frame_99.png" id="113_16jpe"]
 [ext_resource type="Texture2D" uid="uid://b8yqlu1pwhduk" path="res://curiosities/horse/frame_100.png" id="114_ls0a2"]
 [ext_resource type="AudioStream" uid="uid://cp055afd1eayj" path="res://computer/sfx/click.wav" id="122_qps02"]
+[ext_resource type="Texture2D" uid="uid://b5psynkn0ub5l" path="res://curiosities/besef.png" id="125_1q1fk"]
+[ext_resource type="Script" uid="uid://b70wpbbpnx8eg" path="res://computer/error_button.gd" id="125_wdkpg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4omk"]
 texture = ExtResource("13_c1yk6")
@@ -453,6 +455,45 @@ animations = [{
 "speed": 120.0
 }]
 
+[sub_resource type="Animation" id="Animation_wdkpg"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("besef:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.55, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_hjpxv"]
+resource_name = "default"
+length = 0.500025
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("besef:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.500025),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Color(1, 0.55, 0, 1), Color(1, 0, 0, 1), Color(1, 0.55, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b2r4i"]
+_data = {
+&"RESET": SubResource("Animation_wdkpg"),
+&"default": SubResource("Animation_hjpxv")
+}
+
 [node name="Computer" type="Node2D" unique_id=1946148648]
 script = ExtResource("1_18hgq")
 
@@ -623,7 +664,7 @@ text = "12:00 AM"
 script = ExtResource("8_4sjsw")
 
 [node name="Cursor" type="Sprite2D" parent="." unique_id=948548043]
-z_index = 1
+z_index = 100
 position = Vector2(341, 256)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_wy26k")
@@ -881,12 +922,35 @@ vertical_alignment = 1
 
 [node name="ComputerSoundOrigin" type="Node3D" parent="." unique_id=512190975]
 
-[node name="RemoteTransform3D" type="RemoteTransform3D" parent="ComputerSoundOrigin" unique_id=1478558700]
-
 [node name="ComputerSFXPlayer" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1799294030]
 
 [node name="ComputerClickSound" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1008599039]
 stream = ExtResource("122_qps02")
+
+[node name="ErrorButton" type="Button" parent="." unique_id=484123111]
+visible = false
+z_index = 99
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 40.0
+offset_bottom = 40.0
+theme = ExtResource("19_0xhlx")
+button_mask = 0
+script = ExtResource("125_wdkpg")
+
+[node name="besef" type="TextureRect" parent="ErrorButton" unique_id=2066526578]
+modulate = Color(1, 0.55, 0, 1)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("125_1q1fk")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ErrorButton" unique_id=394390127]
+libraries/ = SubResource("AnimationLibrary_b2r4i")
+autoplay = &"default"
 
 [connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="UI/CamerasTab" to="." method="_on_cameras_tab_pressed"]

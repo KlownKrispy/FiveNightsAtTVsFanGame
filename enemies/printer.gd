@@ -26,7 +26,9 @@ func _minute_passed() -> void:
 	if _errored:
 		return
 	_workload -= 1
-	if _workload == 0:
+	_workload = maxi(0, _workload)
+	var elapsed := Night.get_current_time() - Night.get_current_night().nightTimeStart
+	if _workload <= 0 and elapsed >= Night.get_current_night().nightLength:
 		Night.end_night()
 
 func _begin_error_clock():
