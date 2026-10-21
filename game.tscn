@@ -20,8 +20,8 @@
 [ext_resource type="Texture2D" uid="uid://d3glbk5dipnps" path="res://enemies/tv/tv_idle.png" id="15_80cx4"]
 [ext_resource type="AudioStream" uid="uid://dg726xxq47x2n" path="res://enemies/concrete_walk.wav" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dp44d4ymdgua8" path="res://enemies/tv/tv_meow.wav" id="19_e36ub"]
-[ext_resource type="Texture2D" uid="uid://dnkqlijetmr5j" path="res://icon.svg" id="20_e36ub"]
 [ext_resource type="Script" uid="uid://cf04bfgrkp1ci" path="res://enemies/printer.gd" id="21_hb5m1"]
+[ext_resource type="Texture2D" uid="uid://b0cjnfbmlkje2" path="res://enemies/printer.png" id="21_x5p1p"]
 
 [sub_resource type="Environment" id="Environment_v2341"]
 background_mode = 1
@@ -30,7 +30,7 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.01
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_x5p1p"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_qhcbd"]
 allow_unpress = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
@@ -1174,7 +1174,7 @@ _data = {
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("20_e36ub")
+"texture": ExtResource("21_x5p1p")
 }],
 "loop": 1,
 "name": &"default",
@@ -1198,19 +1198,16 @@ size = Vector2i(683, 512)
 [node name="Computer" parent="SubViewport" unique_id=1946148648 instance=ExtResource("2_boyg6")]
 
 [node name="CamerasTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="3" unique_id=89113343]
-button_group = SubResource("ButtonGroup_x5p1p")
+button_group = SubResource("ButtonGroup_qhcbd")
 
 [node name="GamesTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="4" unique_id=615822567]
-button_group = SubResource("ButtonGroup_x5p1p")
+button_group = SubResource("ButtonGroup_qhcbd")
 
 [node name="MailTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="5" unique_id=1237005857]
-button_group = SubResource("ButtonGroup_x5p1p")
+button_group = SubResource("ButtonGroup_qhcbd")
 
-[node name="HorseTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="6" unique_id=1092353379]
-button_group = SubResource("ButtonGroup_x5p1p")
-
-[node name="ComputerSFXPlayer" parent="SubViewport/Computer" index="6" unique_id=415863866]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -2)
+[node name="HorseTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="7" unique_id=1092353379]
+button_group = SubResource("ButtonGroup_qhcbd")
 
 [node name="ComputerScreenCollider" type="Area3D" parent="SubViewport/Computer" unique_id=1669292061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9833543, -1.8165946)
@@ -1948,7 +1945,8 @@ stream = ExtResource("17_e8heu")
 stream = ExtResource("19_e36ub")
 
 [node name="Printer" type="AnimatedSprite3D" parent="Enemies" unique_id=382424022]
-transform = Transform3D(-1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, -1.4142135, -15, 1.365089, -8)
+transform = Transform3D(-1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, -1.4142135, -15, 1.6084214, -8)
+pixel_size = 0.001
 sprite_frames = SubResource("SpriteFrames_tqooj")
 script = ExtResource("21_hb5m1")
 
