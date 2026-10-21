@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://js8km225reqk"
-path="res://.godot/imported/tvos.png-7365d6881daab97bead213d4cc23ccda.ctex"
+uid="uid://ykyxmdmq4jye"
+path="res://.godot/imported/tab_pressed.png-b04498b3a8d010ad8bc2ef17c225fe90.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/computer/tvos.png"
-dest_files=["res://.godot/imported/tvos.png-7365d6881daab97bead213d4cc23ccda.ctex"]
+source_file="res://computer/ui_assets/tab_pressed.png"
+dest_files=["res://.godot/imported/tab_pressed.png-b04498b3a8d010ad8bc2ef17c225fe90.ctex"]
 
 [params]
 

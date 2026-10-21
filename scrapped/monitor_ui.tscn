@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b77tikn41uaar" path="res://scrapped/monitor_ui.gd" id="1_b5j3n"]
 [ext_resource type="Texture2D" uid="uid://dnkqlijetmr5j" path="res://icon.svg" id="2_ofwtr"]
-[ext_resource type="Texture2D" uid="uid://db718jv60towd" path="res://UI/computer/cameras/circle_black.png" id="3_b5j3n"]
-[ext_resource type="Texture2D" uid="uid://ct2w81j8ygks7" path="res://UI/computer/cameras/circle.png" id="4_ofwtr"]
+[ext_resource type="Texture2D" uid="uid://db718jv60towd" path="res://computer/cameras/circle_black.png" id="3_b5j3n"]
+[ext_resource type="Texture2D" uid="uid://ct2w81j8ygks7" path="res://computer/cameras/circle.png" id="4_ofwtr"]
 
 [node name="MonitorUI" type="Control" unique_id=1697029340]
 layout_mode = 3

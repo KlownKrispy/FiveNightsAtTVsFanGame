@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhhrc1dvnw4il"
-path="res://.godot/imported/panel_hover.png-5260634917649b294d7bb3181445953e.ctex"
+uid="uid://ct2w81j8ygks7"
+path="res://.godot/imported/circle.png-dcef183fb0bab6a99450664999ec7743.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/computer/panel_hover.png"
-dest_files=["res://.godot/imported/panel_hover.png-5260634917649b294d7bb3181445953e.ctex"]
+source_file="res://computer/cameras/circle.png"
+dest_files=["res://.godot/imported/circle.png-dcef183fb0bab6a99450664999ec7743.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dw34emg0nn3d7"
-path="res://.godot/imported/power.png-aa97c8a7814b4bd70c361ebb244881f6.ctex"
+uid="uid://cxafu0eupr8jk"
+path="res://.godot/imported/tileset.png-df80ede24c798df15f51c98ae3f66f68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/computer/power.png"
-dest_files=["res://.godot/imported/power.png-aa97c8a7814b4bd70c361ebb244881f6.ctex"]
+source_file="res://computer/games/minesweeper/tileset.png"
+dest_files=["res://.godot/imported/tileset.png-df80ede24c798df15f51c98ae3f66f68.ctex"]
 
 [params]
 

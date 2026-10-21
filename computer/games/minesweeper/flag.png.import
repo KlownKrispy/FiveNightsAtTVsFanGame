@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bfmufnvv1kb7b"
-path="res://.godot/imported/flag.png-fa0d263b0020c3dcde21567e0bbb1ddd.ctex"
+path="res://.godot/imported/flag.png-f862c4dd2e1610dfb4afde1eda1b9602.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/computer/games/minesweeper/flag.png"
-dest_files=["res://.godot/imported/flag.png-fa0d263b0020c3dcde21567e0bbb1ddd.ctex"]
+source_file="res://computer/games/minesweeper/flag.png"
+dest_files=["res://.godot/imported/flag.png-f862c4dd2e1610dfb4afde1eda1b9602.ctex"]
 
 [params]
 

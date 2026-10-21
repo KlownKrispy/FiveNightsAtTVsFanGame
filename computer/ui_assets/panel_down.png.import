@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv46c2o1seh2k"
-path="res://.godot/imported/window.png-aa7270deb6c612e020f8ba0422ee5966.ctex"
+uid="uid://db4ghddp0ell4"
+path="res://.godot/imported/panel_down.png-e7190fd83edc5c5bddfba2d52e1c3088.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/computer/window.png"
-dest_files=["res://.godot/imported/window.png-aa7270deb6c612e020f8ba0422ee5966.ctex"]
+source_file="res://computer/ui_assets/panel_down.png"
+dest_files=["res://.godot/imported/panel_down.png-e7190fd83edc5c5bddfba2d52e1c3088.ctex"]
 
 [params]
 

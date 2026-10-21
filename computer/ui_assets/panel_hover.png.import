@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxafu0eupr8jk"
-path="res://.godot/imported/tileset.png-0e16c4d1142cafaec7a69951f2e0b4c2.ctex"
+uid="uid://bhhrc1dvnw4il"
+path="res://.godot/imported/panel_hover.png-0ef68815c539bb1826262770af02d98f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/computer/games/minesweeper/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-0e16c4d1142cafaec7a69951f2e0b4c2.ctex"]
+source_file="res://computer/ui_assets/panel_hover.png"
+dest_files=["res://.godot/imported/panel_hover.png-0ef68815c539bb1826262770af02d98f.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://rdfpjwmvkxnb"
-path="res://.godot/imported/mine.png-fa73791ba5cf2b853140ab2aaa11f4eb.ctex"
+uid="uid://c0gaan5mjkgyv"
+path="res://.godot/imported/exit.png-f5b48021b92b134956ed07dee2395d50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/computer/games/minesweeper/mine.png"
-dest_files=["res://.godot/imported/mine.png-fa73791ba5cf2b853140ab2aaa11f4eb.ctex"]
+source_file="res://computer/ui_assets/exit.png"
+dest_files=["res://.godot/imported/exit.png-f5b48021b92b134956ed07dee2395d50.ctex"]
 
 [params]
 

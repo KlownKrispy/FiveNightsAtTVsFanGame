@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://btux4vr61q4gb"]
 
 [ext_resource type="PackedScene" uid="uid://c2r2tappmuhxu" path="res://UI/ui.tscn" id="1_80nbo"]
-[ext_resource type="PackedScene" uid="uid://b1nys2se2yywj" path="res://UI/computer/computer.tscn" id="2_boyg6"]
+[ext_resource type="PackedScene" uid="uid://b1nys2se2yywj" path="res://computer/computer.tscn" id="2_boyg6"]
 [ext_resource type="Script" uid="uid://bs5xx8o2g86g8" path="res://player_camera.gd" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cpk1wa3h1m1gp" path="res://cameras/game_camera.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://cbap2audnaov1" path="res://screen_glow.gd" id="4_7jktm"]
@@ -1341,60 +1341,37 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, 33.037594, -0.138
 visible = false
 size = Vector3(200, 0.1, 200)
 
-[node name="GameCameras" type="Node" parent="World" unique_id=1519925489]
-
-[node name="StorageViewport" type="SubViewport" parent="World/GameCameras" unique_id=1007225195]
+[node name="GameCameraViewport" type="SubViewport" parent="World" unique_id=1007225195]
 size = Vector2i(910, 512)
 
-[node name="StorageCamera" parent="World/GameCameras/StorageViewport" unique_id=2111484833 instance=ExtResource("3_feb5d")]
+[node name="StorageCamera" parent="World/GameCameraViewport" unique_id=2111484833 instance=ExtResource("3_feb5d")]
 transform = Transform3D(-0.70710677, -0.3535534, 0.6123724, 0, 0.8660255, 0.5, -0.70710677, 0.3535534, -0.6123724, 15.5, 4, -4.5)
 fov = 37.849285
 
-[node name="BreakRoomDoorViewport" type="SubViewport" parent="World/GameCameras" unique_id=337916963]
-size = Vector2i(910, 512)
-
-[node name="BreakRoomDoorCamera" parent="World/GameCameras/BreakRoomDoorViewport" unique_id=471543113 instance=ExtResource("3_feb5d")]
+[node name="BreakRoomDoorCamera" parent="World/GameCameraViewport" unique_id=471543113 instance=ExtResource("3_feb5d")]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -5.6633635, 4, 16.868092)
 fov = 37.849285
 
-[node name="CorridorViewport" type="SubViewport" parent="World/GameCameras" unique_id=561029097]
-size = Vector2i(910, 512)
-
-[node name="CorridorCamera" parent="World/GameCameras/CorridorViewport" unique_id=687431514 instance=ExtResource("3_feb5d")]
-transform = Transform3D(0.7071068, -0.3535534, 0.61237246, 0, 0.8660254, 0.5, -0.7071068, -0.3535534, 0.61237246, 9.5, 4, 4.5)
+[node name="CorridorCamera" parent="World/GameCameraViewport" unique_id=687431514 instance=ExtResource("3_feb5d")]
+transform = Transform3D(0.7071068, -0.3535534, 0.61237246, 0, 0.8660254, 0.50000006, -0.7071068, -0.3535534, 0.61237246, 9.5, 4, 4.5)
 fov = 37.849285
 
-[node name="BreakRoomViewport" type="SubViewport" parent="World/GameCameras" unique_id=1094722507]
-size = Vector2i(910, 512)
-
-[node name="BreakRoomCamera" parent="World/GameCameras/BreakRoomViewport" unique_id=303749878 instance=ExtResource("3_feb5d")]
-transform = Transform3D(-0.70710677, -0.35355338, 0.6123724, 0, 0.8660254, 0.5, -0.70710677, 0.35355338, -0.6123724, 9.5, 4, 5.5)
+[node name="BreakRoomCamera" parent="World/GameCameraViewport" unique_id=303749878 instance=ExtResource("3_feb5d")]
+transform = Transform3D(-0.7071068, -0.35355338, 0.61237246, 0, 0.8660254, 0.50000006, -0.7071068, 0.35355338, -0.61237246, 9.5, 4, 5.5)
 fov = 37.849285
 
-[node name="PrinterViewport" type="SubViewport" parent="World/GameCameras" unique_id=580476470]
-size = Vector2i(910, 512)
-
-[node name="PrinterCamera" parent="World/GameCameras/PrinterViewport" unique_id=1910562677 instance=ExtResource("3_feb5d")]
-transform = Transform3D(-0.70710677, 0.35355338, -0.6123724, 0, 0.8660254, 0.5, 0.70710677, 0.35355338, -0.6123724, -17.5, 4, -10.5)
+[node name="PrinterCamera" parent="World/GameCameraViewport" unique_id=1910562677 instance=ExtResource("3_feb5d")]
+transform = Transform3D(-0.7071068, 0.35355338, -0.61237246, 0, 0.8660254, 0.50000006, 0.7071068, 0.35355338, -0.61237246, -17.5, 4, -10.5)
 fov = 37.849285
 
-[node name="ExitViewport" type="SubViewport" parent="World/GameCameras" unique_id=1676950433]
-size = Vector2i(910, 512)
-
-[node name="ExitCamera" parent="World/GameCameras/ExitViewport" unique_id=379907908 instance=ExtResource("3_feb5d")]
-transform = Transform3D(-0.70710677, -0.18301271, 0.68301266, 0, 0.96592593, 0.2588191, -0.7071068, 0.18301272, -0.6830127, -18.5, 4, 1.5)
+[node name="ExitCamera" parent="World/GameCameraViewport" unique_id=379907908 instance=ExtResource("3_feb5d")]
+transform = Transform3D(-0.70710677, -0.18301271, 0.6830127, 0, 0.9659258, 0.25881904, -0.7071068, 0.1830127, -0.68301266, -18.5, 4, 1.5)
 fov = 37.849285
 
-[node name="CubicleViewport" type="SubViewport" parent="World/GameCameras" unique_id=358467103]
-size = Vector2i(910, 512)
+[node name="CubicleCamera" parent="World/GameCameraViewport" unique_id=1859055145 instance=ExtResource("3_feb5d")]
+transform = Transform3D(0.7071068, 0.35355338, -0.61237246, 0, 0.8660254, 0.50000006, 0.7071068, -0.35355338, 0.61237246, -9.5, 4, 0.5)
 
-[node name="CubicleCamera" parent="World/GameCameras/CubicleViewport" unique_id=1859055145 instance=ExtResource("3_feb5d")]
-transform = Transform3D(0.70710677, 0.3535534, -0.61237246, 0, 0.8660255, 0.50000006, 0.70710677, -0.3535534, 0.61237246, -9.5, 4, 0.5)
-
-[node name="BossViewport" type="SubViewport" parent="World/GameCameras" unique_id=508462810]
-size = Vector2i(910, 512)
-
-[node name="BossCamera" parent="World/GameCameras/BossViewport" unique_id=851016336 instance=ExtResource("3_feb5d")]
+[node name="BossCamera" parent="World/GameCameraViewport" unique_id=851016336 instance=ExtResource("3_feb5d")]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -10, 4, -7.5)
 
 [node name="StorageRoom" type="Node3D" parent="World" unique_id=2098803204]

@@ -23,6 +23,7 @@ func change_monitor_camera(id: String) -> void:
 	if monitor.texture is not ViewportTexture:
 		monitor.texture = ViewportTexture.new()
 	monitor.texture.viewport_path = cam.get_parent().get_path()
+	cam.make_current()
 	activeCamera = id
 
 var cameras: Dictionary[String, GameCamera] = {}

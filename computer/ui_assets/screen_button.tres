@@ -1,8 +1,8 @@
 [gd_resource type="Theme" format=4 uid="uid://ctsswtv7yw8l5"]
 
-[ext_resource type="Texture2D" uid="uid://bhhrc1dvnw4il" path="res://UI/computer/panel_hover.png" id="1_g22us"]
-[ext_resource type="Texture2D" uid="uid://dnvpopl8q5ynr" path="res://UI/computer/panel.png" id="2_ssn7c"]
-[ext_resource type="Texture2D" uid="uid://db4ghddp0ell4" path="res://UI/computer/panel_down.png" id="3_6jigq"]
+[ext_resource type="Texture2D" uid="uid://bhhrc1dvnw4il" path="res://computer/ui_assets/panel_hover.png" id="1_g22us"]
+[ext_resource type="Texture2D" uid="uid://dnvpopl8q5ynr" path="res://computer/ui_assets/panel.png" id="2_ssn7c"]
+[ext_resource type="Texture2D" uid="uid://db4ghddp0ell4" path="res://computer/ui_assets/panel_down.png" id="3_6jigq"]
 
 [sub_resource type="Image" id="Image_g22us"]
 data = {
