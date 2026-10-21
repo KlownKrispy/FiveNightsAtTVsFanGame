@@ -1,7 +1,8 @@
 class_name ComputerScreen
 extends Node2D
 @onready var computer_sfx_player: AudioStreamPlayer3D = $ComputerSoundOrigin/ComputerSFXPlayer
-@onready var computer_click_sound: AudioStreamPlayer3D = $ComputerSoundOrigin/ComputerClickSound
+@onready var computer_click_down_sound: AudioStreamPlayer3D = $ComputerSoundOrigin/ComputerClickDownSound
+@onready var computer_click_up_sound: AudioStreamPlayer3D = $ComputerSoundOrigin/ComputerClickUpSound
 
 func _ready() -> void:
 	EventBus.on_change_state.connect(_on_camera_change_state)
@@ -22,8 +23,10 @@ func hide_computer():
 @onready var mail_ui: Control = $MailUI
 @onready var horse_ui: Control = $HorseUI
 
-func _play_tab_click_sound() -> void:
-	computer_click_sound.play()
+func _play_click_down_sound() -> void:
+	computer_click_down_sound.play()
+func _play_click_up_sound() -> void:
+	computer_click_up_sound.play()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -31,8 +34,12 @@ func _input(event: InputEvent) -> void:
 		cursor.position.x = clampf(cursor.position.x, 0, 686)
 		cursor.position.y = clampf(cursor.position.y, 0, 511)
 	if event is InputEventMouseButton:
-		if event.pressed and event.button_index == MouseButton.MOUSE_BUTTON_LEFT:
-			_play_tab_click_sound()
+		if event.button_index != MouseButton.MOUSE_BUTTON_LEFT:
+			return
+		if event.pressed:
+			_play_click_down_sound()
+		else:
+			_play_click_up_sound()
 
 func _on_power_button_pressed() -> void:
 	computer_sfx_player.stream = preload("uid://bji36anch4vw4")

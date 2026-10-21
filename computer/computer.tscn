@@ -123,8 +123,9 @@
 [ext_resource type="Texture2D" uid="uid://drnn7mlnv7hu3" path="res://curiosities/horse/frame_98.png" id="112_012g8"]
 [ext_resource type="Texture2D" uid="uid://b4mnlf7033hrb" path="res://curiosities/horse/frame_99.png" id="113_16jpe"]
 [ext_resource type="Texture2D" uid="uid://b8yqlu1pwhduk" path="res://curiosities/horse/frame_100.png" id="114_ls0a2"]
-[ext_resource type="AudioStream" uid="uid://cp055afd1eayj" path="res://computer/sfx/click.wav" id="122_qps02"]
+[ext_resource type="AudioStream" uid="uid://dpfubhvn1j3rm" path="res://computer/sfx/click_down.wav" id="124_hjpxv"]
 [ext_resource type="Texture2D" uid="uid://b5psynkn0ub5l" path="res://curiosities/besef.png" id="125_1q1fk"]
+[ext_resource type="AudioStream" uid="uid://rwu2lrs0ry3a" path="res://computer/sfx/click_up.wav" id="125_hjpxv"]
 [ext_resource type="Script" uid="uid://b70wpbbpnx8eg" path="res://computer/error_button.gd" id="125_wdkpg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4omk"]
@@ -924,8 +925,13 @@ vertical_alignment = 1
 
 [node name="ComputerSFXPlayer" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1799294030]
 
-[node name="ComputerClickSound" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1008599039]
-stream = ExtResource("122_qps02")
+[node name="ComputerClickDownSound" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1008599039]
+stream = ExtResource("124_hjpxv")
+max_polyphony = 4
+
+[node name="ComputerClickUpSound" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1494740647]
+stream = ExtResource("125_hjpxv")
+max_polyphony = 4
 
 [node name="ErrorButton" type="Button" parent="." unique_id=484123111]
 visible = false
