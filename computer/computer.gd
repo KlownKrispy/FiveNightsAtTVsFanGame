@@ -70,6 +70,7 @@ func _on_horse_tab_pressed() -> void:
 
 func _on_horse_ui_hidden() -> void:
 	horse_tab.button_pressed = false
+	horse_tab.visible = false
 
 func _on_camera_change_state(_oldState: EventBus.CameraState, newState: EventBus.CameraState) -> void:
 	if newState != EventBus.CameraState.CAMERAS:

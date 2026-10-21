@@ -15,6 +15,12 @@ signal game_lost
 signal game_won
 
 var _flagCount := 0
+
+@onready var lose_sound: AudioStreamPlayer3D = $LoseSound
+@onready var win_sound: AudioStreamPlayer3D = $WinSound
+@onready var loss_timer: Timer = $LossTimer
+@onready var win_timer: Timer = $WinTimer
+
 func get_flag_count() -> int:
 	return _flagCount
 func get_mine_count() -> int:
@@ -76,7 +82,8 @@ func _lose() -> void:
 	for pos in mineMap:
 		if not _is_cell_revealed(pos):
 			set_cell(pos, 0, Vector2i(11, 0))
-	game_lost.emit()
+	loss_timer.start()
+	lose_sound.play()
 func _click(pos: Vector2i) -> void:
 	if not _is_cell_valid(pos):
 		return
@@ -101,8 +108,9 @@ func _check_win() -> void:
 		for y in size.y:
 			if not _is_cell_revealed(Vector2i(x, y)):
 				return
-	game_won.emit()
 	gameOver = true
+	win_timer.start()
+	win_sound.play()
 
 func _flag(pos: Vector2i) -> void:
 	if not _is_cell_valid(pos):
@@ -186,3 +194,8 @@ func _is_cell_revealed(pos: Vector2i) -> bool:
 
 func _is_cell_valid(pos: Vector2i) -> bool:
 	return pos.x >= 0 and pos.y >= 0 and pos.x < size.x and pos.y < size.y
+
+func _on_loss_timer_timeout() -> void:
+	game_lost.emit()
+func _on_win_timer_timeout() -> void:
+	game_won.emit()
