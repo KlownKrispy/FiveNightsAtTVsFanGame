@@ -5,7 +5,6 @@
 [ext_resource type="Script" uid="uid://bs5xx8o2g86g8" path="res://player_camera.gd" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cpk1wa3h1m1gp" path="res://cameras/game_camera.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://cbap2audnaov1" path="res://screen_glow.gd" id="4_7jktm"]
-[ext_resource type="AudioStream" uid="uid://dpdyiw8uqh3du" path="res://cc0_assets/hard_drive.mp3" id="5_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://c1rhouvicefxt" path="res://enemies/radio/radio_idle.png" id="6_hve3p"]
 [ext_resource type="Texture2D" uid="uid://clxrii44n1c0d" path="res://enemies/radio/radio_lose.png" id="7_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://b1pejd7fqi2m" path="res://enemies/radio/radio_1.png" id="8_iotsf"]
@@ -30,7 +29,7 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.01
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_qhcbd"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_hb5m1"]
 allow_unpress = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
@@ -1198,16 +1197,16 @@ size = Vector2i(683, 512)
 [node name="Computer" parent="SubViewport" unique_id=1946148648 instance=ExtResource("2_boyg6")]
 
 [node name="CamerasTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="3" unique_id=89113343]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_hb5m1")
 
 [node name="GamesTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="4" unique_id=615822567]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_hb5m1")
 
 [node name="MailTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="5" unique_id=1237005857]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_hb5m1")
 
 [node name="HorseTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="7" unique_id=1092353379]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_hb5m1")
 
 [node name="ComputerScreenCollider" type="Area3D" parent="SubViewport/Computer" unique_id=1669292061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9833543, -1.8165946)
@@ -1320,14 +1319,6 @@ script = ExtResource("4_7jktm")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
 size = Vector3(0.5, 0.1, 0.5)
 
-[node name="ComputerAmbience" type="AudioStreamPlayer3D" parent="World/ProtagCubicle/Table/Computer" unique_id=1359808474]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.61336994, 0)
-stream = ExtResource("5_x5p1p")
-volume_db = -35.0
-pitch_scale = 0.75
-autoplay = true
-parameters/looping = true
-
 [node name="OtherCubicle" type="Node3D" parent="World" unique_id=3260728]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1)
 
@@ -1421,7 +1412,8 @@ size = Vector3(6, 4, 0.1)
 transform = Transform3D(-0.16666666, 0, -1.4570463e-08, 0, 0.16666666, 0, 1.4570463e-08, 0, -0.16666666, -0.16666746, -0.16666666, -0.16666679)
 size = Vector3(6, 4, 0.1)
 
-[node name="EtcCubicles" type="Node" parent="World" unique_id=1324234312]
+[node name="EtcCubicles" type="Node3D" parent="World" unique_id=1212970636]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="OtherCubicle" type="Node3D" parent="World/EtcCubicles" unique_id=898047359]
 transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, -12, 3, -1)
@@ -1749,7 +1741,8 @@ size = Vector3(10, 4, 0.1)
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -12, 0, -5)
 size = Vector3(10, 4, 0.1)
 
-[node name="OuterWalls" type="Node" parent="World" unique_id=841493388]
+[node name="OuterWalls" type="Node3D" parent="World" unique_id=515353166]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="BackWall5" type="CSGBox3D" parent="World/OuterWalls" unique_id=1409732063]
 transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.999999, 2, 3)
@@ -1867,7 +1860,7 @@ autoplay = &"idle"
 
 [node name="MoveTimer" type="Timer" parent="Enemies/Radio" unique_id=442509132]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Enemies/Radio" unique_id=874482526]
+[node name="LoseSoundPlayer" type="AudioStreamPlayer" parent="Enemies/Radio" unique_id=2094586090]
 stream = ExtResource("12_iotsf")
 
 [node name="EnemyProgress" type="ProgressBar" parent="Enemies/Radio" unique_id=1200468708]
@@ -1879,7 +1872,7 @@ offset_bottom = 861.0
 max_value = 10.0
 show_percentage = false
 
-[node name="MeowPlayer" type="AudioStreamPlayer3D" parent="Enemies/Radio" unique_id=912988993]
+[node name="AttackCuePlayer" type="AudioStreamPlayer" parent="Enemies/Radio" unique_id=253020764]
 stream = ExtResource("13_boyg6")
 
 [node name="Computer" type="Node3D" parent="Enemies" unique_id=383692804]
@@ -1906,7 +1899,7 @@ autoplay = &"idle"
 
 [node name="MoveTimer" type="Timer" parent="Enemies/TV" unique_id=866759964]
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="Enemies/TV" unique_id=2066868823]
+[node name="LoseSoundPlayer" type="AudioStreamPlayer" parent="Enemies/TV" unique_id=1643297449]
 stream = ExtResource("12_iotsf")
 
 [node name="DebugBarAttack" type="ProgressBar" parent="Enemies/TV" unique_id=1650758871]
@@ -1941,7 +1934,7 @@ text = "hide meter"
 [node name="WalkSound" type="AudioStreamPlayer3D" parent="Enemies/TV" unique_id=2095660309]
 stream = ExtResource("17_e8heu")
 
-[node name="MeowPlayer" type="AudioStreamPlayer3D" parent="Enemies/TV" unique_id=886109648]
+[node name="AttackCuePlayer" type="AudioStreamPlayer" parent="Enemies/TV" unique_id=1334758892]
 stream = ExtResource("19_e36ub")
 
 [node name="Printer" type="AnimatedSprite3D" parent="Enemies" unique_id=382424022]

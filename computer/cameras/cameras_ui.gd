@@ -6,6 +6,22 @@ func _ready() -> void:
 	CameraRegistry.monitor = camera_view
 	set_camera.call_deferred("BossCamera")
 	CameraRegistry.set_camera_resolution(camera_res)
+	EventBus.tv_moved.connect(_enemy_moved)
+	EventBus.radio_moved.connect(_enemy_moved)
+
+func _enemy_moved(oldCams: Array[String], newCams: Array[String]) -> void:
+	var toFlash: Array[String] = []
+	for cam in (oldCams + newCams):
+		# Remove duplicates
+		if cam in toFlash:
+			continue
+		toFlash.append(cam)
+	_flash_cameras(toFlash)
+
+func _flash_cameras(camIDs: Array[String]) -> void:
+	if CameraRegistry.activeCamera in camIDs:
+		noise_player.stop()
+		noise_player.play("moved")
 
 func _process(_delta: float) -> void:
 	if EventBus.forceCameraForward:

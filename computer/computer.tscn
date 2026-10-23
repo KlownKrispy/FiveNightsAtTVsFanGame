@@ -127,6 +127,7 @@
 [ext_resource type="Texture2D" uid="uid://b5psynkn0ub5l" path="res://curiosities/besef.png" id="125_1q1fk"]
 [ext_resource type="AudioStream" uid="uid://rwu2lrs0ry3a" path="res://computer/sfx/click_up.wav" id="125_hjpxv"]
 [ext_resource type="Script" uid="uid://b70wpbbpnx8eg" path="res://computer/error_button.gd" id="125_wdkpg"]
+[ext_resource type="AudioStream" uid="uid://dpdyiw8uqh3du" path="res://cc0_assets/hard_drive.mp3" id="128_b2r4i"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4omk"]
 texture = ExtResource("13_c1yk6")
@@ -921,18 +922,6 @@ text = "There is no horse
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ComputerSoundOrigin" type="Node3D" parent="." unique_id=512190975]
-
-[node name="ComputerSFXPlayer" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1799294030]
-
-[node name="ComputerClickDownSound" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1008599039]
-stream = ExtResource("124_hjpxv")
-max_polyphony = 4
-
-[node name="ComputerClickUpSound" type="AudioStreamPlayer3D" parent="ComputerSoundOrigin" unique_id=1494740647]
-stream = ExtResource("125_hjpxv")
-max_polyphony = 4
-
 [node name="ErrorButton" type="Button" parent="." unique_id=484123111]
 visible = false
 z_index = 99
@@ -957,6 +946,24 @@ expand_mode = 1
 [node name="AnimationPlayer" type="AnimationPlayer" parent="ErrorButton" unique_id=394390127]
 libraries/ = SubResource("AnimationLibrary_b2r4i")
 autoplay = &"default"
+
+[node name="ComputerSFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1902216441]
+
+[node name="ComputerClickDownSound" type="AudioStreamPlayer" parent="." unique_id=1713585805]
+stream = ExtResource("124_hjpxv")
+max_polyphony = 4
+
+[node name="ComputerClickUpSound" type="AudioStreamPlayer" parent="." unique_id=318802364]
+stream = ExtResource("125_hjpxv")
+max_polyphony = 4
+
+[node name="ComputerAmbience" type="AudioStreamPlayer" parent="." unique_id=269375623]
+stream = ExtResource("128_b2r4i")
+volume_db = -35.0
+pitch_scale = 0.75
+autoplay = true
+max_polyphony = 4
+parameters/looping = true
 
 [connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]
 [connection signal="pressed" from="UI/CamerasTab" to="." method="_on_cameras_tab_pressed"]

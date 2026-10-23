@@ -21,6 +21,9 @@ signal wind_attack
 
 signal printer_errored(error: Printer.PrinterError)
 signal printer_error_resolved
+
+signal radio_moved(oldCamIDs: Array[String], newCamIDs: Array[String])
+signal tv_moved(oldCamIDs: Array[String], newCamIDs: Array[String])
 @warning_ignore_restore("unused_signal")
 
 var showUIButtons := true

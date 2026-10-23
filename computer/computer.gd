@@ -1,8 +1,8 @@
 class_name ComputerScreen
 extends Node2D
-@onready var computer_sfx_player: AudioStreamPlayer3D = $ComputerSoundOrigin/ComputerSFXPlayer
-@onready var computer_click_down_sound: AudioStreamPlayer3D = $ComputerSoundOrigin/ComputerClickDownSound
-@onready var computer_click_up_sound: AudioStreamPlayer3D = $ComputerSoundOrigin/ComputerClickUpSound
+@onready var computer_sfx_player: AudioStreamPlayer = $ComputerSFXPlayer
+@onready var computer_click_down_sound: AudioStreamPlayer = $ComputerClickDownSound
+@onready var computer_click_up_sound: AudioStreamPlayer = $ComputerClickUpSound
 
 func _ready() -> void:
 	EventBus.on_change_state.connect(_on_camera_change_state)
@@ -10,11 +10,15 @@ func _ready() -> void:
 func show_computer():
 	computer_sfx_player.stream = preload("uid://d2ipy4jchi42y")
 	computer_sfx_player.play()
+	if cameras_ui.visible:
+		_set_camera_sound_listener_enabled(true)
 
 func hide_computer():
 	EventBus.on_change_state.emit(EventBus.CameraState.CAMERAS, EventBus.CameraState.FORWARD)
 	EventBus.showUIButtons = true
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	if cameras_ui.visible:
+		_set_camera_sound_listener_enabled(false)
 
 @onready var ui: Control = $UI
 @onready var cursor: Sprite2D = $Cursor
@@ -51,24 +55,32 @@ func _on_cameras_tab_pressed() -> void:
 	horse_ui.visible = false
 	games_ui.visible = false
 	mail_ui.visible = false
+	_set_camera_sound_listener_enabled(true)
+
+func _set_camera_sound_listener_enabled(value: bool):
+	get_tree().root.get_viewport().audio_listener_enable_3d = not value
+	CameraRegistry.get_camera(CameraRegistry.activeCamera).get_viewport().audio_listener_enable_3d = value
 
 func _on_games_tab_pressed() -> void:
 	games_ui.visible = not games_ui.visible
 	horse_ui.visible = false
 	cameras_ui.visible = false
 	mail_ui.visible = false
+	_set_camera_sound_listener_enabled(false)
 
 func _on_mail_tab_pressed() -> void:
 	mail_ui.visible = not mail_ui.visible
 	horse_ui.visible = false
 	cameras_ui.visible = false
 	games_ui.visible = false
+	_set_camera_sound_listener_enabled(false)
 
 func _on_horse_tab_pressed() -> void:
 	horse_ui.visible = not horse_ui.visible
 	mail_ui.visible = false
 	cameras_ui.visible = false
 	games_ui.visible = false
+	_set_camera_sound_listener_enabled(false)
 
 @onready var cameras_tab: TextureButton = $UI/CamerasTab
 @onready var games_tab: TextureButton = $UI/GamesTab
@@ -92,3 +104,4 @@ func _on_games_ui_hidden() -> void:
 
 func _on_cameras_ui_hidden() -> void:
 	cameras_tab.button_pressed = false
+	_set_camera_sound_listener_enabled(false)

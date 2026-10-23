@@ -19,8 +19,8 @@ var damageFromFlashlight: float:
 
 @onready var move_timer: Timer = $MoveTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var audio_stream_player_3d: AudioStreamPlayer3D = $AudioStreamPlayer3D
-@onready var meow_player: AudioStreamPlayer3D = $MeowPlayer
+@onready var lose_sound_player: AudioStreamPlayer = $LoseSoundPlayer
+@onready var attack_cue_player: AudioStreamPlayer = $AttackCuePlayer
 
 @export var states := ["idle", "move_1", "move_2", "move_3", "lose"]
 @export var currentState := "idle"
@@ -54,18 +54,34 @@ func _next_state() -> String:
 	idx = clampi(idx, 0, len(states) - 1)
 	return states[idx]
 
+func _emit_move_signal(oldState: String, newState: String) -> void:
+	var oldCamIDs: Array[String] = []
+	var newCamIDs: Array[String] = []
+	match oldState:
+		"idle", "move_1", "move_2", "move_3":
+			oldCamIDs = ["CubicleCamera"]
+		"lose":
+			pass
+	match newState:
+		"idle", "move_1", "move_2", "move_3":
+			newCamIDs = ["CubicleCamera"]
+		"lose":
+			pass
+	EventBus.radio_moved.emit(oldCamIDs, newCamIDs)
+
 func move() -> void:
 	if currentState == "lose":
 		return
 	var idx = states.find(currentState)
 	idx += 1
 	idx = clampi(idx, 0, len(states) - 1)
+	_emit_move_signal(currentState, states[idx])
 	currentState = states[idx]
 	animation_player.play(currentState)
 	if currentState == "lose":
 		EventBus.showUIButtons = false
 		EventBus.forceCameraForward = true
-		audio_stream_player_3d.play()
+		lose_sound_player.play()
 	if _is_on_attack_state() and EventBus.currentCameraState == EventBus.CameraState.LEFT:
 		enemy_progress.visible = true
 
@@ -76,7 +92,7 @@ func _on_move_timer_timeout() -> void:
 		return
 	if _is_on_attack_state():
 		move_timer.start(attackTime)
-		meow_player.play()
+		attack_cue_player.play()
 		return
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 
