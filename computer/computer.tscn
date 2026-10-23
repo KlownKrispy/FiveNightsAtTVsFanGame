@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bbxx1k5qbadj5" path="res://curiosities/horse/frame_6.png" id="20_pdqbt"]
 [ext_resource type="Texture2D" uid="uid://rpypgev8tkk4" path="res://curiosities/horse/frame_7.png" id="21_4sjsw"]
 [ext_resource type="Texture2D" uid="uid://ghjynhx0avi5" path="res://curiosities/horse/frame_8.png" id="22_0xhlx"]
+[ext_resource type="Texture2D" uid="uid://bjahcox2xdjlp" path="res://computer/games/tetris/tiles.png" id="22_p2y5u"]
 [ext_resource type="Texture2D" uid="uid://qawd02i3l7wk" path="res://curiosities/horse/frame_9.png" id="23_5x8jy"]
 [ext_resource type="Texture2D" uid="uid://dl7quujxv2p2a" path="res://curiosities/horse/frame_10.png" id="24_m5u5i"]
 [ext_resource type="Texture2D" uid="uid://bmtsaa0qu0ipg" path="res://curiosities/horse/frame_11.png" id="25_gs2b6"]
@@ -149,6 +150,20 @@ texture = ExtResource("13_c1yk6")
 
 [sub_resource type="TileSet" id="TileSet_v2341"]
 sources/0 = SubResource("TileSetAtlasSource_a4omk")
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_byv7i"]
+texture = ExtResource("22_p2y5u")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_tqooj"]
+sources/0 = SubResource("TileSetAtlasSource_byv7i")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v2341"]
 animations = [{
@@ -863,6 +878,21 @@ offset_bottom = 126.0
 theme = ExtResource("19_0xhlx")
 text = "Minesweeper"
 
+[node name="TetrisButton" type="Button" parent="GamesUI/GamePicker" unique_id=928138937]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 126.0
+offset_right = 193.0
+offset_bottom = 166.0
+theme = ExtResource("19_0xhlx")
+text = "Tetris"
+
+[node name="Tetris" type="Node2D" parent="GamesUI" unique_id=993703263]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="GamesUI/Tetris" unique_id=39097759]
+tile_map_data = PackedByteArray("AAAYAAoAAAABAAAAAAAZAAoAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAaAAoAAAACAAAAAAAaAAsAAAACAAAAAAAZAAsAAAACAAAAAAAYAAsAAAACAAAAAAAYAAkAAAADAAAAAAAYAAgAAAADAAAAAAAZAAgAAAADAAAAAAAaAAgAAAADAAAAAAAbAAgAAAAEAAAAAAAbAAkAAAAEAAAAAAAbAAoAAAAEAAAAAAAbAAsAAAAEAAAAAAAcAAsAAAAHAAAAAAAcAAoAAAAHAAAAAAAcAAkAAAAHAAAAAAAdAAkAAAAHAAAAAAAeAAoAAAAGAAAAAAAdAAoAAAAGAAAAAAAdAAsAAAAGAAAAAAAeAAsAAAAGAAAAAAAdAAgAAAAFAAAAAAAcAAgAAAAFAAAAAAAcAAcAAAAFAAAAAAAbAAcAAAAFAAAAAAAfAAcAAAAAAAAAAAAfAAgAAAAAAAAAAAAfAAkAAAAAAAAAAAAfAAsAAAAAAAAAAAAfAAoAAAAAAAAAAAAfAAwAAAAAAAAAAAAeAAwAAAAAAAAAAAAdAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAXAAsAAAAAAAAAAAAXAAoAAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAMAAAAAAAAAAAAYAAMAAAAAAAAAAAAZAAMAAAAAAAAAAAAaAAMAAAAAAAAAAAAbAAMAAAAAAAAAAAAcAAMAAAAAAAAAAAAdAAMAAAAAAAAAAAAeAAMAAAAAAAAAAAAfAAMAAAAAAAAAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAAAAAAfAAYAAAAAAAAAAAA=")
+tile_set = SubResource("TileSet_tqooj")
+
 [node name="MailUI" type="Control" parent="." unique_id=1032281496]
 visible = false
 layout_mode = 3
@@ -1001,6 +1031,7 @@ parameters/looping = true
 [connection signal="pressed" from="GamesUI/Minesweeper/HardButton" to="GamesUI/Minesweeper" method="_on_hard_button_pressed"]
 [connection signal="pressed" from="GamesUI/Minesweeper/ExitButton" to="GamesUI/Minesweeper" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="GamesUI/GamePicker/MinesweeperButton" to="GamesUI" method="_on_minesweeper_button_pressed"]
+[connection signal="pressed" from="GamesUI/GamePicker/TetrisButton" to="GamesUI" method="_on_tetris_button_pressed"]
 [connection signal="hidden" from="MailUI" to="." method="_on_mail_ui_hidden"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
 [connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]
