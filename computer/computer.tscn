@@ -124,6 +124,7 @@
 [ext_resource type="Texture2D" uid="uid://b4mnlf7033hrb" path="res://curiosities/horse/frame_99.png" id="113_16jpe"]
 [ext_resource type="Texture2D" uid="uid://b8yqlu1pwhduk" path="res://curiosities/horse/frame_100.png" id="114_ls0a2"]
 [ext_resource type="AudioStream" uid="uid://dpfubhvn1j3rm" path="res://computer/sfx/click_down.wav" id="124_hjpxv"]
+[ext_resource type="Texture2D" uid="uid://dnvpopl8q5ynr" path="res://computer/ui_assets/panel.png" id="124_nm60v"]
 [ext_resource type="Texture2D" uid="uid://b5psynkn0ub5l" path="res://curiosities/besef.png" id="125_1q1fk"]
 [ext_resource type="AudioStream" uid="uid://rwu2lrs0ry3a" path="res://computer/sfx/click_up.wav" id="125_hjpxv"]
 [ext_resource type="Script" uid="uid://b70wpbbpnx8eg" path="res://computer/error_button.gd" id="125_wdkpg"]
@@ -472,11 +473,11 @@ tracks/0/keys = {
 "values": [Color(1, 0.55, 0, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_hjpxv"]
-resource_name = "default"
-length = 0.500025
+[sub_resource type="Animation" id="Animation_nm60v"]
+resource_name = "urgent"
+length = 0.5
 loop_mode = 1
-step = 0.25
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -484,16 +485,33 @@ tracks/0/path = NodePath("besef:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25, 0.500025),
+"times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Color(1, 0.55, 0, 1), Color(1, 0, 0, 1), Color(1, 0.55, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_p2y5u"]
+resource_name = "warning"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("besef:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.55, 0, 1), Color(1, 0.55, 0, 1)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b2r4i"]
 _data = {
 &"RESET": SubResource("Animation_wdkpg"),
-&"default": SubResource("Animation_hjpxv")
+&"urgent": SubResource("Animation_nm60v"),
+&"warning": SubResource("Animation_p2y5u")
 }
 
 [node name="Computer" type="Node2D" unique_id=1946148648]
@@ -715,10 +733,10 @@ tile_map_data = PackedByteArray("AAAAAAAAAAAJAAAAAAAAAAEAAAAJAAAAAAAAAAIAAAAJAAA
 tile_set = SubResource("TileSet_v2341")
 script = ExtResource("14_a4omk")
 
-[node name="LoseSound" type="AudioStreamPlayer3D" parent="GamesUI/Minesweeper/MinesweeperTiles" unique_id=1309606345]
+[node name="LoseSound" type="AudioStreamPlayer" parent="GamesUI/Minesweeper/MinesweeperTiles" unique_id=118964434]
 stream = ExtResource("17_t444s")
 
-[node name="WinSound" type="AudioStreamPlayer3D" parent="GamesUI/Minesweeper/MinesweeperTiles" unique_id=1027353215]
+[node name="WinSound" type="AudioStreamPlayer" parent="GamesUI/Minesweeper/MinesweeperTiles" unique_id=614522510]
 stream = ExtResource("18_1e5fy")
 
 [node name="LossTimer" type="Timer" parent="GamesUI/Minesweeper/MinesweeperTiles" unique_id=1525834084]
@@ -922,18 +940,19 @@ text = "There is no horse
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ErrorButton" type="Button" parent="." unique_id=484123111]
+[node name="WarningIndicator" type="TextureRect" parent="." unique_id=784634114]
 visible = false
 z_index = 99
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = 619.0
+offset_top = 448.0
+offset_right = 651.0
+offset_bottom = 480.0
 theme = ExtResource("19_0xhlx")
-button_mask = 0
+texture = ExtResource("124_nm60v")
 script = ExtResource("125_wdkpg")
+metadata/_edit_group_ = true
 
-[node name="besef" type="TextureRect" parent="ErrorButton" unique_id=2066526578]
+[node name="besef" type="TextureRect" parent="WarningIndicator" unique_id=2066526578]
 modulate = Color(1, 0.55, 0, 1)
 layout_mode = 0
 offset_left = 2.0
@@ -943,9 +962,8 @@ offset_bottom = 30.0
 texture = ExtResource("125_1q1fk")
 expand_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ErrorButton" unique_id=394390127]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningIndicator" unique_id=394390127]
 libraries/ = SubResource("AnimationLibrary_b2r4i")
-autoplay = &"default"
 
 [node name="ComputerSFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1902216441]
 

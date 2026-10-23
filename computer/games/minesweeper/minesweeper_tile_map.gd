@@ -16,8 +16,8 @@ signal game_won
 
 var _flagCount := 0
 
-@onready var lose_sound: AudioStreamPlayer3D = $LoseSound
-@onready var win_sound: AudioStreamPlayer3D = $WinSound
+@onready var lose_sound: AudioStreamPlayer = $LoseSound
+@onready var win_sound: AudioStreamPlayer = $WinSound
 @onready var loss_timer: Timer = $LossTimer
 @onready var win_timer: Timer = $WinTimer
 

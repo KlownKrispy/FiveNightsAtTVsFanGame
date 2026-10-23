@@ -15,6 +15,9 @@ signal camera_finished_moving
 
 signal flashlight_triggered
 
+signal computer_low
+signal computer_empty
+signal computer_error_silence
 signal begin_wind_up
 signal end_wind_up
 signal wind_attack

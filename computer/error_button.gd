@@ -1,14 +1,19 @@
-extends Button
+extends TextureRect
 
 func _ready() -> void:
-	EventBus.printer_errored.connect(_printer_errored)
-	EventBus.printer_error_resolved.connect(_printer_resolved)
+	EventBus.computer_error_silence.connect(_computer_error_silence)
+	EventBus.computer_low.connect(_computer_low)
+	EventBus.computer_empty.connect(_computer_empty)
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
-func _printer_errored(_error: Printer.PrinterError) -> void:
-	visible = true
-	animation_player.play("default")
-
-func _printer_resolved() -> void:
+func _computer_error_silence() -> void:
 	visible = false
 	animation_player.stop()
+
+func _computer_low() -> void:
+	visible = true
+	animation_player.play("warning")
+
+func _computer_empty() -> void:
+	visible = true
+	animation_player.play("urgent")

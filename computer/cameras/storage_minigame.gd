@@ -18,7 +18,7 @@ func _ready() -> void:
 	_night_changed()
 
 func _process(delta: float) -> void:
-	wind_progress.value = windAmount
+	var oldWind := windAmount
 	if _winding:
 		if windAmount <= 0:
 			wind_grace_timer.stop()
@@ -27,6 +27,13 @@ func _process(delta: float) -> void:
 		windAmount = clampf(windAmount - delta, 0, maxWind)
 		if windAmount == 0 and wind_grace_timer.is_stopped() and not EventBus.forceCameraForward:
 			wind_grace_timer.start(windGracePeriod)
+	wind_progress.value = windAmount
+	if oldWind >= 0.25 * maxWind and windAmount < 0.25 * maxWind:
+		EventBus.computer_low.emit()
+	if oldWind > 0 and windAmount <= 0:
+		EventBus.computer_empty.emit()
+	if oldWind < 0.25 * maxWind and windAmount >= 0.25 * maxWind:
+		EventBus.computer_error_silence.emit()
 
 func _night_changed():
 	windAmount = Night.get_current_night().computerInitialWindAmount
