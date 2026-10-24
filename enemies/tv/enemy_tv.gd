@@ -109,10 +109,15 @@ func move() -> void:
 		EventBus.forceCameraForward = true
 		lose_sound_player.play()
 
+var attacking := false
+
 func _on_move_timer_timeout() -> void:
 	if _playerIsHiding and _is_on_attack_state():
 		_readyToAttack = true
 		move_timer.stop()
+		return
+	if _is_on_attack_state() and attacking:
+		move()
 		return
 	if randf() <= moveChance:
 		move()
@@ -125,6 +130,7 @@ func _on_move_timer_timeout() -> void:
 	if _is_on_attack_state():
 		move_timer.start(attackTime)
 		attack_cue_player.play()
+		attacking = true
 		return
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 
