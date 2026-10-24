@@ -31,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://bbxx1k5qbadj5" path="res://curiosities/horse/frame_6.png" id="20_pdqbt"]
 [ext_resource type="Texture2D" uid="uid://rpypgev8tkk4" path="res://curiosities/horse/frame_7.png" id="21_4sjsw"]
 [ext_resource type="Texture2D" uid="uid://ghjynhx0avi5" path="res://curiosities/horse/frame_8.png" id="22_0xhlx"]
+[ext_resource type="Script" uid="uid://cpciyffa7ktf1" path="res://computer/games/tetris/tetris_tile_map.gd" id="22_byv7i"]
 [ext_resource type="Texture2D" uid="uid://bjahcox2xdjlp" path="res://computer/games/tetris/tiles.png" id="22_p2y5u"]
 [ext_resource type="Texture2D" uid="uid://qawd02i3l7wk" path="res://curiosities/horse/frame_9.png" id="23_5x8jy"]
 [ext_resource type="Texture2D" uid="uid://dl7quujxv2p2a" path="res://curiosities/horse/frame_10.png" id="24_m5u5i"]
@@ -709,7 +710,6 @@ centered = false
 visible = false
 
 [node name="GamesUI" type="Control" parent="." unique_id=14513545]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -888,10 +888,15 @@ theme = ExtResource("19_0xhlx")
 text = "Tetris"
 
 [node name="Tetris" type="Node2D" parent="GamesUI" unique_id=993703263]
+position = Vector2(341, 108)
 
-[node name="TileMapLayer" type="TileMapLayer" parent="GamesUI/Tetris" unique_id=39097759]
-tile_map_data = PackedByteArray("AAAYAAoAAAABAAAAAAAZAAoAAAABAAAAAAAZAAkAAAABAAAAAAAaAAkAAAABAAAAAAAaAAoAAAACAAAAAAAaAAsAAAACAAAAAAAZAAsAAAACAAAAAAAYAAsAAAACAAAAAAAYAAkAAAADAAAAAAAYAAgAAAADAAAAAAAZAAgAAAADAAAAAAAaAAgAAAADAAAAAAAbAAgAAAAEAAAAAAAbAAkAAAAEAAAAAAAbAAoAAAAEAAAAAAAbAAsAAAAEAAAAAAAcAAsAAAAHAAAAAAAcAAoAAAAHAAAAAAAcAAkAAAAHAAAAAAAdAAkAAAAHAAAAAAAeAAoAAAAGAAAAAAAdAAoAAAAGAAAAAAAdAAsAAAAGAAAAAAAeAAsAAAAGAAAAAAAdAAgAAAAFAAAAAAAcAAgAAAAFAAAAAAAcAAcAAAAFAAAAAAAbAAcAAAAFAAAAAAAfAAcAAAAAAAAAAAAfAAgAAAAAAAAAAAAfAAkAAAAAAAAAAAAfAAsAAAAAAAAAAAAfAAoAAAAAAAAAAAAfAAwAAAAAAAAAAAAeAAwAAAAAAAAAAAAdAAwAAAAAAAAAAAAcAAwAAAAAAAAAAAAbAAwAAAAAAAAAAAAaAAwAAAAAAAAAAAAZAAwAAAAAAAAAAAAYAAwAAAAAAAAAAAAXAAwAAAAAAAAAAAAXAAsAAAAAAAAAAAAXAAoAAAAAAAAAAAAXAAkAAAAAAAAAAAAXAAgAAAAAAAAAAAAXAAcAAAAAAAAAAAAXAAYAAAAAAAAAAAAXAAUAAAAAAAAAAAAXAAQAAAAAAAAAAAAXAAMAAAAAAAAAAAAYAAMAAAAAAAAAAAAZAAMAAAAAAAAAAAAaAAMAAAAAAAAAAAAbAAMAAAAAAAAAAAAcAAMAAAAAAAAAAAAdAAMAAAAAAAAAAAAeAAMAAAAAAAAAAAAfAAMAAAAAAAAAAAAfAAQAAAAAAAAAAAAfAAUAAAAAAAAAAAAfAAYAAAAAAAAAAAA=")
+[node name="TetrisTileMap" type="TileMapLayer" parent="GamesUI/Tetris" unique_id=39097759]
 tile_set = SubResource("TileSet_tqooj")
+script = ExtResource("22_byv7i")
+
+[node name="DropTimer" type="Timer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=1861638567]
+wait_time = 0.5
+autostart = true
 
 [node name="MailUI" type="Control" parent="." unique_id=1032281496]
 visible = false
@@ -1032,6 +1037,8 @@ parameters/looping = true
 [connection signal="pressed" from="GamesUI/Minesweeper/ExitButton" to="GamesUI/Minesweeper" method="_on_exit_button_pressed"]
 [connection signal="pressed" from="GamesUI/GamePicker/MinesweeperButton" to="GamesUI" method="_on_minesweeper_button_pressed"]
 [connection signal="pressed" from="GamesUI/GamePicker/TetrisButton" to="GamesUI" method="_on_tetris_button_pressed"]
+[connection signal="visibility_changed" from="GamesUI/Tetris/TetrisTileMap" to="GamesUI/Tetris/TetrisTileMap" method="_on_visibility_changed"]
+[connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/DropTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_drop_timer_timeout"]
 [connection signal="hidden" from="MailUI" to="." method="_on_mail_ui_hidden"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
 [connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]
