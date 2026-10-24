@@ -100,15 +100,19 @@ func _generate_new_piece() -> void:
 var moveTimer := 0.0
 
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("tetris_hard_drop"):
+		_hard_drop()
 	if Input.is_action_just_pressed("tetris_left"):
 		_try_move(-1)
+		moveTimer = 0
 	if Input.is_action_just_pressed("tetris_right"):
 		_try_move(1)
+		moveTimer = 0
 	if Input.is_action_pressed("tetris_left") or Input.is_action_pressed("tetris_left"):
 		moveTimer += delta
 	else:
 		moveTimer = 0
-	if moveTimer >= 0.5:
+	if moveTimer >= 0.25:
 		var moveDir: int = 0
 		if Input.is_action_pressed("tetris_left"):
 			moveDir += -1
@@ -177,6 +181,28 @@ func _try_move(dir: int) -> void:
 		currentPiece[i] = currentPiece[i] + Vector2i(dir, 0)
 		var tileIndex := int(currentPieceType) + 1
 		set_cell(currentPiece[i], 0, Vector2i(tileIndex, 0))
+
+func _hard_drop() -> void:
+	var dropDistance: int = 0
+	var done := false
+	for dist in boardSize.y:
+		for p in currentPiece:
+			var np := p + Vector2i.DOWN * dist
+			if np in currentPiece:
+				continue
+			if get_cell_source_id(np) != -1 or np.y >= boardSize.y:
+				dropDistance = dist - 1
+				done = true
+				break
+		if done:
+			break
+	for p in currentPiece:
+		set_cell(p, -1)
+	for i in currentPiece.size():
+		currentPiece[i] = currentPiece[i] + Vector2i.DOWN * dropDistance
+		var tileIndex := int(currentPieceType) + 1
+		set_cell(currentPiece[i], 0, Vector2i(tileIndex, 0))
+	_lock_position()
 
 func _drop() -> void:
 	for p in currentPiece:
