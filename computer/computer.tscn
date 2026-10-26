@@ -898,6 +898,14 @@ script = ExtResource("22_byv7i")
 wait_time = 0.5
 autostart = true
 
+[node name="LockTimer" type="Timer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=584399629]
+one_shot = true
+
+[node name="PiecePreview" type="TileMapLayer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=712658388]
+self_modulate = Color(1, 1, 1, 0.5019608)
+show_behind_parent = true
+tile_set = SubResource("TileSet_tqooj")
+
 [node name="MailUI" type="Control" parent="." unique_id=1032281496]
 visible = false
 layout_mode = 3
@@ -1039,6 +1047,7 @@ parameters/looping = true
 [connection signal="pressed" from="GamesUI/GamePicker/TetrisButton" to="GamesUI" method="_on_tetris_button_pressed"]
 [connection signal="visibility_changed" from="GamesUI/Tetris/TetrisTileMap" to="GamesUI/Tetris/TetrisTileMap" method="_on_visibility_changed"]
 [connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/DropTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_drop_timer_timeout"]
+[connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/LockTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_lock_timer_timeout"]
 [connection signal="hidden" from="MailUI" to="." method="_on_mail_ui_hidden"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
 [connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]

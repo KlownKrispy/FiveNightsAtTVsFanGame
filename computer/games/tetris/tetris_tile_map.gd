@@ -17,6 +17,7 @@ var bag: Array = []
 
 var currentPieceType: Piece = Piece.LINE
 var currentPiece: Array[Vector2i] = []
+var currentRotation: int = 0
 
 @export var boardSize := Vector2i(10, 20)
 
@@ -25,6 +26,15 @@ func _ready():
 	_setup_board()
 	if not is_visible_in_tree():
 		_pause()
+
+func _cell_empty(pos: Vector2i) -> bool:
+	if pos.y < 0 or pos.y >= boardSize.y:
+		return false
+	if pos.x < 0 or pos.x >= boardSize.x:
+		return false
+	if get_cell_source_id(pos) != -1:
+		return false
+	return true
 
 func _setup_board() -> void:
 	for i in 2 + boardSize.x:
@@ -38,58 +48,68 @@ func _setup_board() -> void:
 		set_cell(borderLeft, 0, Vector2i.ZERO)
 		set_cell(borderRight, 0, Vector2i.ZERO)
 
+@onready var piece_preview: TileMapLayer = $PiecePreview
+func _update_preview() -> void:
+	piece_preview.clear()
+	var dropDistance = _get_drop_distance()
+	for p in currentPiece:
+		var np = p + dropDistance * Vector2i.DOWN
+		var tileIndex: int = 1 + int(currentPieceType)
+		piece_preview.set_cell(np, 0, Vector2i(tileIndex, 0))
+
 func _generate_new_piece() -> void:
 	var tileIndex: int = 1 + int(currentPieceType)
 	@warning_ignore("integer_division")
 	var topMid: Vector2i = Vector2i(int(boardSize.x / 2), 0)
+	# First entry is the origin of the rotation!
 	match currentPieceType:
 		Piece.LINE:
 			currentPiece = [
-				topMid + Vector2i.LEFT,
 				topMid,
+				topMid + Vector2i.LEFT,
 				topMid + Vector2i.RIGHT,
 				topMid + Vector2i.RIGHT * 2
 			]
 		Piece.J:
 			currentPiece = [
-				topMid + Vector2i.LEFT,
-				topMid + Vector2i(-1, 1),
 				topMid + Vector2i.DOWN,
+				topMid + Vector2i(-1, 1),
+				topMid + Vector2i.LEFT,
 				topMid + Vector2i(1,  1)
 			]
-		Piece.S:
+		Piece.Z:
 			currentPiece = [
-				topMid + Vector2i.LEFT,
-				topMid,
 				topMid + Vector2i.DOWN,
+				topMid,
+				topMid + Vector2i.LEFT,
 				topMid + Vector2i(1, 1)
 			]
 		Piece.L:
 			currentPiece = [
-				topMid + Vector2i.RIGHT,
-				topMid + Vector2i(-1, 1),
 				topMid + Vector2i.DOWN,
+				topMid + Vector2i(-1, 1),
+				topMid + Vector2i.RIGHT,
 				topMid + Vector2i(1, 1)
 			]
-		Piece.Z:
+		Piece.S:
 			currentPiece = [
-				topMid + Vector2i.RIGHT,
-				topMid,
 				topMid + Vector2i.DOWN,
+				topMid,
+				topMid + Vector2i.RIGHT,
 				topMid + Vector2i(-1, 1)
 			]
 		Piece.SQUARE:
 			currentPiece = [
-				topMid + Vector2i.RIGHT,
-				topMid,
 				topMid + Vector2i.DOWN,
+				topMid,
+				topMid + Vector2i.RIGHT,
 				topMid + Vector2i(1, 1)
 			]
 		Piece.T:
 			currentPiece = [
+				topMid + Vector2i.DOWN,
 				topMid,
 				topMid + Vector2i(-1, 1),
-				topMid + Vector2i.DOWN,
 				topMid + Vector2i( 1, 1)
 			]
 	for pos in currentPiece:
@@ -99,7 +119,82 @@ func _generate_new_piece() -> void:
 
 var moveTimer := 0.0
 
+var srsTests: Dictionary[int, Array] = {
+	0: [Vector2i.ZERO, Vector2i.ZERO, Vector2i.ZERO, Vector2i.ZERO, Vector2i.ZERO],
+	1: [Vector2i.ZERO, Vector2i(1,0), Vector2i(1,-1), Vector2i(0,2), Vector2i(1,2)],
+	2: [Vector2i.ZERO, Vector2i.ZERO, Vector2i.ZERO, Vector2i.ZERO, Vector2i.ZERO],
+	3: [Vector2i.ZERO, Vector2i(-1,0), Vector2i(-1,-1), Vector2i(0,2), Vector2i(-1,2)],
+}
+var srsTestsLine: Dictionary[int, Array] = {
+	0: [Vector2i.ZERO, Vector2i(-1,0), Vector2i(2,0), Vector2i(-1,0), Vector2i(2,0)],
+	1: [Vector2i(-1,0), Vector2i.ZERO, Vector2i.ZERO, Vector2i(0,1), Vector2i(0,-2)],
+	2: [Vector2i(-1,1), Vector2i(1,1), Vector2i(-2,1), Vector2i(1,0), Vector2i(-2,0)],
+	3: [Vector2i(0,1), Vector2i(0,1), Vector2i(0,1), Vector2i(0,-1), Vector2i(0,2)],
+}
+
+func _rotate_generic(dir: int, testsSet: Dictionary[int, Array]):
+	var newRotation = posmod(currentRotation + dir, 4)
+	var tests = testsSet[newRotation]
+	var oldtests = testsSet[currentRotation]
+	var newPositions: Array[Vector2i] = []
+	for i in tests.size():
+		newPositions.clear()
+		var test = tests[i]
+		var oldtest = oldtests[i]
+		var adjusted = oldtest - test
+		var testPassed := true
+		var origin := currentPiece[0]
+		for p in currentPiece:
+			var np = p - origin
+			if dir == -1:
+				np = Vector2i(np.y, -np.x)
+			elif dir == 1:
+				np = Vector2i(-np.y, np.x)
+			np = np + adjusted + origin
+			newPositions.append(np)
+			if np in currentPiece:
+				continue
+			if not _cell_empty(np):
+				testPassed = false
+				break
+		if testPassed:
+			break
+		if i == tests.size() - 1:
+			return # failed to rotate
+	currentRotation = newRotation
+	for p in currentPiece:
+		set_cell(p, -1)
+	for i in currentPiece.size():
+		currentPiece[i] = newPositions[i]
+		var tileIndex := int(currentPieceType) + 1
+		set_cell(currentPiece[i], 0, Vector2i(tileIndex, 0))
+func _rotate_line(dir: int) -> void:
+	_rotate_generic(dir, srsTestsLine)
+func _rotate_square(dir: int) -> void:
+	return
+
+func _rotate_dir(dir: int) -> void:
+	if dir == 0:
+		return
+	if currentPieceType == Piece.LINE:
+		_rotate_line(dir)
+		return
+	if currentPieceType == Piece.SQUARE:
+		_rotate_square(dir)
+		return
+	_rotate_generic(dir, srsTests)
+func _rotate_cw() -> void:
+	_rotate_dir(1)
+	_update_preview()
+func _rotate_ccw() -> void:
+	_rotate_dir(-1)
+	_update_preview()
+
 func _process(delta: float) -> void:
+	if Input.is_action_just_pressed("tetris_cw"):
+		_rotate_cw()
+	if Input.is_action_just_pressed("tetris_ccw"):
+		_rotate_ccw()
 	if Input.is_action_just_pressed("tetris_hard_drop"):
 		_hard_drop()
 	if Input.is_action_just_pressed("tetris_left"):
@@ -132,8 +227,10 @@ func _lose() -> void:
 
 func _take_piece() -> void:
 	currentPieceType = bag.pop_front()
+	currentRotation = 0
 	_generate_new_piece()
 	_try_replenish_bag()
+	_update_preview()
 
 func _try_replenish_bag():
 	var bagMaxSize = bagSize * 7
@@ -168,12 +265,14 @@ func _lock_position() -> void:
 
 func _try_move(dir: int) -> void:
 	if dir == 0:
+		_update_preview()
 		return
 	for p in currentPiece:
 		var np := p + Vector2i(dir, 0)
 		if np in currentPiece:
 			continue
-		if get_cell_source_id(np) != -1 or np.x < 0 or np.x >= boardSize.x:
+		if not _cell_empty(np):
+			_update_preview()
 			return
 	for p in currentPiece:
 		set_cell(p, -1)
@@ -181,8 +280,9 @@ func _try_move(dir: int) -> void:
 		currentPiece[i] = currentPiece[i] + Vector2i(dir, 0)
 		var tileIndex := int(currentPieceType) + 1
 		set_cell(currentPiece[i], 0, Vector2i(tileIndex, 0))
+	_update_preview()
 
-func _hard_drop() -> void:
+func _get_drop_distance() -> int:
 	var dropDistance: int = 0
 	var done := false
 	for dist in boardSize.y:
@@ -190,12 +290,16 @@ func _hard_drop() -> void:
 			var np := p + Vector2i.DOWN * dist
 			if np in currentPiece:
 				continue
-			if get_cell_source_id(np) != -1 or np.y >= boardSize.y:
+			if not _cell_empty(np):
 				dropDistance = dist - 1
 				done = true
 				break
 		if done:
 			break
+	return dropDistance
+
+func _hard_drop() -> void:
+	var dropDistance = _get_drop_distance()
 	for p in currentPiece:
 		set_cell(p, -1)
 	for i in currentPiece.size():
@@ -203,14 +307,17 @@ func _hard_drop() -> void:
 		var tileIndex := int(currentPieceType) + 1
 		set_cell(currentPiece[i], 0, Vector2i(tileIndex, 0))
 	_lock_position()
+@onready var lock_timer: Timer = $LockTimer
 
 func _drop() -> void:
+	if not lock_timer.is_stopped():
+		return
 	for p in currentPiece:
 		var np := p + Vector2i.DOWN
 		if np in currentPiece:
 			continue
-		if get_cell_source_id(np) != -1 or np.y >= boardSize.y:
-			_lock_position()
+		if not _cell_empty(np):
+			lock_timer.start()
 			return
 	for p in currentPiece:
 		set_cell(p, -1)
@@ -221,3 +328,7 @@ func _drop() -> void:
 
 func _on_drop_timer_timeout() -> void:
 	_drop()
+
+
+func _on_lock_timer_timeout() -> void:
+	_lock_position()
