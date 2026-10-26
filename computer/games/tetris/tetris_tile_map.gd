@@ -249,18 +249,55 @@ func _init_bag():
 	_take_piece()
 
 func _on_visibility_changed() -> void:
+	if not is_node_ready():
+		return
 	if not is_visible_in_tree():
 		_pause()
 	else:
 		_unpause()
 
 func _unpause() -> void:
-	pass
+	drop_timer.start()
+	lock_timer.start()
 
 func _pause() -> void:
-	print("Paused")
+	drop_timer.stop()
+	lock_timer.stop()
+
+var lines: int = 0
+func _check_board() -> void:
+	var finishedRows: Array[int] = []
+	for y in boardSize.y:
+		var rowComplete := true
+		for x in boardSize.x:
+			if _cell_empty(Vector2i(x, y)):
+				rowComplete = false
+				break
+		if not rowComplete:
+			continue
+		finishedRows.append(y)
+	if finishedRows.is_empty():
+		return
+	lines += finishedRows.size()
+	var unclearedLines: Array[int] = []
+	var ny := boardSize.y - 1
+	for y in range(boardSize.y-1, -1, -1):
+		if y in finishedRows:
+			continue
+		unclearedLines.append(y)
+	for y in unclearedLines:
+		if y == ny:
+			ny -= 1
+			continue # no need to copy back
+		for x in boardSize.x:
+			var copyFrom := Vector2i(x, y)
+			var copyTo := Vector2i(x, ny)
+			set_cell(copyTo, get_cell_source_id(copyFrom), get_cell_atlas_coords(copyFrom))
+			set_cell(copyFrom, -1)
+		ny -= 1
 
 func _lock_position() -> void:
+	_check_board()
 	_take_piece()
 
 func _try_move(dir: int) -> void:
