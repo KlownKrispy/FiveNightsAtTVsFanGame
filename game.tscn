@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bs5xx8o2g86g8" path="res://player_camera.gd" id="2_e2o6t"]
 [ext_resource type="PackedScene" uid="uid://cpk1wa3h1m1gp" path="res://cameras/game_camera.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://cbap2audnaov1" path="res://screen_glow.gd" id="4_7jktm"]
+[ext_resource type="PackedScene" uid="uid://cpqn6n6ehqia7" path="res://models/cubicle.glb" id="4_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://c1rhouvicefxt" path="res://enemies/radio/radio_idle.png" id="6_hve3p"]
 [ext_resource type="Texture2D" uid="uid://clxrii44n1c0d" path="res://enemies/radio/radio_lose.png" id="7_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://b1pejd7fqi2m" path="res://enemies/radio/radio_1.png" id="8_iotsf"]
@@ -29,7 +30,7 @@ ambient_light_source = 2
 ambient_light_color = Color(1, 1, 1, 1)
 ambient_light_energy = 0.01
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_hb5m1"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_x5p1p"]
 allow_unpress = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
@@ -1197,16 +1198,16 @@ size = Vector2i(683, 512)
 [node name="Computer" parent="SubViewport" unique_id=1946148648 instance=ExtResource("2_boyg6")]
 
 [node name="CamerasTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="3" unique_id=89113343]
-button_group = SubResource("ButtonGroup_hb5m1")
+button_group = SubResource("ButtonGroup_x5p1p")
 
 [node name="GamesTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="4" unique_id=615822567]
-button_group = SubResource("ButtonGroup_hb5m1")
+button_group = SubResource("ButtonGroup_x5p1p")
 
 [node name="MailTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="5" unique_id=1237005857]
-button_group = SubResource("ButtonGroup_hb5m1")
+button_group = SubResource("ButtonGroup_x5p1p")
 
 [node name="HorseTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="7" unique_id=1092353379]
-button_group = SubResource("ButtonGroup_hb5m1")
+button_group = SubResource("ButtonGroup_x5p1p")
 
 [node name="ComputerScreenCollider" type="Area3D" parent="SubViewport/Computer" unique_id=1669292061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9833543, -1.8165946)
@@ -1240,115 +1241,94 @@ collide_with_areas = true
 [node name="World" type="Node3D" parent="." unique_id=1931835241]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 
-[node name="ProtagCubicle" type="Node3D" parent="World" unique_id=108393197]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+[node name="cubicle" parent="World" unique_id=1679141318 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, -1)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="World/ProtagCubicle" unique_id=1179185936]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 2, 0)
+[node name="SpotLight3D" type="SpotLight3D" parent="World/cubicle" unique_id=1179185936]
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 2, 0)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
-[node name="BackWall" type="CSGBox3D" parent="World/ProtagCubicle" unique_id=542562211]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.7188015e-06, -0.9996948, 1.9999344)
+[node name="BackWall" type="CSGBox3D" parent="World/cubicle" unique_id=542562211]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.9999344, 0.00030517578, 7.631382e-06)
 size = Vector3(4, 4, 0.1)
 
-[node name="RightWall" type="CSGBox3D" parent="World/ProtagCubicle" unique_id=882684577]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2, -1, 0)
+[node name="RightWall" type="CSGBox3D" parent="World/cubicle" unique_id=882684577]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9604645e-08, 0, 2)
 size = Vector3(4, 4, 0.1)
 
-[node name="FrontWall" type="CSGBox3D" parent="World/ProtagCubicle" unique_id=12881488]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
+[node name="FrontWall" type="CSGBox3D" parent="World/cubicle" unique_id=12881488]
+transform = Transform3D(4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711392e-08, 2, 0, 8.742277e-08)
 size = Vector3(4, 4, 0.1)
 
-[node name="LeftWall" type="CSGCombiner3D" parent="World/ProtagCubicle" unique_id=1695962393]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+[node name="LeftWall" type="CSGCombiner3D" parent="World/cubicle" unique_id=1695962393]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1.1920929e-07, 1, -2)
 operation = 2
 
-[node name="Wall" type="CSGBox3D" parent="World/ProtagCubicle/LeftWall" unique_id=1038029815]
+[node name="Wall" type="CSGBox3D" parent="World/cubicle/LeftWall" unique_id=1038029815]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
 size = Vector3(4, 4, 0.1)
 
-[node name="DoorHole" type="CSGBox3D" parent="World/ProtagCubicle/LeftWall" unique_id=1799610037]
+[node name="DoorHole" type="CSGBox3D" parent="World/cubicle/LeftWall" unique_id=1799610037]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
 operation = 2
 size = Vector3(2, 4, 1.4043945)
 
-[node name="Table" type="Node3D" parent="World/ProtagCubicle" unique_id=1997778310]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -1)
+[node name="Table" type="Node3D" parent="World/cubicle" unique_id=1997778310]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 1, -0.5, 4.371139e-08)
 
-[node name="TableSurface" type="CSGBox3D" parent="World/ProtagCubicle/Table" unique_id=41420546]
+[node name="TableSurface" type="CSGBox3D" parent="World/cubicle/Table" unique_id=41420546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
 size = Vector3(3.5, 0.1, 1.3847656)
 
-[node name="Leg1" type="CSGBox3D" parent="World/ProtagCubicle/Table" unique_id=599700216]
+[node name="Leg1" type="CSGBox3D" parent="World/cubicle/Table" unique_id=599700216]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
 size = Vector3(0.322, 1.41521, 0.2)
 
-[node name="Leg2" type="CSGBox3D" parent="World/ProtagCubicle/Table" unique_id=780788884]
+[node name="Leg2" type="CSGBox3D" parent="World/cubicle/Table" unique_id=780788884]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
 size = Vector3(0.322, 1.41521, 0.2)
 
-[node name="Computer" type="CSGCombiner3D" parent="World/ProtagCubicle/Table" unique_id=1071616667]
+[node name="Computer" type="CSGCombiner3D" parent="World/cubicle/Table" unique_id=1071616667]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, 0)
 use_collision = true
 collision_layer = 3
 collision_mask = 0
 
-[node name="Monitor" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=82323884]
+[node name="Monitor" type="CSGBox3D" parent="World/cubicle/Table/Computer" unique_id=82323884]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
 size = Vector3(0.667, 0.5, 0.5)
 
-[node name="Stand" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=431819875]
+[node name="Stand" type="CSGBox3D" parent="World/cubicle/Table/Computer" unique_id=431819875]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
 size = Vector3(0.178, 0.1, 0.1)
 
-[node name="ScreenHole" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=1149731310]
+[node name="ScreenHole" type="CSGBox3D" parent="World/cubicle/Table/Computer" unique_id=1149731310]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
 operation = 2
 size = Vector3(0.533, 0.4, 0.1)
 
-[node name="ScreenGlow" type="Sprite3D" parent="World/ProtagCubicle/Table/Computer" unique_id=1584323245]
+[node name="ScreenGlow" type="Sprite3D" parent="World/cubicle/Table/Computer" unique_id=1584323245]
 transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0.64, 0.20357716)
 flip_h = true
 pixel_size = 0.0007813
 texture = SubResource("ViewportTexture_ryrav")
 script = ExtResource("4_7jktm")
 
-[node name="Box" type="CSGBox3D" parent="World/ProtagCubicle/Table/Computer" unique_id=2087001535]
+[node name="Box" type="CSGBox3D" parent="World/cubicle/Table/Computer" unique_id=2087001535]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
 size = Vector3(0.5, 0.1, 0.5)
 
-[node name="OtherCubicle" type="Node3D" parent="World" unique_id=3260728]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -1)
-
-[node name="BackWall" type="CSGBox3D" parent="World/OtherCubicle" unique_id=1170762785]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/OtherCubicle" unique_id=764043296]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/OtherCubicle" unique_id=707909981]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/OtherCubicle" unique_id=1136382141]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/OtherCubicle/RightWall" unique_id=2009043438]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/OtherCubicle/RightWall" unique_id=1997737495]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
+[node name="cubicle2" parent="World" unique_id=1771230824 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.1920928e-07, 0, -0.9999999, 8.742277e-08, -1, 1.0421607e-14, -0.9999999, -8.742277e-08, -1.1920928e-07, -8, -1, -1)
 
 [node name="Floor" type="CSGBox3D" parent="World" unique_id=1136165694]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, -2.9624062, -0.13816452)
+size = Vector3(200, 0.1, 200)
+
+[node name="Floor2" type="CSGBox3D" parent="World" unique_id=1572815288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, 1.0375938, -0.13816452)
 size = Vector3(200, 0.1, 200)
 
 [node name="Ceiling" type="CSGBox3D" parent="World" unique_id=2060109812]
@@ -1415,285 +1395,35 @@ size = Vector3(6, 4, 0.1)
 [node name="EtcCubicles" type="Node3D" parent="World" unique_id=1212970636]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
-[node name="OtherCubicle" type="Node3D" parent="World/EtcCubicles" unique_id=898047359]
-transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, -12, 3, -1)
+[node name="cubicle" parent="World/EtcCubicles" unique_id=544384193 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -12, 2, -1)
 
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle" unique_id=2044793321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
+[node name="cubicle4" parent="World/EtcCubicles" unique_id=1115450657 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -12, 2, 11)
 
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle" unique_id=674311739]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
+[node name="cubicle5" parent="World/EtcCubicles" unique_id=2116378744 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -12, 2, 7)
 
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle" unique_id=825410104]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
+[node name="cubicle2" parent="World/EtcCubicles" unique_id=505039897 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, -12, 2, -5)
 
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle" unique_id=981666745]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
+[node name="cubicle10" parent="World/EtcCubicles" unique_id=1074853263 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.1924881e-08, 0, 1, 0, 1, 0, -1, 0, 1.1924881e-08, 0, 2, -5)
 
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle/RightWall" unique_id=59517711]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
+[node name="cubicle3" parent="World/EtcCubicles" unique_id=2119509512 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.3113416e-07, 1.1464113e-14, -1, 0, -1, -1.1464112e-14, -1, 0, -1.3113416e-07, -8, 2, -5)
 
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle/RightWall" unique_id=2088782097]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
+[node name="cubicle6" parent="World/EtcCubicles" unique_id=812538434 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.3113416e-07, 1.1464113e-14, -1, 0, -1, -1.1464112e-14, -1, 0, -1.3113416e-07, -8, 2, 7)
 
-[node name="OtherCubicle4" type="Node3D" parent="World/EtcCubicles" unique_id=542629366]
-transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, 0, 3, -5)
+[node name="cubicle7" parent="World/EtcCubicles" unique_id=1356138531 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.3113416e-07, 1.1464113e-14, -1, 0, -1, -1.1464112e-14, -1, 0, -1.3113416e-07, -8, 2, 11)
 
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle4" unique_id=1253001423]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
+[node name="cubicle8" parent="World/EtcCubicles" unique_id=1241186168 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.3113416e-07, 1.1464113e-14, -1, 0, -1, -1.1464112e-14, -1, 0, -1.3113416e-07, 4, 2, -1)
 
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle4" unique_id=1921396569]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle4" unique_id=1656492987]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle4" unique_id=217581520]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle4/RightWall" unique_id=820461723]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle4/RightWall" unique_id=883016956]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle3" type="Node3D" parent="World/EtcCubicles" unique_id=1829866433]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, -5)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle3" unique_id=1842860138]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle3" unique_id=776059351]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle3" unique_id=1325370014]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle3" unique_id=677067166]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle3/RightWall" unique_id=2017139569]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle3/RightWall" unique_id=951493729]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle5" type="Node3D" parent="World/EtcCubicles" unique_id=68499326]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -5)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle5" unique_id=1694798321]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle5" unique_id=510265318]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle5" unique_id=1988563134]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle5" unique_id=1475047328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle5/RightWall" unique_id=330749356]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle5/RightWall" unique_id=1606078300]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle6" type="Node3D" parent="World/EtcCubicles" unique_id=96025903]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 3, -1)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle6" unique_id=1303152328]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle6" unique_id=1958477175]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle6" unique_id=1429395926]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle6" unique_id=499403672]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle6/RightWall" unique_id=1655865820]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle6/RightWall" unique_id=1378818928]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle2" type="Node3D" parent="World/EtcCubicles" unique_id=2013486416]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -12, 3, -5)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle2" unique_id=617020770]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle2" unique_id=138898576]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle2" unique_id=1949631003]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle2" unique_id=182501053]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle2/RightWall" unique_id=448585899]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle2/RightWall" unique_id=1270163037]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle7" type="Node3D" parent="World/EtcCubicles" unique_id=155898858]
-transform = Transform3D(-1, 0, 2.6226832e-07, 0, 1, 0, -2.6226832e-07, 0, -1, -12, 3, 11)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle7" unique_id=41377933]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle7" unique_id=2137290743]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle7" unique_id=1964890752]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle7" unique_id=1954641775]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle7/RightWall" unique_id=1741103163]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle7/RightWall" unique_id=2028097460]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle8" type="Node3D" parent="World/EtcCubicles" unique_id=1449507097]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 7)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle8" unique_id=1141842598]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle8" unique_id=215282168]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle8" unique_id=1686510036]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle8" unique_id=442551019]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle8/RightWall" unique_id=96619724]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle8/RightWall" unique_id=2024735749]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle10" type="Node3D" parent="World/EtcCubicles" unique_id=2050765310]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 3, 11)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle10" unique_id=320679297]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle10" unique_id=124909187]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle10" unique_id=518307513]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle10" unique_id=1112339526]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle10/RightWall" unique_id=1383402939]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle10/RightWall" unique_id=1253331372]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
-
-[node name="OtherCubicle9" type="Node3D" parent="World/EtcCubicles" unique_id=109735150]
-transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -12, 3, 7)
-
-[node name="BackWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle9" unique_id=1567199547]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 2)
-size = Vector3(4, 4, 0.1)
-
-[node name="LeftWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle9" unique_id=1926923974]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="FrontWall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle9" unique_id=1222370749]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 0, -1, -2)
-size = Vector3(4, 4, 0.1)
-
-[node name="RightWall" type="CSGCombiner3D" parent="World/EtcCubicles/OtherCubicle9" unique_id=882185358]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
-operation = 2
-
-[node name="Wall" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle9/RightWall" unique_id=1449563633]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, 0)
-size = Vector3(4, 4, 0.1)
-
-[node name="DoorHole" type="CSGBox3D" parent="World/EtcCubicles/OtherCubicle9/RightWall" unique_id=1994626543]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.24116206, -1, 1)
-operation = 2
-size = Vector3(2, 4, 1.4043945)
+[node name="cubicle9" parent="World/EtcCubicles" unique_id=545623610 instance=ExtResource("4_x5p1p")]
+transform = Transform3D(1.3113416e-07, 1.1464113e-14, -1, 0, -1, -1.1464112e-14, -1, 0, -1.3113416e-07, 4, 2, -5)
 
 [node name="BreakRoom" type="Node3D" parent="World" unique_id=1292626994]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9)
@@ -1815,31 +1545,31 @@ size = Vector3(4, 4, 0.1)
 material = SubResource("StandardMaterial3D_eow3j")
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="World" unique_id=1885374064]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7, 2, -9)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7, 1, -9)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="World" unique_id=1171763299]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8, 2, -2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8, 1, -2)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="World" unique_id=1682513582]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14, 2, -2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14, 1, -2)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="World" unique_id=233561161]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -16, 2, 3)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -16, 1, 3)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D6" type="SpotLight3D" parent="World" unique_id=759811284]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4, 2, 15)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4, 1, 15)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
