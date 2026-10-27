@@ -1,4 +1,9 @@
+class_name ComputerGamesUI
 extends Control
+
+func pause() -> void:
+	if tetris.visible:
+		tetris.pause()
 
 func _on_games_exit_button_pressed() -> void:
 	visible = false

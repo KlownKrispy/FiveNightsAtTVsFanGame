@@ -31,10 +31,12 @@
 [ext_resource type="Texture2D" uid="uid://bbxx1k5qbadj5" path="res://curiosities/horse/frame_6.png" id="20_pdqbt"]
 [ext_resource type="Texture2D" uid="uid://rpypgev8tkk4" path="res://curiosities/horse/frame_7.png" id="21_4sjsw"]
 [ext_resource type="Texture2D" uid="uid://ghjynhx0avi5" path="res://curiosities/horse/frame_8.png" id="22_0xhlx"]
+[ext_resource type="Script" uid="uid://c6q5ev5w5vf1b" path="res://computer/games/tetris/tetris.gd" id="22_agpvm"]
 [ext_resource type="Script" uid="uid://cpciyffa7ktf1" path="res://computer/games/tetris/tetris_tile_map.gd" id="22_byv7i"]
-[ext_resource type="Texture2D" uid="uid://bjahcox2xdjlp" path="res://computer/games/tetris/tiles.png" id="22_p2y5u"]
+[ext_resource type="TileSet" uid="uid://dhbkkvyuq8wu5" path="res://computer/games/tetris/tileset.tres" id="23_5ijsp"]
 [ext_resource type="Texture2D" uid="uid://qawd02i3l7wk" path="res://curiosities/horse/frame_9.png" id="23_5x8jy"]
 [ext_resource type="Texture2D" uid="uid://dl7quujxv2p2a" path="res://curiosities/horse/frame_10.png" id="24_m5u5i"]
+[ext_resource type="Theme" uid="uid://buyfdbvctdoyp" path="res://computer/ui_assets/cameras_button.tres" id="25_5ijsp"]
 [ext_resource type="Texture2D" uid="uid://bmtsaa0qu0ipg" path="res://curiosities/horse/frame_11.png" id="25_gs2b6"]
 [ext_resource type="Texture2D" uid="uid://tq6p6tro6ibj" path="res://curiosities/horse/frame_12.png" id="26_r0onp"]
 [ext_resource type="Texture2D" uid="uid://kyt73sy5omu7" path="res://curiosities/horse/frame_13.png" id="27_jpdj4"]
@@ -152,19 +154,8 @@ texture = ExtResource("13_c1yk6")
 [sub_resource type="TileSet" id="TileSet_v2341"]
 sources/0 = SubResource("TileSetAtlasSource_a4omk")
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_byv7i"]
-texture = ExtResource("22_p2y5u")
-0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
-4:0/0 = 0
-5:0/0 = 0
-6:0/0 = 0
-7:0/0 = 0
-
-[sub_resource type="TileSet" id="TileSet_tqooj"]
-sources/0 = SubResource("TileSetAtlasSource_byv7i")
+[sub_resource type="SystemFont" id="SystemFont_v2341"]
+font_names = PackedStringArray("monospace")
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v2341"]
 animations = [{
@@ -538,6 +529,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 683.0
 offset_bottom = 512.0
+metadata/_edit_lock_ = true
 
 [node name="TextureRect" type="TextureRect" parent="UI" unique_id=1850259209]
 z_index = -1
@@ -727,6 +719,7 @@ patch_margin_top = 16
 patch_margin_right = 4
 patch_margin_bottom = 4
 axis_stretch_horizontal = 1
+metadata/_edit_lock_ = true
 
 [node name="GamesExitButton" type="TextureButton" parent="GamesUI" unique_id=403398581]
 layout_mode = 0
@@ -736,6 +729,7 @@ offset_right = 681.0
 offset_bottom = 17.0
 texture_normal = ExtResource("12_6bas7")
 stretch_mode = 0
+metadata/_edit_lock_ = true
 
 [node name="Minesweeper" type="Node2D" parent="GamesUI" unique_id=552437709]
 visible = false
@@ -856,6 +850,7 @@ theme_override_font_sizes/font_size = 32
 text = "Back"
 
 [node name="GamePicker" type="Control" parent="GamesUI" unique_id=1537891261]
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -889,9 +884,12 @@ text = "Tetris"
 
 [node name="Tetris" type="Node2D" parent="GamesUI" unique_id=993703263]
 position = Vector2(341, 108)
+script = ExtResource("22_agpvm")
 
 [node name="TetrisTileMap" type="TileMapLayer" parent="GamesUI/Tetris" unique_id=39097759]
-tile_set = SubResource("TileSet_tqooj")
+position = Vector2(-72, -22)
+tile_map_data = PackedByteArray("AAAKAAAAAAAAAAAAAAAAABQAAAAAAAAAAAD/////AAAAAAAAAAD//wAAAAAAAAAAAAD//wEAAAAAAAAAAAD//wIAAAAAAAAAAAD//wMAAAAAAAAAAAD//wQAAAAAAAAAAAD//wUAAAAAAAAAAAD//wYAAAAAAAAAAAD//wcAAAAAAAAAAAD//wgAAAAAAAAAAAD//wkAAAAAAAAAAAD//woAAAAAAAAAAAD//wsAAAAAAAAAAAD//wwAAAAAAAAAAAD//w0AAAAAAAAAAAD//w4AAAAAAAAAAAD//w8AAAAAAAAAAAD//xAAAAAAAAAAAAD//xEAAAAAAAAAAAD//xIAAAAAAAAAAAD//xMAAAAAAAAAAAD//xQAAAAAAAAAAAAAAP//AAAAAAAAAAABAP//AAAAAAAAAAABABQAAAAAAAAAAAACAP//AAAAAAAAAAACABQAAAAAAAAAAAADAP//AAAAAAAAAAADABQAAAAAAAAAAAAEAP//AAAAAAAAAAAEABQAAAAAAAAAAAAFAP//AAAAAAAAAAAFABQAAAAAAAAAAAAGAP//AAAAAAAAAAAGABQAAAAAAAAAAAAHAP//AAAAAAAAAAAHABQAAAAAAAAAAAAIAP//AAAAAAAAAAAIABQAAAAAAAAAAAAJAP//AAAAAAAAAAAJABQAAAAAAAAAAAAKAP//AAAAAAAAAAAKAAEAAAAAAAAAAAAKAAIAAAAAAAAAAAAKAAMAAAAAAAAAAAAKAAQAAAAAAAAAAAAKAAUAAAAAAAAAAAAKAAYAAAAAAAAAAAAKAAcAAAAAAAAAAAAKAAgAAAAAAAAAAAAKAAkAAAAAAAAAAAAKAAoAAAAAAAAAAAAKAAsAAAAAAAAAAAAKAAwAAAAAAAAAAAAKAA0AAAAAAAAAAAAKAA4AAAAAAAAAAAAKAA8AAAAAAAAAAAAKABAAAAAAAAAAAAAKABEAAAAAAAAAAAAKABIAAAAAAAAAAAAKABMAAAAAAAAAAAAKABQAAAAAAAAAAAA=")
+tile_set = ExtResource("23_5ijsp")
 script = ExtResource("22_byv7i")
 
 [node name="DropTimer" type="Timer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=1861638567]
@@ -904,7 +902,21 @@ one_shot = true
 [node name="PiecePreview" type="TileMapLayer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=712658388]
 self_modulate = Color(1, 1, 1, 0.5019608)
 show_behind_parent = true
-tile_set = SubResource("TileSet_tqooj")
+tile_set = ExtResource("23_5ijsp")
+
+[node name="NextLabel" type="Label" parent="GamesUI/Tetris/TetrisTileMap" unique_id=1293836794]
+offset_left = 201.0
+offset_top = -11.0
+offset_right = 283.0
+offset_bottom = 12.0
+theme = ExtResource("25_5ijsp")
+theme_override_fonts/font = SubResource("SystemFont_v2341")
+text = "NEXT"
+
+[node name="NextPieces" type="TileMapLayer" parent="GamesUI/Tetris/TetrisTileMap/NextLabel" unique_id=780120189]
+position = Vector2(0, 27)
+tile_map_data = PackedByteArray("AAAAAAEAAAABAAAAAAABAAEAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAA=")
+tile_set = ExtResource("23_5ijsp")
 
 [node name="MailUI" type="Control" parent="." unique_id=1032281496]
 visible = false

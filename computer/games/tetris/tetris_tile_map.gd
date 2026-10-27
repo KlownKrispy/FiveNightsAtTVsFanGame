@@ -1,6 +1,6 @@
 extends TileMapLayer
 
-@export var bagSize: int = 2
+@export var bagSize: int = 1
 
 enum Piece {
 	LINE,
@@ -58,64 +58,67 @@ func _update_preview() -> void:
 		piece_preview.set_cell(np, 0, Vector2i(tileIndex, 0))
 
 func _generate_new_piece() -> void:
-	var tileIndex: int = 1 + int(currentPieceType)
 	@warning_ignore("integer_division")
-	var topMid: Vector2i = Vector2i(int(boardSize.x / 2), 0)
+	currentPiece = _generate_new_piece_at(currentPieceType, Vector2i(int(boardSize.x / 2), 0))
+	var tileIndex: int = 1 + int(currentPieceType)
+	for pos in currentPiece:
+		if get_cell_atlas_coords(pos) != Vector2i(-1, -1):
+			_lose()
+		set_cell(pos, 0, Vector2i(tileIndex, 0))
+
+func _generate_new_piece_at(pieceType: Piece, topMid: Vector2i) -> Array[Vector2i]:
 	# First entry is the origin of the rotation!
-	match currentPieceType:
+	match pieceType:
 		Piece.LINE:
-			currentPiece = [
+			return [
 				topMid,
 				topMid + Vector2i.LEFT,
 				topMid + Vector2i.RIGHT,
 				topMid + Vector2i.RIGHT * 2
 			]
 		Piece.J:
-			currentPiece = [
+			return [
 				topMid + Vector2i.DOWN,
 				topMid + Vector2i(-1, 1),
 				topMid + Vector2i.LEFT,
 				topMid + Vector2i(1,  1)
 			]
 		Piece.Z:
-			currentPiece = [
+			return [
 				topMid + Vector2i.DOWN,
 				topMid,
 				topMid + Vector2i.LEFT,
 				topMid + Vector2i(1, 1)
 			]
 		Piece.L:
-			currentPiece = [
+			return [
 				topMid + Vector2i.DOWN,
 				topMid + Vector2i(-1, 1),
 				topMid + Vector2i.RIGHT,
 				topMid + Vector2i(1, 1)
 			]
 		Piece.S:
-			currentPiece = [
+			return [
 				topMid + Vector2i.DOWN,
 				topMid,
 				topMid + Vector2i.RIGHT,
 				topMid + Vector2i(-1, 1)
 			]
 		Piece.SQUARE:
-			currentPiece = [
+			return [
 				topMid + Vector2i.DOWN,
 				topMid,
 				topMid + Vector2i.RIGHT,
 				topMid + Vector2i(1, 1)
 			]
 		Piece.T:
-			currentPiece = [
+			return [
 				topMid + Vector2i.DOWN,
 				topMid,
 				topMid + Vector2i(-1, 1),
 				topMid + Vector2i( 1, 1)
 			]
-	for pos in currentPiece:
-		if get_cell_atlas_coords(pos) != Vector2i(-1, -1):
-			_lose()
-		set_cell(pos, 0, Vector2i(tileIndex, 0))
+	return []
 
 var moveTimer := 0.0
 
@@ -170,7 +173,7 @@ func _rotate_generic(dir: int, testsSet: Dictionary[int, Array]):
 		set_cell(currentPiece[i], 0, Vector2i(tileIndex, 0))
 func _rotate_line(dir: int) -> void:
 	_rotate_generic(dir, srsTestsLine)
-func _rotate_square(dir: int) -> void:
+func _rotate_square(_dir: int) -> void:
 	return
 
 func _rotate_dir(dir: int) -> void:
@@ -231,21 +234,40 @@ func _take_piece() -> void:
 	_generate_new_piece()
 	_try_replenish_bag()
 	_update_preview()
+	_update_next()
+
+@onready var next_pieces: TileMapLayer = $NextLabel/NextPieces
+@export var nextCount := 4
+func _update_next() -> void:
+	next_pieces.clear()
+	for i in nextCount:
+		var topMid := Vector2i(1, 4 * i)
+		var piece := _generate_new_piece_at(bag[i], topMid)
+		var tileIndex := int(bag[i]) + 1
+		for p in piece:
+			next_pieces.set_cell(p, 0, Vector2i(tileIndex, 0))
 
 func _try_replenish_bag():
 	var bagMaxSize = bagSize * 7
-	if bagMaxSize - bag.size() == 7:
+	if bag.size() <= bagMaxSize: # less than half, since we have two bags actually
 		var newPieces := Piece.values()
-		newPieces.shuffle()
+		var baghalf = []
+		for i in bagMaxSize:
+			baghalf += newPieces
+		baghalf.shuffle()
 		bag += newPieces
 
 func _init_bag():
 	if not bag.is_empty():
 		return
+	var bagHalf = []
 	var pieceSet = Piece.values()
 	for i in bagSize:
-		bag += pieceSet
-	bag.shuffle()
+		bagHalf += pieceSet
+	bagHalf.shuffle()
+	bag += bagHalf
+	bagHalf.shuffle()
+	bag += bagHalf
 	_take_piece()
 
 func _on_visibility_changed() -> void:
@@ -257,12 +279,12 @@ func _on_visibility_changed() -> void:
 		_unpause()
 
 func _unpause() -> void:
-	drop_timer.start()
-	lock_timer.start()
+	drop_timer.paused = false
+	lock_timer.paused = false
 
 func _pause() -> void:
-	drop_timer.stop()
-	lock_timer.stop()
+	drop_timer.paused = true
+	lock_timer.paused = true
 
 var lines: int = 0
 func _check_board() -> void:
@@ -369,4 +391,4 @@ func _on_drop_timer_timeout() -> void:
 	_drop()
 
 func _on_lock_timer_timeout() -> void:
-	_lock_position()
+	_hard_drop()

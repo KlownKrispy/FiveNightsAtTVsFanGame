@@ -19,6 +19,7 @@ func hide_computer():
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	if cameras_ui.visible:
 		_set_camera_sound_listener_enabled(false)
+	games_ui.pause()
 
 @onready var ui: Control = $UI
 @onready var cursor: Sprite2D = $Cursor
