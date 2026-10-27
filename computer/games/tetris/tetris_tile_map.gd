@@ -333,6 +333,8 @@ func _get_drop_distance() -> int:
 				break
 		if done:
 			break
+	if not done:
+		dropDistance = boardSize.y - 1
 	return dropDistance
 
 func _hard_drop() -> void:
@@ -365,7 +367,6 @@ func _drop() -> void:
 
 func _on_drop_timer_timeout() -> void:
 	_drop()
-
 
 func _on_lock_timer_timeout() -> void:
 	_lock_position()
