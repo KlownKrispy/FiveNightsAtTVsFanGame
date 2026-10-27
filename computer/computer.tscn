@@ -915,7 +915,19 @@ text = "NEXT"
 
 [node name="NextPieces" type="TileMapLayer" parent="GamesUI/Tetris/TetrisTileMap/NextLabel" unique_id=780120189]
 position = Vector2(0, 27)
-tile_map_data = PackedByteArray("AAAAAAEAAAABAAAAAAABAAEAAAABAAAAAAABAAAAAAABAAAAAAACAAAAAAABAAAAAAA=")
+tile_set = ExtResource("23_5ijsp")
+
+[node name="HoldLabel" type="Label" parent="GamesUI/Tetris/TetrisTileMap" unique_id=2094151363]
+offset_left = -109.0
+offset_top = -11.0
+offset_right = -27.0
+offset_bottom = 12.0
+theme = ExtResource("25_5ijsp")
+theme_override_fonts/font = SubResource("SystemFont_v2341")
+text = "HOLD"
+
+[node name="HoldPiece" type="TileMapLayer" parent="GamesUI/Tetris/TetrisTileMap/HoldLabel" unique_id=679786756]
+position = Vector2(0, 27)
 tile_set = ExtResource("23_5ijsp")
 
 [node name="MailUI" type="Control" parent="." unique_id=1032281496]

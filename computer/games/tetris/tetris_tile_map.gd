@@ -193,6 +193,40 @@ func _rotate_ccw() -> void:
 	_rotate_dir(-1)
 	_update_preview()
 
+var heldPiece: int = -1
+@onready var hold_piece: TileMapLayer = $HoldLabel/HoldPiece
+
+func _update_held() -> void:
+	hold_piece.clear()
+	var topMid := Vector2i(1, 0)
+	var piece := _generate_new_piece_at(heldPiece, topMid)
+	var tileIndex := int(heldPiece) + 1
+	for p in piece:
+		hold_piece.set_cell(p, 0, Vector2i(tileIndex, 0))
+
+var canHold := true
+func _hold() -> void:
+	if not canHold:
+		return
+	if heldPiece == -1:
+		heldPiece = currentPieceType
+		for p in currentPiece:
+			set_cell(p, -1)
+		_take_piece()
+		_update_held()
+		_update_preview()
+		canHold = false
+		return
+	var backup := currentPieceType
+	currentPieceType = heldPiece as Piece
+	heldPiece = backup
+	for p in currentPiece:
+		set_cell(p, -1)
+	_generate_new_piece()
+	_update_held()
+	_update_preview()
+	canHold = false
+
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("tetris_cw"):
 		_rotate_cw()
@@ -200,6 +234,8 @@ func _process(delta: float) -> void:
 		_rotate_ccw()
 	if Input.is_action_just_pressed("tetris_hard_drop"):
 		_hard_drop()
+	if Input.is_action_just_pressed("tetris_hold"):
+		_hold()
 	if Input.is_action_just_pressed("tetris_left"):
 		_try_move(-1)
 		moveTimer = 0
@@ -319,6 +355,7 @@ func _check_board() -> void:
 		ny -= 1
 
 func _lock_position() -> void:
+	canHold = true
 	_check_board()
 	_take_piece()
 
