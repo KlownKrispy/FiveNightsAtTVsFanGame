@@ -22,6 +22,9 @@ var currentRotation: int = 0
 @export var boardSize := Vector2i(10, 20)
 
 func _ready():
+	reset()
+
+func reset():
 	_init_bag()
 	_setup_board()
 	if not is_visible_in_tree():
@@ -37,6 +40,7 @@ func _cell_empty(pos: Vector2i) -> bool:
 	return true
 
 func _setup_board() -> void:
+	clear()
 	for i in 2 + boardSize.x:
 		var borderTop    := Vector2i(-1 + i, -1)
 		var borderBottom := Vector2i(-1 + i, boardSize.y)
@@ -261,8 +265,10 @@ func _process(delta: float) -> void:
 	else:
 		drop_timer.wait_time = 0.5
 
+signal game_over
 func _lose() -> void:
-	pass
+	game_over.emit()
+	reset()
 
 func _take_piece() -> void:
 	currentPieceType = bag.pop_front()

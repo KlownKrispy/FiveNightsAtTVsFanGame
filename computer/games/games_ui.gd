@@ -23,3 +23,7 @@ func _on_minesweeper_minesweeper_closed() -> void:
 func _on_tetris_button_pressed() -> void:
 	game_picker.visible = false
 	tetris.visible = true
+
+func _on_tetris_tile_map_game_over() -> void:
+	tetris.visible = false
+	game_picker.visible = true
