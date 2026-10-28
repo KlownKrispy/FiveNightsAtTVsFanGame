@@ -7,7 +7,10 @@
 [ext_resource type="Script" uid="uid://cbap2audnaov1" path="res://screen_glow.gd" id="4_7jktm"]
 [ext_resource type="PackedScene" uid="uid://cpqn6n6ehqia7" path="res://models/cubicle.glb" id="4_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://c1rhouvicefxt" path="res://enemies/radio/radio_idle.png" id="6_hve3p"]
+[ext_resource type="Material" uid="uid://bigdoktngqca2" path="res://floor_mat.tres" id="6_qhcbd"]
+[ext_resource type="Texture2D" uid="uid://ct2cgcod3lni3" path="res://models/breakfloor.png" id="7_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://clxrii44n1c0d" path="res://enemies/radio/radio_lose.png" id="7_mfdv2"]
+[ext_resource type="Texture2D" uid="uid://djxrgyy31o04c" path="res://models/bossfloor.png" id="7_vaj68"]
 [ext_resource type="Texture2D" uid="uid://b1pejd7fqi2m" path="res://enemies/radio/radio_1.png" id="8_iotsf"]
 [ext_resource type="Texture2D" uid="uid://bsx5tbrdokhpr" path="res://enemies/radio/radio_2.png" id="9_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://clk4045v7kjye" path="res://enemies/radio/radio_3.png" id="10_215e1"]
@@ -321,6 +324,20 @@ _data = {
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_ryrav"]
 viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2p71"]
+albedo_texture = ExtResource("7_vaj68")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaj68"]
+albedo_texture = ExtResource("7_f1jbl")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jktm"]
 transparency = 1
@@ -1245,7 +1262,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -1, -1)
 
 [node name="SpotLight3D" type="SpotLight3D" parent="World/cubicle" unique_id=1179185936]
-transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 2, 0)
+transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 6, 0)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
@@ -1323,16 +1340,38 @@ size = Vector3(0.5, 0.1, 0.5)
 [node name="cubicle2" parent="World" unique_id=1771230824 instance=ExtResource("4_x5p1p")]
 transform = Transform3D(1.1920928e-07, 0, -0.9999999, 8.742277e-08, -1, 1.0421607e-14, -0.9999999, -8.742277e-08, -1.1920928e-07, -8, -1, -1)
 
-[node name="Floor" type="CSGBox3D" parent="World" unique_id=1136165694]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, -2.9624062, -0.13816452)
-size = Vector3(200, 0.1, 200)
+[node name="MainFloor" type="CSGBox3D" parent="World" unique_id=1136165694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, -3, 3)
+size = Vector3(16, 0.1, 28)
+material = ExtResource("6_qhcbd")
 
-[node name="Floor2" type="CSGBox3D" parent="World" unique_id=1572815288]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, 1.0375938, -0.13816452)
-size = Vector3(200, 0.1, 200)
+[node name="MainFloor3" type="CSGBox3D" parent="World" unique_id=243245524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -3, -16)
+size = Vector3(16, 0.1, 10)
+material = SubResource("StandardMaterial3D_i2p71")
 
-[node name="Ceiling" type="CSGBox3D" parent="World" unique_id=2060109812]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, 33.037594, -0.13816452)
+[node name="BreakFloor" type="CSGBox3D" parent="World" unique_id=576473987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3, 11)
+size = Vector3(12, 0.1, 12)
+material = SubResource("StandardMaterial3D_vaj68")
+
+[node name="StorageFloor" type="CSGBox3D" parent="World" unique_id=2129736693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -3, -2)
+size = Vector3(6, 0.1, 6)
+material = SubResource("StandardMaterial3D_vaj68")
+
+[node name="MainFloor2" type="CSGBox3D" parent="World" unique_id=276275282]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3, -3)
+size = Vector3(12, 0.1, 16)
+material = ExtResource("6_qhcbd")
+
+[node name="ExitFloor" type="CSGBox3D" parent="World" unique_id=265005791]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -25, -3, 3)
+size = Vector3(14, 0.1, 4)
+material = ExtResource("6_qhcbd")
+
+[node name="Ceiling" type="CSGBox3D" parent="World" unique_id=1572815288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, 5.037594, -0.13816452)
 visible = false
 size = Vector3(200, 0.1, 200)
 
@@ -1545,31 +1584,31 @@ size = Vector3(4, 4, 0.1)
 material = SubResource("StandardMaterial3D_eow3j")
 
 [node name="SpotLight3D2" type="SpotLight3D" parent="World" unique_id=1885374064]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7, 1, -9)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7, 5, -9)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="World" unique_id=1171763299]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8, 1, -2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8, 5, -2)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="World" unique_id=1682513582]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14, 1, -2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14, 5, -2)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="World" unique_id=233561161]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -16, 1, 3)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -16, 5, 3)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
 
 [node name="SpotLight3D6" type="SpotLight3D" parent="World" unique_id=759811284]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4, 1, 15)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4, 5, 15)
 shadow_enabled = true
 spot_range = 11.976939
 spot_angle = 45.358738
