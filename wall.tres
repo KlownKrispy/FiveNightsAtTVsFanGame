@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dq3iqujqg4h5g"]
+
+[ext_resource type="Texture2D" uid="uid://daltuiv2cvk7m" path="res://models/wall.png" id="1_x2gcn"]
+
+[resource]
+albedo_texture = ExtResource("1_x2gcn")
+uv2_triplanar = true
+uv2_world_triplanar = true
+texture_filter = 2
