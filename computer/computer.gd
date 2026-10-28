@@ -12,6 +12,7 @@ func show_computer():
 	computer_sfx_player.play()
 	if cameras_ui.visible:
 		_set_camera_sound_listener_enabled(true)
+	games_ui.unpause()
 
 func hide_computer():
 	EventBus.on_change_state.emit(EventBus.CameraState.CAMERAS, EventBus.CameraState.FORWARD)

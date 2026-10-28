@@ -4,6 +4,9 @@ extends Control
 func pause() -> void:
 	if tetris.visible:
 		tetris.pause()
+func unpause() -> void:
+	if tetris.visible:
+		tetris.unpause()
 
 func _on_games_exit_button_pressed() -> void:
 	visible = false

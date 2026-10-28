@@ -25,6 +25,7 @@ func _ready():
 	reset()
 
 func reset():
+	lines = 0
 	_init_bag()
 	_setup_board()
 	if not is_visible_in_tree():
@@ -259,11 +260,11 @@ func _process(delta: float) -> void:
 		_try_move(moveDir)
 		moveTimer = 0
 	if Input.is_action_pressed("tetris_soft_drop"):
-		drop_timer.wait_time = 0.125
+		drop_timer.wait_time = get_drop_time(lines) / 4.0
 		if drop_timer.time_left > drop_timer.wait_time:
 			drop_timer.start(drop_timer.wait_time)
 	else:
-		drop_timer.wait_time = 0.5
+		drop_timer.wait_time = get_drop_time(lines)
 
 signal game_over
 func _lose() -> void:
@@ -329,6 +330,12 @@ func _pause() -> void:
 	lock_timer.paused = true
 
 var lines: int = 0
+func get_drop_time(linesCleared: int) -> float:
+	var difficultyMultiplier := 0.5
+	var rate := 5.0
+	var baseDifficulty := rate / (rate + linesCleared)
+	return difficultyMultiplier * baseDifficulty
+
 func _check_board() -> void:
 	var finishedRows: Array[int] = []
 	for y in boardSize.y:

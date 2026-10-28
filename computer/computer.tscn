@@ -156,6 +156,7 @@ sources/0 = SubResource("TileSetAtlasSource_a4omk")
 
 [sub_resource type="SystemFont" id="SystemFont_v2341"]
 font_names = PackedStringArray("monospace")
+subpixel_positioning = 0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_v2341"]
 animations = [{

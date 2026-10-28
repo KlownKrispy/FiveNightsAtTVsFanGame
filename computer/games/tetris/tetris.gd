@@ -4,3 +4,6 @@ extends Node2D
 
 func pause() -> void:
 	tetris_tile_map._pause()
+
+func unpause() -> void:
+	tetris_tile_map._unpause()
