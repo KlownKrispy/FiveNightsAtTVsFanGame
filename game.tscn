@@ -8,10 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://cpqn6n6ehqia7" path="res://models/cubicle.glb" id="4_x5p1p"]
 [ext_resource type="Texture2D" uid="uid://c1rhouvicefxt" path="res://enemies/radio/radio_idle.png" id="6_hve3p"]
 [ext_resource type="Material" uid="uid://bigdoktngqca2" path="res://floor_mat.tres" id="6_qhcbd"]
-[ext_resource type="Texture2D" uid="uid://ct2cgcod3lni3" path="res://models/breakfloor.png" id="7_f1jbl"]
 [ext_resource type="Texture2D" uid="uid://clxrii44n1c0d" path="res://enemies/radio/radio_lose.png" id="7_mfdv2"]
 [ext_resource type="Texture2D" uid="uid://djxrgyy31o04c" path="res://models/bossfloor.png" id="7_vaj68"]
 [ext_resource type="Texture2D" uid="uid://b1pejd7fqi2m" path="res://enemies/radio/radio_1.png" id="8_iotsf"]
+[ext_resource type="Material" uid="uid://bgtu8rp7pkeag" path="res://break_floor.tres" id="8_vaj68"]
 [ext_resource type="Texture2D" uid="uid://bsx5tbrdokhpr" path="res://enemies/radio/radio_2.png" id="9_lc2xo"]
 [ext_resource type="Texture2D" uid="uid://clk4045v7kjye" path="res://enemies/radio/radio_3.png" id="10_215e1"]
 [ext_resource type="Script" uid="uid://c21guookju6pu" path="res://enemies/radio/enemy_radio.gd" id="11_mfdv2"]
@@ -30,7 +30,7 @@
 background_mode = 1
 background_energy_multiplier = 0.0
 ambient_light_source = 2
-ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_color = Color(0.5, 0.5, 0.5, 1)
 ambient_light_energy = 0.01
 
 [sub_resource type="ButtonGroup" id="ButtonGroup_x5p1p"]
@@ -333,11 +333,7 @@ uv1_world_triplanar = true
 texture_filter = 2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vaj68"]
-albedo_texture = ExtResource("7_f1jbl")
-uv1_scale = Vector3(0.5, 0.5, 0.5)
-uv1_triplanar = true
-uv1_world_triplanar = true
-texture_filter = 2
+albedo_color = Color(0.16533333, 0, 0.31, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jktm"]
 transparency = 1
@@ -1264,8 +1260,8 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, -
 [node name="SpotLight3D" type="SpotLight3D" parent="World/cubicle" unique_id=1179185936]
 transform = Transform3D(-4.371139e-08, 1, 4.371139e-08, 0, -4.371139e-08, 1, 1, 4.371139e-08, 1.9106855e-15, 0, 6, 0)
 shadow_enabled = true
-spot_range = 11.976939
-spot_angle = 45.358738
+spot_range = 12.0
+spot_angle = 25.0
 
 [node name="BackWall" type="CSGBox3D" parent="World/cubicle" unique_id=542562211]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1.9999344, 0.00030517578, 7.631382e-06)
@@ -1353,27 +1349,17 @@ material = SubResource("StandardMaterial3D_i2p71")
 [node name="BreakFloor" type="CSGBox3D" parent="World" unique_id=576473987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3, 11)
 size = Vector3(12, 0.1, 12)
-material = SubResource("StandardMaterial3D_vaj68")
+material = ExtResource("8_vaj68")
 
 [node name="StorageFloor" type="CSGBox3D" parent="World" unique_id=2129736693]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -3, -2)
 size = Vector3(6, 0.1, 6)
-material = SubResource("StandardMaterial3D_vaj68")
+material = ExtResource("8_vaj68")
 
 [node name="MainFloor2" type="CSGBox3D" parent="World" unique_id=276275282]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -3, -3)
 size = Vector3(12, 0.1, 16)
 material = ExtResource("6_qhcbd")
-
-[node name="ExitFloor" type="CSGBox3D" parent="World" unique_id=265005791]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -25, -3, 3)
-size = Vector3(14, 0.1, 4)
-material = ExtResource("6_qhcbd")
-
-[node name="Ceiling" type="CSGBox3D" parent="World" unique_id=1572815288]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.10365009, 5.037594, -0.13816452)
-visible = false
-size = Vector3(200, 0.1, 200)
 
 [node name="GameCameraViewport" type="SubViewport" parent="World" unique_id=1007225195]
 size = Vector2i(910, 512)
@@ -1412,12 +1398,16 @@ transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -10, 4, 
 transform = Transform3D(6, 0, 0, 0, 6, 0, 0, 0, 6, 14, 0, 2)
 
 [node name="RightWall2" type="CSGBox3D" parent="World/StorageRoom" unique_id=1636476406]
-transform = Transform3D(-7.2852315e-09, 0, 0.16666667, 0, 0.16666667, 0, -0.16666667, 0, -7.2852315e-09, -0.66666675, -0.16666666, -0.33333334)
+transform = Transform3D(-7.2852315e-09, 0, 0.16666667, 0, 0.16666667, 0, -0.16666667, 0, -7.2852315e-09, -0.66666675, 0.16666669, -0.33333334)
+size = Vector3(2, 8, 0.1)
+
+[node name="RightWall7" type="CSGBox3D" parent="World/StorageRoom" unique_id=385631529]
+transform = Transform3D(-7.2852315e-09, 0, 0.16666667, 0, 0.16666667, 0, -0.16666667, 0, -7.2852315e-09, -0.66666675, 0.5, -0.6666667)
 size = Vector3(2, 4, 0.1)
 
 [node name="RightWall3" type="CSGBox3D" parent="World/StorageRoom" unique_id=1192137835]
-transform = Transform3D(-7.2852315e-09, 0, 0.16666667, 0, 0.16666667, 0, -0.16666667, 0, -7.2852315e-09, -0.66666675, -0.16666666, -1)
-size = Vector3(2, 4, 0.1)
+transform = Transform3D(-7.2852315e-09, 0, 0.16666667, 0, 0.16666667, 0, -0.16666667, 0, -7.2852315e-09, -0.66666675, 0.16666669, -1)
+size = Vector3(2, 8, 0.1)
 
 [node name="RightWall4" type="CSGBox3D" parent="World/StorageRoom" unique_id=937209020]
 transform = Transform3D(-0.16666666, 0, -1.4570463e-08, 0, 0.16666666, 0, 1.4570463e-08, 0, -0.16666666, -0.16666698, -0.16666666, -1.1666667)
@@ -1468,16 +1458,20 @@ transform = Transform3D(1.3113416e-07, 1.1464113e-14, -1, 0, -1, -1.1464112e-14,
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9)
 
 [node name="FrontWall2" type="CSGBox3D" parent="World/BreakRoom" unique_id=1600738389]
-transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 2, 2, -4)
-size = Vector3(12, 4, 0.1)
+transform = Transform3D(-1.0000001, 0, 0, 0, 1, 0, 0, 0, -1.0000001, 2, 4, -4)
+size = Vector3(12, 8, 0.1)
 
 [node name="FrontWall3" type="CSGBox3D" parent="World/BreakRoom" unique_id=383900312]
-transform = Transform3D(4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711392e-08, -4, 2, -2.0000005)
-size = Vector3(4, 4, 0.1)
+transform = Transform3D(4.3711395e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711395e-08, -4, 4, -2.0000005)
+size = Vector3(4, 8, 0.1)
 
 [node name="FrontWall6" type="CSGBox3D" parent="World/BreakRoom" unique_id=1106574301]
-transform = Transform3D(4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711392e-08, -4, 2, 5.0418644)
-size = Vector3(6, 4, 0.1)
+transform = Transform3D(4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711392e-08, -4, 4, 5.0418644)
+size = Vector3(6, 8, 0.1)
+
+[node name="FrontWall7" type="CSGBox3D" parent="World/BreakRoom" unique_id=2061327690]
+transform = Transform3D(4.3711392e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, 4.3711392e-08, -4, 6, 1.0418644)
+size = Vector3(2, 4, 0.1)
 
 [node name="FrontWall4" type="CSGBox3D" parent="World/BreakRoom" unique_id=1035027037]
 transform = Transform3D(1.0000001, 0, -8.742279e-08, 0, 1, 0, 8.742279e-08, 0, 1.0000001, 2, 2, 8)
@@ -1491,55 +1485,63 @@ size = Vector3(12, 4, 0.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, -11)
 
 [node name="BackWall" type="CSGBox3D" parent="World/BossOffice" unique_id=1438198232]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
-size = Vector3(10, 4, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 2, 0)
+size = Vector3(10, 8, 0.1)
+
+[node name="BackWall6" type="CSGBox3D" parent="World/BossOffice" unique_id=1159713736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 4, 0)
+size = Vector3(2, 4, 0.1)
 
 [node name="BackWall5" type="CSGBox3D" parent="World/BossOffice" unique_id=282674778]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 0, 0)
-size = Vector3(4, 4, 0.1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 2, 0)
+size = Vector3(4, 8, 0.1)
 
 [node name="BackWall2" type="CSGBox3D" parent="World/BossOffice" unique_id=308082972]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 0, -10)
-size = Vector3(16, 4, 0.1)
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -4, 2, -10)
+size = Vector3(16, 8, 0.1)
 
 [node name="BackWall3" type="CSGBox3D" parent="World/BossOffice" unique_id=1917719243]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3.9999995, 0, -5)
-size = Vector3(10, 4, 0.1)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 3.9999995, 2, -5)
+size = Vector3(10, 8, 0.1)
 
 [node name="BackWall4" type="CSGBox3D" parent="World/BossOffice" unique_id=54197166]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -12, 0, -5)
-size = Vector3(10, 4, 0.1)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, -12, 2, -5)
+size = Vector3(10, 8, 0.1)
 
 [node name="OuterWalls" type="Node3D" parent="World" unique_id=515353166]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
 
 [node name="BackWall5" type="CSGBox3D" parent="World/OuterWalls" unique_id=1409732063]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.999999, 2, 3)
-size = Vector3(4, 4, 0.1)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.999999, 4, 3)
+size = Vector3(4, 8, 0.1)
 
 [node name="BackWall9" type="CSGBox3D" parent="World/OuterWalls" unique_id=2023352677]
-transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.999999, 2, -8)
-size = Vector3(6, 4, 0.1)
+transform = Transform3D(1.3113416e-07, 0, -1, 0, 1, 0, 1, 0, 1.3113416e-07, 9.999999, 4, -8)
+size = Vector3(6, 8, 0.1)
 
 [node name="BackWall6" type="CSGBox3D" parent="World/OuterWalls" unique_id=1684077049]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 7, 2, -11)
-size = Vector3(6, 4, 0.1)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, 7, 4, -11)
+size = Vector3(6, 8, 0.1)
 
 [node name="BackWall7" type="CSGBox3D" parent="World/OuterWalls" unique_id=565270829]
-transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -15, 2, -11)
-size = Vector3(6, 4, 0.1)
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -15, 4, -11)
+size = Vector3(6, 8, 0.1)
 
 [node name="BackWall8" type="CSGBox3D" parent="World/OuterWalls" unique_id=1188544196]
-transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -17.999996, 2, 11)
-size = Vector3(12, 4, 0.1)
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -17.999996, 4, 11)
+size = Vector3(12, 8, 0.1)
 
 [node name="BackWall11" type="CSGBox3D" parent="World/OuterWalls" unique_id=1607035592]
-transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -17.999996, 2, -5)
-size = Vector3(12, 4, 0.1)
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -17.999996, 4, -5)
+size = Vector3(12, 8, 0.1)
+
+[node name="BackWall12" type="CSGBox3D" parent="World/OuterWalls" unique_id=1419167749]
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -17.999996, 6, 3)
+size = Vector3(4, 4, 0.1)
 
 [node name="BackWall10" type="CSGBox3D" parent="World/OuterWalls" unique_id=1063299521]
-transform = Transform3D(-1, 0, -1.7881393e-07, 0, 1, 0, 1.7881393e-07, 0, -1, -9.999998, 2, 16.999998)
-size = Vector3(16, 4, 0.1)
+transform = Transform3D(-1, 0, -1.7881393e-07, 0, 1, 0, 1.7881393e-07, 0, -1, -9.999998, 4, 16.999998)
+size = Vector3(16, 8, 0.1)
 
 [node name="ExitCorridor" type="Node3D" parent="World" unique_id=1189515195]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 3)
@@ -1547,10 +1549,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 3)
 [node name="BackWall12" type="CSGBox3D" parent="World/ExitCorridor" unique_id=717998794]
 transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -2.9999962, -1, 1.9999995)
 size = Vector3(6, 4, 0.1)
+material = SubResource("StandardMaterial3D_vaj68")
 
 [node name="BackWall15" type="CSGBox3D" parent="World/ExitCorridor" unique_id=322638820]
 transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -12.999996, -1, 2)
 size = Vector3(2, 4, 0.1)
+material = SubResource("StandardMaterial3D_vaj68")
 
 [node name="BackWall16" type="CSGBox3D" parent="World/ExitCorridor" unique_id=1855035057]
 transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -9.999996, -1, 1.9999995)
@@ -1560,18 +1564,22 @@ size = Vector3(4, 4, 0.1)
 [node name="BackWall14" type="CSGBox3D" parent="World/ExitCorridor" unique_id=808062507]
 transform = Transform3D(3.0597974e-07, 0, -1, 0, 1, 0, 1, 0, 3.0597974e-07, -13.999998, -1, 4.7683716e-07)
 size = Vector3(4, 4, 0.1)
+material = SubResource("StandardMaterial3D_vaj68")
 
 [node name="BackWall13" type="CSGBox3D" parent="World/ExitCorridor" unique_id=1927525232]
 transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -12.999996, -1, -1.999998)
 size = Vector3(2, 4, 0.1)
+material = SubResource("StandardMaterial3D_vaj68")
 
 [node name="BackWall17" type="CSGBox3D" parent="World/ExitCorridor" unique_id=316224958]
 transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -6.999996, -1, -1.999998)
 size = Vector3(2, 4, 0.1)
+material = SubResource("StandardMaterial3D_vaj68")
 
 [node name="BackWall18" type="CSGBox3D" parent="World/ExitCorridor" unique_id=863498560]
 transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -0.9999962, -1, -1.999998)
 size = Vector3(2, 4, 0.1)
+material = SubResource("StandardMaterial3D_vaj68")
 
 [node name="ElevatorOOO" type="CSGBox3D" parent="World/ExitCorridor" unique_id=2146482841]
 transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -3.9999962, -1, -1.9999982)
@@ -1583,35 +1591,117 @@ transform = Transform3D(-1, 0, -2.6226834e-07, 0, 1, 0, 2.6226834e-07, 0, -1, -9
 size = Vector3(4, 4, 0.1)
 material = SubResource("StandardMaterial3D_eow3j")
 
+[node name="ExitFloor" type="CSGBox3D" parent="World/ExitCorridor" unique_id=265005791]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -7, -3, 0)
+size = Vector3(14, 0.1, 4)
+material = ExtResource("6_qhcbd")
+
+[node name="ExitFloor5" type="CSGBox3D" parent="World/ExitCorridor" unique_id=1503881378]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -9, -3, 3)
+size = Vector3(6, 0.1, 2)
+material = ExtResource("6_qhcbd")
+
+[node name="ExitFloor2" type="CSGBox3D" parent="World/ExitCorridor" unique_id=319665402]
+transform = Transform3D(-1, 0, -8.742278e-08, -4.371139e-08, 0.8660254, 0.5, 7.5710346e-08, 0.5, -0.8660254, -7, -4, 5.696952)
+size = Vector3(2, 0.1, 4)
+material = ExtResource("6_qhcbd")
+
+[node name="ExitFloor3" type="CSGBox3D" parent="World/ExitCorridor" unique_id=846352427]
+transform = Transform3D(1, 4.371139e-08, 1.171243e-08, -4.371139e-08, 0.8660254, 0.5, 1.171243e-08, -0.5, 0.8660254, -11, -6, 5.696952)
+size = Vector3(2, 0.1, 4)
+material = ExtResource("6_qhcbd")
+
+[node name="ExitFloor4" type="CSGBox3D" parent="World/ExitCorridor" unique_id=1387644204]
+transform = Transform3D(1, 4.371139e-08, 1.171243e-08, -4.371139e-08, 1, 0, -1.1712432e-08, 0, 1, -9, -5, 8.714489)
+size = Vector3(6, 0.1, 2.630005)
+material = ExtResource("6_qhcbd")
+
+[node name="BackWall19" type="CSGBox3D" parent="World/ExitCorridor" unique_id=567745305]
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -5.999996, -3.5, 6)
+size = Vector3(8, 9, 0.1)
+
+[node name="BackWall21" type="CSGBox3D" parent="World/ExitCorridor" unique_id=1567182447]
+transform = Transform3D(-2.1855695e-07, 0, 1, 0, 1, 0, -1, 0, -2.1855695e-07, -11.999996, -3.5, 6)
+size = Vector3(8, 9, 0.1)
+
+[node name="BackWall20" type="CSGBox3D" parent="World/ExitCorridor" unique_id=1291594623]
+transform = Transform3D(1, 0, 1.7484555e-07, 0, 1, 0, -1.7484555e-07, 0, 1, -8.999996, -3.5, 10)
+size = Vector3(6, 9, 0.1)
+
 [node name="SpotLight3D2" type="SpotLight3D" parent="World" unique_id=1885374064]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -7, 5, -9)
 shadow_enabled = true
-spot_range = 11.976939
-spot_angle = 45.358738
+spot_range = 12.0
+spot_angle = 25.0
 
 [node name="SpotLight3D3" type="SpotLight3D" parent="World" unique_id=1171763299]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 8, 5, -2)
 shadow_enabled = true
-spot_range = 11.976939
-spot_angle = 45.358738
+spot_range = 12.0
+spot_angle = 25.0
 
 [node name="SpotLight3D4" type="SpotLight3D" parent="World" unique_id=1682513582]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14, 5, -2)
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 14, 1, -2)
 shadow_enabled = true
-spot_range = 11.976939
-spot_angle = 45.358738
+spot_range = 12.0
 
 [node name="SpotLight3D5" type="SpotLight3D" parent="World" unique_id=233561161]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -16, 5, 3)
 shadow_enabled = true
-spot_range = 11.976939
-spot_angle = 45.358738
+spot_range = 12.0
+spot_angle = 25.0
 
 [node name="SpotLight3D6" type="SpotLight3D" parent="World" unique_id=759811284]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -4, 5, 15)
 shadow_enabled = true
-spot_range = 11.976939
-spot_angle = 45.358738
+spot_range = 12.0
+spot_angle = 25.0
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World" unique_id=1593710323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, -2, 8)
+light_color = Color(0.3499999, 1, 0, 1)
+light_energy = 0.125
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="Ceilings" type="Node3D" parent="World" unique_id=1196728977]
+
+[node name="MainCeiling" type="CSGBox3D" parent="World/Ceilings" unique_id=1572815288]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, 3)
+material_override = ExtResource("8_vaj68")
+size = Vector3(16, 0.1, 28)
+material = ExtResource("8_vaj68")
+
+[node name="MainCeiling2" type="CSGBox3D" parent="World/Ceilings" unique_id=1005637124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 5, -3)
+material_override = ExtResource("8_vaj68")
+size = Vector3(12, 0.1, 16)
+material = ExtResource("8_vaj68")
+
+[node name="BossCeiling" type="CSGBox3D" parent="World/Ceilings" unique_id=967515793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 5, -16)
+size = Vector3(16, 0.1, 10)
+material = ExtResource("8_vaj68")
+
+[node name="ExitCeiling" type="CSGBox3D" parent="World/Ceilings" unique_id=1642032186]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 1, 3)
+size = Vector3(14, 0.1, 4)
+material = ExtResource("8_vaj68")
+
+[node name="ExitCeiling2" type="CSGBox3D" parent="World/Ceilings" unique_id=645984219]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1, 9)
+size = Vector3(6, 0.1, 8)
+material = ExtResource("8_vaj68")
+
+[node name="BreakCeiling" type="CSGBox3D" parent="World/Ceilings" unique_id=1645345824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, 11)
+size = Vector3(12, 0.1, 12)
+material = ExtResource("8_vaj68")
+
+[node name="StorageCeiling" type="CSGBox3D" parent="World/Ceilings" unique_id=1562871910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, 1, -2)
+size = Vector3(6, 0.1, 6)
+material = ExtResource("8_vaj68")
 
 [node name="Enemies" type="Node" parent="." unique_id=1856473854]
 

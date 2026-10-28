@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bgtu8rp7pkeag"]
+
+[ext_resource type="Texture2D" uid="uid://ct2cgcod3lni3" path="res://models/breakfloor.png" id="1_jyct6"]
+
+[resource]
+albedo_texture = ExtResource("1_jyct6")
+uv1_scale = Vector3(0.5, 0.5, 0.5)
+uv1_triplanar = true
+uv1_world_triplanar = true
+texture_filter = 2
