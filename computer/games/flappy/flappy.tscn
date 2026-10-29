@@ -1,0 +1,178 @@
+[gd_scene format=3 uid="uid://7cycbldm48iw"]
+
+[ext_resource type="Script" uid="uid://b1scpwlo7yg4h" path="res://computer/games/flappy/flappy.gd" id="1_2g3c5"]
+[ext_resource type="Texture2D" uid="uid://ctb2t3a6ixyeo" path="res://computer/games/flappy/flappy_bg.png" id="1_8k0oq"]
+[ext_resource type="Texture2D" uid="uid://bmbsy3gg60qa0" path="res://computer/games/flappy/flappy_floor.png" id="2_pxr3o"]
+[ext_resource type="Texture2D" uid="uid://bwdc8lc4y0w1r" path="res://computer/games/flappy/cloud.png" id="3_gjv5j"]
+[ext_resource type="Script" uid="uid://bnrfq1wk0qjks" path="res://computer/games/flappy/bird.gd" id="4_2g3c5"]
+[ext_resource type="Script" uid="uid://ceqcio6rg6oxw" path="res://computer/games/flappy/cloud.gd" id="4_pxr3o"]
+[ext_resource type="Texture2D" uid="uid://c0gbd16vgaurc" path="res://computer/games/flappy/flappy.png" id="5_3px31"]
+[ext_resource type="Script" uid="uid://bsya7t0ysm0vs" path="res://computer/games/flappy/pipes.gd" id="5_gjv5j"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fimyt"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_v2341"]
+distance = -404.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_fimyt"]
+normal = Vector2(0, 1)
+distance = -194.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fimyt"]
+atlas = ExtResource("5_3px31")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w3kjg"]
+atlas = ExtResource("5_3px31")
+region = Rect2(0, 48, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iikfk"]
+atlas = ExtResource("5_3px31")
+region = Rect2(0, 16, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a30f1"]
+atlas = ExtResource("5_3px31")
+region = Rect2(0, 32, 48, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_huurv"]
+atlas = ExtResource("5_3px31")
+region = Rect2(0, 0, 48, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tqooj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fimyt")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w3kjg")
+}],
+"loop": 1,
+"name": &"die",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iikfk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a30f1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_huurv")
+}],
+"loop": 0,
+"name": &"flap",
+"speed": 15.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_v2341"]
+radius = 7.0316744
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tqooj"]
+radius = 7.017834
+
+[node name="FlappyReal" type="Node2D" unique_id=283084781]
+texture_filter = 1
+script = ExtResource("1_2g3c5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=285775423]
+position = Vector2(336, 220)
+
+[node name="Background" type="Sprite2D" parent="." unique_id=615715915]
+texture_filter = 2
+position = Vector2(336, 220)
+scale = Vector2(13.895834, 13.749999)
+texture = ExtResource("1_8k0oq")
+metadata/_edit_lock_ = true
+
+[node name="Boundaries" type="StaticBody2D" parent="." unique_id=696931188]
+physics_material_override = SubResource("PhysicsMaterial_fimyt")
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries" unique_id=1134644980]
+position = Vector2(60, 0)
+shape = SubResource("WorldBoundaryShape2D_v2341")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Boundaries" unique_id=1060376211]
+position = Vector2(60, 175)
+shape = SubResource("WorldBoundaryShape2D_fimyt")
+
+[node name="FlappyFloor" type="Sprite2D" parent="Boundaries" unique_id=1065896921]
+texture_filter = 2
+texture_repeat = 2
+position = Vector2(336, 416)
+scale = Vector2(42, 3.016)
+texture = ExtResource("2_pxr3o")
+
+[node name="Clouds" type="Node2D" parent="." unique_id=1671263955]
+position = Vector2(336, 81)
+metadata/_edit_group_ = true
+
+[node name="Cloud" type="Sprite2D" parent="Clouds" unique_id=1612772003]
+show_behind_parent = true
+scale = Vector2(3, 3)
+texture = ExtResource("3_gjv5j")
+script = ExtResource("4_pxr3o")
+
+[node name="Cloud2" type="Sprite2D" parent="Clouds" unique_id=248530686]
+show_behind_parent = true
+scale = Vector2(3, 3)
+texture = ExtResource("3_gjv5j")
+script = ExtResource("4_pxr3o")
+
+[node name="Cloud3" type="Sprite2D" parent="Clouds" unique_id=999968600]
+show_behind_parent = true
+scale = Vector2(3, 3)
+texture = ExtResource("3_gjv5j")
+script = ExtResource("4_pxr3o")
+
+[node name="Cloud4" type="Sprite2D" parent="Clouds" unique_id=423217491]
+show_behind_parent = true
+scale = Vector2(3, 3)
+texture = ExtResource("3_gjv5j")
+script = ExtResource("4_pxr3o")
+
+[node name="Pipes" type="Node2D" parent="." unique_id=1146271393]
+position = Vector2(755, 392)
+script = ExtResource("5_gjv5j")
+
+[node name="Bird" type="CharacterBody2D" parent="." unique_id=1007452150]
+position = Vector2(60, 220)
+scale = Vector2(2, 2)
+script = ExtResource("4_2g3c5")
+metadata/_edit_lock_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Bird" unique_id=1936665183]
+sprite_frames = SubResource("SpriteFrames_tqooj")
+autoplay = "default"
+frame_progress = 0.75189346
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird" unique_id=1624272914]
+shape = SubResource("CircleShape2D_v2341")
+
+[node name="ScoreChecker" type="Area2D" parent="Bird" unique_id=1309061998]
+collision_layer = 0
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Bird/ScoreChecker" unique_id=649887447]
+shape = SubResource("CircleShape2D_tqooj")
+
+[node name="ScoreLabel" type="Label" parent="." unique_id=459079836]
+offset_left = 15.0
+offset_top = 41.0
+offset_right = 180.0
+offset_bottom = 64.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47843137)
+text = "You passed 0 pipes!"
+
+[connection signal="died" from="Bird" to="." method="_on_bird_died"]
+[connection signal="scored" from="Bird" to="." method="_on_bird_scored"]
+[connection signal="area_entered" from="Bird/ScoreChecker" to="Bird" method="_on_score_checker_area_entered"]

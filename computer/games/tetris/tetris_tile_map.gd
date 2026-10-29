@@ -28,8 +28,6 @@ func reset():
 	lines = 0
 	_init_bag()
 	_setup_board()
-	if not is_visible_in_tree():
-		_pause()
 
 func _cell_empty(pos: Vector2i) -> bool:
 	if pos.y < 0 or pos.y >= boardSize.y:
@@ -312,22 +310,6 @@ func _init_bag():
 	bagHalf.shuffle()
 	bag += bagHalf
 	_take_piece()
-
-func _on_visibility_changed() -> void:
-	if not is_node_ready():
-		return
-	if not is_visible_in_tree():
-		_pause()
-	else:
-		_unpause()
-
-func _unpause() -> void:
-	drop_timer.paused = false
-	lock_timer.paused = false
-
-func _pause() -> void:
-	drop_timer.paused = true
-	lock_timer.paused = true
 
 var lines: int = 0
 func get_drop_time(linesCleared: int) -> float:

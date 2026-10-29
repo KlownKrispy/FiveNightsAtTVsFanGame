@@ -69,6 +69,7 @@ func _on_games_tab_pressed() -> void:
 	cameras_ui.visible = false
 	mail_ui.visible = false
 	_set_camera_sound_listener_enabled(false)
+	games_ui.unpause()
 
 func _on_mail_tab_pressed() -> void:
 	mail_ui.visible = not mail_ui.visible
@@ -103,6 +104,7 @@ func _on_mail_ui_hidden() -> void:
 
 func _on_games_ui_hidden() -> void:
 	games_tab.button_pressed = false
+	games_ui.pause()
 
 func _on_cameras_ui_hidden() -> void:
 	cameras_tab.button_pressed = false

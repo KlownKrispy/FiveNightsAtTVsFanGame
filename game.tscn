@@ -34,7 +34,7 @@ ambient_light_source = 2
 ambient_light_color = Color(0.5, 0.5, 0.5, 1)
 ambient_light_energy = 0.01
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_vaj68"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_i2p71"]
 allow_unpress = true
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
@@ -1212,16 +1212,16 @@ size = Vector2i(683, 512)
 [node name="Computer" parent="SubViewport" unique_id=1946148648 instance=ExtResource("2_boyg6")]
 
 [node name="CamerasTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="3" unique_id=89113343]
-button_group = SubResource("ButtonGroup_vaj68")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="GamesTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="4" unique_id=615822567]
-button_group = SubResource("ButtonGroup_vaj68")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="MailTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="5" unique_id=1237005857]
-button_group = SubResource("ButtonGroup_vaj68")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="HorseTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="7" unique_id=1092353379]
-button_group = SubResource("ButtonGroup_vaj68")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="ComputerScreenCollider" type="Area3D" parent="SubViewport/Computer" unique_id=1669292061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9833543, -1.8165946)
@@ -1663,7 +1663,6 @@ shadow_enabled = true
 distance_fade_enabled = true
 
 [node name="Ceilings" type="Node3D" parent="World" unique_id=1196728977]
-visible = false
 
 [node name="MainCeiling" type="CSGBox3D" parent="World/Ceilings" unique_id=1572815288]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10, 5, 3)

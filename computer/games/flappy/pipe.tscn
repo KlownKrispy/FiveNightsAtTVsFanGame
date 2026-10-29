@@ -1,0 +1,108 @@
+[gd_scene format=3 uid="uid://carqpuv5o13is"]
+
+[ext_resource type="Script" uid="uid://bjvt6k6vs0pvd" path="res://computer/games/flappy/pipe.gd" id="1_57d64"]
+[ext_resource type="Texture2D" uid="uid://pd26ke4yi7kq" path="res://computer/games/flappy/pipe.png" id="2_ckr1g"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tqooj"]
+size = Vector2(28.000002, 11)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v2341"]
+size = Vector2(28, 11.0000105)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1tboe"]
+size = Vector2(20, 396)
+
+[node name="Pipe" type="StaticBody2D" unique_id=1658095452]
+texture_filter = 1
+script = ExtResource("1_57d64")
+
+[node name="Bottom" type="Node2D" parent="." unique_id=360341208]
+metadata/_edit_group_ = true
+
+[node name="Base" type="Sprite2D" parent="Bottom" unique_id=1752084486]
+texture_filter = 1
+position = Vector2(0, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ckr1g")
+region_enabled = true
+region_rect = Rect2(0, 92, 32, 4)
+
+[node name="Body" type="Sprite2D" parent="Bottom" unique_id=1807883860]
+texture_filter = 1
+position = Vector2(0, -9)
+scale = Vector2(2, 1.9999981)
+texture = ExtResource("2_ckr1g")
+region_enabled = true
+region_rect = Rect2(0, 92, 32, 1)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Bottom/Body" unique_id=1429507369]
+remote_path = NodePath("../../../BottomCollider")
+update_rotation = false
+update_scale = false
+
+[node name="Lip" type="Sprite2D" parent="Bottom" unique_id=941677787]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ckr1g")
+region_enabled = true
+region_rect = Rect2(0, 26, 32, 6)
+
+[node name="Top" type="Node2D" parent="." unique_id=184294159]
+position = Vector2(0, -392)
+rotation = -3.1415925
+metadata/_edit_group_ = true
+
+[node name="Base" type="Sprite2D" parent="Top" unique_id=102011777]
+texture_filter = 1
+position = Vector2(0, -4)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ckr1g")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 92, 32, 4)
+
+[node name="Body" type="Sprite2D" parent="Top" unique_id=2818827]
+texture_filter = 1
+position = Vector2(0, -9)
+scale = Vector2(2, 1.9999981)
+texture = ExtResource("2_ckr1g")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 92, 32, 1)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Top/Body" unique_id=2117082209]
+remote_path = NodePath("../../../TopCollider")
+update_rotation = false
+update_scale = false
+
+[node name="Lip" type="Sprite2D" parent="Top" unique_id=1938813949]
+texture_filter = 1
+texture_repeat = 2
+position = Vector2(0, -16)
+scale = Vector2(2, 2)
+texture = ExtResource("2_ckr1g")
+flip_h = true
+region_enabled = true
+region_rect = Rect2(0, 26, 32, 6)
+
+[node name="TopCollider" type="CollisionShape2D" parent="." unique_id=1735250148]
+position = Vector2(-1.3589622e-06, -383)
+rotation = -3.1415925
+scale = Vector2(2, 1.9999981)
+shape = SubResource("RectangleShape2D_tqooj")
+
+[node name="BottomCollider" type="CollisionShape2D" parent="." unique_id=950153567]
+position = Vector2(0, -9)
+scale = Vector2(2, 1.9999981)
+shape = SubResource("RectangleShape2D_v2341")
+
+[node name="ScoreBox" type="Area2D" parent="." unique_id=1261413427]
+collision_layer = 2
+collision_mask = 0
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScoreBox" unique_id=1378959848]
+position = Vector2(0, -196)
+shape = SubResource("RectangleShape2D_1tboe")
