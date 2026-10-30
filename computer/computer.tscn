@@ -37,6 +37,7 @@
 [ext_resource type="Texture2D" uid="uid://dl7quujxv2p2a" path="res://curiosities/horse/frame_10.png" id="24_m5u5i"]
 [ext_resource type="Theme" uid="uid://buyfdbvctdoyp" path="res://computer/ui_assets/cameras_button.tres" id="25_5ijsp"]
 [ext_resource type="Texture2D" uid="uid://bmtsaa0qu0ipg" path="res://curiosities/horse/frame_11.png" id="25_gs2b6"]
+[ext_resource type="Script" uid="uid://2ajmq6ckmuwc" path="res://computer/games/flappy/flappy_container.gd" id="25_gy3kk"]
 [ext_resource type="PackedScene" uid="uid://7cycbldm48iw" path="res://computer/games/flappy/flappy.tscn" id="26_gy3kk"]
 [ext_resource type="Texture2D" uid="uid://tq6p6tro6ibj" path="res://curiosities/horse/frame_12.png" id="26_r0onp"]
 [ext_resource type="Texture2D" uid="uid://kyt73sy5omu7" path="res://curiosities/horse/frame_13.png" id="27_jpdj4"]
@@ -949,9 +950,11 @@ tile_set = ExtResource("23_5ijsp")
 process_mode = 4
 visible = false
 position = Vector2(8, 32)
+script = ExtResource("25_gy3kk")
 
-[node name="Sprite2D" type="Sprite2D" parent="GamesUI/Flappy" unique_id=1633232106]
-position = Vector2(334, 220)
+[node name="Sprite2D" type="TextureRect" parent="GamesUI/Flappy" unique_id=1162206074]
+offset_right = 667.0
+offset_bottom = 440.0
 texture = SubResource("ViewportTexture_v2341")
 
 [node name="SubViewport" type="SubViewport" parent="GamesUI/Flappy" unique_id=2092078828]
@@ -1105,6 +1108,8 @@ parameters/looping = true
 [connection signal="game_over" from="GamesUI/Tetris/TetrisTileMap" to="GamesUI" method="_on_tetris_tile_map_game_over"]
 [connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/DropTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_drop_timer_timeout"]
 [connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/LockTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_lock_timer_timeout"]
+[connection signal="gui_input" from="GamesUI/Flappy/Sprite2D" to="GamesUI/Flappy" method="_on_sprite_2d_gui_input"]
+[connection signal="game_quit" from="GamesUI/Flappy/SubViewport/FlappyReal" to="GamesUI" method="_on_flappy_real_game_quit"]
 [connection signal="hidden" from="MailUI" to="." method="_on_mail_ui_hidden"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
 [connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]

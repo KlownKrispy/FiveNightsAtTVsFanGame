@@ -44,3 +44,9 @@ func _on_flappy_button_pressed() -> void:
 	game_picker.visible = false
 	flappy.visible = true
 	unpause()
+
+
+func _on_flappy_real_game_quit() -> void:
+	pause()
+	flappy.visible = false
+	game_picker.visible = true

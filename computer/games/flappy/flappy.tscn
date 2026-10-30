@@ -8,6 +8,8 @@
 [ext_resource type="Script" uid="uid://ceqcio6rg6oxw" path="res://computer/games/flappy/cloud.gd" id="4_pxr3o"]
 [ext_resource type="Texture2D" uid="uid://c0gbd16vgaurc" path="res://computer/games/flappy/flappy.png" id="5_3px31"]
 [ext_resource type="Script" uid="uid://bsya7t0ysm0vs" path="res://computer/games/flappy/pipes.gd" id="5_gjv5j"]
+[ext_resource type="Texture2D" uid="uid://bv46c2o1seh2k" path="res://computer/ui_assets/window.png" id="9_ivtlk"]
+[ext_resource type="Theme" uid="uid://buyfdbvctdoyp" path="res://computer/ui_assets/cameras_button.tres" id="10_ie7wx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fimyt"]
 
@@ -76,6 +78,8 @@ radius = 7.0316744
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqooj"]
 radius = 7.017834
+
+[sub_resource type="ButtonGroup" id="ButtonGroup_fyf8g"]
 
 [node name="FlappyReal" type="Node2D" unique_id=283084781]
 texture_filter = 1
@@ -166,13 +170,60 @@ monitorable = false
 shape = SubResource("CircleShape2D_tqooj")
 
 [node name="ScoreLabel" type="Label" parent="." unique_id=459079836]
-offset_left = 15.0
-offset_top = 41.0
-offset_right = 180.0
-offset_bottom = 64.0
+offset_left = 33.0
+offset_top = 45.0
+offset_right = 198.0
+offset_bottom = 68.0
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47843137)
 text = "You passed 0 pipes!"
+
+[node name="GameOverWindow" type="NinePatchRect" parent="." unique_id=303808661]
+visible = false
+offset_left = 163.0
+offset_top = 124.0
+offset_right = 342.0
+offset_bottom = 229.0
+scale = Vector2(2, 2)
+texture = ExtResource("9_ivtlk")
+patch_margin_left = 4
+patch_margin_top = 16
+patch_margin_right = 4
+patch_margin_bottom = 4
+axis_stretch_horizontal = 1
+
+[node name="Label" type="Label" parent="GameOverWindow" unique_id=1951156607]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 34.0
+offset_right = 121.0
+offset_bottom = 57.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.47843137)
+text = "It's done!"
+
+[node name="QuitButton" type="Button" parent="GameOverWindow" unique_id=1723668443]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 71.5
+offset_right = 171.0
+offset_bottom = 96.5
+theme = ExtResource("10_ie7wx")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fyf8g")
+text = "Give up"
+
+[node name="ReplayButton" type="Button" parent="GameOverWindow" unique_id=556192777]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 71.5
+offset_right = 55.5
+offset_bottom = 96.5
+theme = ExtResource("10_ie7wx")
+toggle_mode = true
+button_group = SubResource("ButtonGroup_fyf8g")
+text = "More"
 
 [connection signal="died" from="Bird" to="." method="_on_bird_died"]
 [connection signal="scored" from="Bird" to="." method="_on_bird_scored"]
 [connection signal="area_entered" from="Bird/ScoreChecker" to="Bird" method="_on_score_checker_area_entered"]
+[connection signal="pressed" from="GameOverWindow/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="GameOverWindow/ReplayButton" to="." method="_on_replay_button_pressed"]

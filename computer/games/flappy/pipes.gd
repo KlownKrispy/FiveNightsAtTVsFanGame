@@ -5,6 +5,12 @@ const PIPE = preload("uid://carqpuv5o13is")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	reset()
+
+func reset() -> void:
+	for c in get_children():
+		if c is FlappyPipe:
+			remove_child(c)
 	for i in range(8):
 		add_pipe(horizontalSpacing * i)
 

@@ -10,6 +10,15 @@ signal died
 signal scored
 
 var timeSinceFlap := 0.0
+@onready var _initialPosition: Vector2 = position
+
+func _ready() -> void:
+	reset()
+func reset() -> void:
+	timeSinceFlap = 0.0
+	dead = false
+	position = _initialPosition
+	animated_sprite_2d.play("default")
 
 func _physics_process(delta: float) -> void:
 	timeSinceFlap += delta
