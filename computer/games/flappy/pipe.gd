@@ -1,3 +1,4 @@
+class_name FlappyPipe
 extends Node2D
 
 @onready var bottom_base: Sprite2D = $Bottom/Base
@@ -8,9 +9,17 @@ extends Node2D
 @onready var top_lip: Sprite2D = $Top/Lip
 @onready var top_collider: CollisionShape2D = $TopCollider
 @onready var bottom_collider: CollisionShape2D = $BottomCollider
-
-var speed := 120.0
+@export var baseSpeed := 60.0
 signal reached_end
+
+var speedMultiplier := 1.0
+func _get_speed() -> float:
+	return baseSpeed * speedMultiplier
+
+func score_update(score: int) -> void:
+	var newGamePlusScore: int = int(MinigameTracker.flappyLifetimeScore * 0.75)
+	var effectiveScore: int = score + newGamePlusScore
+	speedMultiplier = 1.0 + effectiveScore / 20.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -35,7 +44,7 @@ func _randomize_stats():
 	top_lip.position.y = -14 - 2 * topHeightPixels
 
 func _physics_process(delta: float) -> void:
-	position.x -= delta * speed
+	position.x -= delta * _get_speed()
 	if position.x <= -800:
 		reached_end.emit()
 		queue_free()

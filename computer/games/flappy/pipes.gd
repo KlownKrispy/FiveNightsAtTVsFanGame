@@ -18,6 +18,13 @@ func add_pipe_after_last() -> void:
 	var newPosition := maxPosition + horizontalSpacing
 	add_pipe(newPosition)
 
+func update_score(score: int) -> void:
+	for child in get_children():
+		if child is not FlappyPipe:
+			continue
+		var p: FlappyPipe = child
+		p.score_update(score)
+
 func add_pipe(x: float):
 	var pipe := PIPE.instantiate()
 	pipe.position.x = x

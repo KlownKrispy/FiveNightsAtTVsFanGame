@@ -111,6 +111,7 @@ func _check_win() -> void:
 	gameOver = true
 	win_timer.start()
 	win_sound.play()
+	MinigameTracker.win_minesweeper()
 
 func _flag(pos: Vector2i) -> void:
 	if not _is_cell_valid(pos):

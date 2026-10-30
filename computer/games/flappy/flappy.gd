@@ -7,6 +7,9 @@ func reset():
 	pipes.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _on_bird_died() -> void:
+	MinigameTracker.add_flappy_pipes(score)
+	score = 0
+	pipes.update_score(score)
 	pipes.process_mode = Node.PROCESS_MODE_DISABLED
 
 @onready var score_label: Label = $ScoreLabel
@@ -15,3 +18,4 @@ var score: int = 0
 func _on_bird_scored() -> void:
 	score += 1
 	score_label.text = "You passed " + str(score) + " pipes!"
+	pipes.update_score(score)

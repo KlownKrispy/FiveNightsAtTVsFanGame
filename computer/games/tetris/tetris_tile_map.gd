@@ -266,6 +266,7 @@ func _process(delta: float) -> void:
 
 signal game_over
 func _lose() -> void:
+	MinigameTracker.add_tetris_lines(lines)
 	game_over.emit()
 	reset()
 
@@ -313,9 +314,11 @@ func _init_bag():
 
 var lines: int = 0
 func get_drop_time(linesCleared: int) -> float:
+	var linesNewGamePlus: int = int(MinigameTracker.tetrisLifetimeLinesCleared * 0.75)
+	var effectiveLines: int = linesCleared + linesNewGamePlus
 	var difficultyMultiplier := 0.5
 	var rate := 5.0
-	var baseDifficulty := rate / (rate + linesCleared)
+	var baseDifficulty := rate / (rate + effectiveLines)
 	return difficultyMultiplier * baseDifficulty
 
 func _check_board() -> void:
