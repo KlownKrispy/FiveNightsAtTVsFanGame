@@ -9,7 +9,10 @@ var dead := false
 signal died
 signal scored
 
+var timeSinceFlap := 0.0
+
 func _physics_process(delta: float) -> void:
+	timeSinceFlap += delta
 	velocity += gravity * delta
 	if Input.is_action_just_pressed("flappy_flap") and not dead:
 		if velocity.y > 0:
@@ -19,7 +22,9 @@ func _physics_process(delta: float) -> void:
 		if velocity.y < -500:
 			velocity.y = -500
 		animated_sprite_2d.play("flap")
+		timeSinceFlap = 0
 	move_and_slide()
+	rotation = PI/4.0 * minf(timeSinceFlap, 1) / 1
 	if not dead and (is_on_ceiling() or is_on_wall() or is_on_floor()):
 		dead = true
 		animated_sprite_2d.play("die")
