@@ -9,7 +9,7 @@ extends Node2D
 @onready var top_lip: Sprite2D = $Top/Lip
 @onready var top_collider: CollisionShape2D = $TopCollider
 @onready var bottom_collider: CollisionShape2D = $BottomCollider
-@export var baseSpeed := 60.0
+@export var baseSpeed := 100.0
 signal reached_end
 
 var speedMultiplier := 1.0
@@ -19,7 +19,7 @@ func _get_speed() -> float:
 func score_update(score: int) -> void:
 	var newGamePlusScore: int = int(MinigameTracker.flappyLifetimeScore * 0.75)
 	var effectiveScore: int = score + newGamePlusScore
-	speedMultiplier = 1.0 + effectiveScore / 20.0
+	speedMultiplier = 1.0 + effectiveScore / 10.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
