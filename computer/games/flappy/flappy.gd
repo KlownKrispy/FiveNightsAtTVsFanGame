@@ -8,12 +8,13 @@ func reset():
 	pipes.process_mode = Node.PROCESS_MODE_INHERIT
 	score = 0
 	score_label.text = "You passed " + str(score) + " pipes!"
-	pipes.update_score(score)
 	pipes.reset()
+	pipes.update_score(score)
 	bird.reset()
 @onready var game_over_window: NinePatchRect = $GameOverWindow
 
 func _on_bird_died() -> void:
+	death_sound.play()
 	MinigameTracker.add_flappy_pipes(score)
 	score = 0
 	pipes.update_score(score)
@@ -21,9 +22,12 @@ func _on_bird_died() -> void:
 	game_over_window.visible = true
 
 @onready var score_label: Label = $ScoreLabel
+@onready var score_sound: AudioStreamPlayer = $ScoreSound
+@onready var death_sound: AudioStreamPlayer = $DeathSound
 
 var score: int = 0
 func _on_bird_scored() -> void:
+	score_sound.play()
 	score += 1
 	score_label.text = "You passed " + str(score) + " pipes!"
 	pipes.update_score(score)

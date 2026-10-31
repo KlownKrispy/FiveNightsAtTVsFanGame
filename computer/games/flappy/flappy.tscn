@@ -10,6 +10,8 @@
 [ext_resource type="Script" uid="uid://bsya7t0ysm0vs" path="res://computer/games/flappy/pipes.gd" id="5_gjv5j"]
 [ext_resource type="Texture2D" uid="uid://bv46c2o1seh2k" path="res://computer/ui_assets/window.png" id="9_ivtlk"]
 [ext_resource type="Theme" uid="uid://buyfdbvctdoyp" path="res://computer/ui_assets/cameras_button.tres" id="10_ie7wx"]
+[ext_resource type="AudioStream" uid="uid://d4kqq1f2g2lxb" path="res://computer/sfx/bit2.wav" id="11_fyf8g"]
+[ext_resource type="AudioStream" uid="uid://bye0qpke5keoj" path="res://computer/sfx/bit0.wav" id="12_e2vsb"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_fimyt"]
 
@@ -78,8 +80,6 @@ radius = 7.0316744
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_tqooj"]
 radius = 7.017834
-
-[sub_resource type="ButtonGroup" id="ButtonGroup_fyf8g"]
 
 [node name="FlappyReal" type="Node2D" unique_id=283084781]
 texture_filter = 1
@@ -207,8 +207,6 @@ offset_top = 71.5
 offset_right = 171.0
 offset_bottom = 96.5
 theme = ExtResource("10_ie7wx")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_fyf8g")
 text = "Give up"
 
 [node name="ReplayButton" type="Button" parent="GameOverWindow" unique_id=556192777]
@@ -218,9 +216,16 @@ offset_top = 71.5
 offset_right = 55.5
 offset_bottom = 96.5
 theme = ExtResource("10_ie7wx")
-toggle_mode = true
-button_group = SubResource("ButtonGroup_fyf8g")
 text = "More"
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="." unique_id=586905784]
+stream = ExtResource("11_fyf8g")
+volume_db = -10.0
+pitch_scale = 2.0
+
+[node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=795805191]
+stream = ExtResource("12_e2vsb")
+volume_db = -10.0
 
 [connection signal="died" from="Bird" to="." method="_on_bird_died"]
 [connection signal="scored" from="Bird" to="." method="_on_bird_scored"]

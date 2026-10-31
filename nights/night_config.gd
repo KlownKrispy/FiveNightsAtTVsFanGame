@@ -14,23 +14,65 @@ extends Resource
 #region Radio
 @export_group("Radio", "radio")
 @export var radioActive: bool = true
-@export var radioMoveChance := 0.3
-@export var radioMinMoveTime := 4.0
-@export var radioMaxMoveTime := 8.0
+@export_subgroup("Worktime", "radioWorktime")
+@export var radioWorktimeMoveChance := 0.3
+@export var radioWorktimeMinMoveTime := 12.0
+@export var radioWorktimeMaxMoveTime := 16.0
+@export_subgroup("Overtime", "radioOvertime")
+@export var radioOvertimeMoveChance := 0.45
+@export var radioOvertimeMinMoveTime := 8.0
+@export var radioOvertimeMaxMoveTime := 12.0
+@export_subgroup("")
 @export var radioAttackTime := 10.0
 @export var radioMaxHealth := 9.0
 @export var radioRegen := 1.0
 @export var radioDamageFromFlashlight := 1.0
+var radioMinMoveTime: float:
+	get:
+		if Night.is_in_overtime():
+			return radioOvertimeMinMoveTime
+		return radioWorktimeMinMoveTime
+var radioMaxMoveTime: float:
+	get:
+		if Night.is_in_overtime():
+			return radioOvertimeMaxMoveTime
+		return radioWorktimeMaxMoveTime
+var radioMoveChance: float:
+	get:
+		if Night.is_in_overtime():
+			return radioOvertimeMoveChance
+		return radioWorktimeMoveChance
 #endregion Radio
 
 #region TV
 @export_group("TV", "tv")
 @export var tvActive: bool = true
-@export var tvMinMoveTime := 5.0
-@export var tvMaxMoveTime := 5.0
+@export_subgroup("Worktime", "tvWorktime")
+@export var tvWorktimeMoveChance := 0.35
+@export var tvWorktimeMinMoveTime := 10.0
+@export var tvWorktimeMaxMoveTime := 10.0
+@export_subgroup("Overtime", "tvOvertime")
+@export var tvOvertimeMoveChance := 0.5
+@export var tvOvertimeMinMoveTime := 7.5
+@export var tvOvertimeMaxMoveTime := 7.5
+@export_subgroup("")
 @export var tvAttackTime := 10.0
 @export var tvHideTime := 2.0
-@export var tvMoveChance := 0.35
+var tvMinMoveTime: float:
+	get:
+		if Night.is_in_overtime():
+			return tvOvertimeMinMoveTime
+		return tvWorktimeMinMoveTime
+var tvMaxMoveTime: float:
+	get:
+		if Night.is_in_overtime():
+			return tvOvertimeMaxMoveTime
+		return tvWorktimeMaxMoveTime
+var tvMoveChance: float:
+	get:
+		if Night.is_in_overtime():
+			return tvOvertimeMoveChance
+		return tvWorktimeMoveChance
 #endregion TV
 
 #region Computer

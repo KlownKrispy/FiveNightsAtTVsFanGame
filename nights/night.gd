@@ -28,6 +28,14 @@ func get_clock_hour() -> int:
 func get_clock_minute() -> int:
 	return posmod(_currentTime, 60)
 
+func get_overtime_amount() -> int:
+	var overtime: int = get_current_time() - get_current_night().nightTimeStart - get_current_night().nightLength
+	overtime = maxi(overtime, 0) # clamp to 0 minimum, no negative overtime!
+	return overtime
+
+func is_in_overtime() -> bool:
+	return (get_overtime_amount() > 0)
+
 func end_night() -> void:
 	var overtime: int = get_current_time() - get_current_night().nightTimeStart - get_current_night().nightLength
 	if overtime >= get_current_night().maxOvertime:
