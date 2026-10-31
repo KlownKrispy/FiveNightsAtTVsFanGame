@@ -245,11 +245,11 @@ func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("tetris_right"):
 		_try_move(1)
 		moveTimer = 0
-	if Input.is_action_pressed("tetris_left") or Input.is_action_pressed("tetris_left"):
+	if Input.is_action_pressed("tetris_left") or Input.is_action_pressed("tetris_right"):
 		moveTimer += delta
 	else:
 		moveTimer = 0
-	if moveTimer >= 0.25:
+	if moveTimer >= (get_drop_time(lines) / 2.0):
 		var moveDir: int = 0
 		if Input.is_action_pressed("tetris_left"):
 			moveDir += -1
