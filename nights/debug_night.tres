@@ -4,4 +4,11 @@
 
 [resource]
 script = ExtResource("1_ykqfg")
+radioActive = false
+tvActive = false
+computerActive = false
+computerMaxWindSeconds = 1.0
+computerInitialWindAmount = 1.0
+computerWindGracePeriod = 1.0
+printerActive = false
 metadata/_custom_type_script = "uid://7cbf7kymqig"

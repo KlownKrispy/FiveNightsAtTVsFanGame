@@ -30,6 +30,9 @@ var _readyToAttack := false
 @onready var debug_bar_hide: ProgressBar = $DebugBarHide
 
 func _ready() -> void:
+	if not Night.get_current_night().tvActive:
+		process_mode = Node.PROCESS_MODE_DISABLED
+		return
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 	EventBus.on_change_state.connect(_on_camera_change_state)
 

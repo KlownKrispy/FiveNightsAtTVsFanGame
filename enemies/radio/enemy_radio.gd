@@ -27,6 +27,8 @@ var damageFromFlashlight: float:
 @onready var enemy_progress: ProgressBar = $EnemyProgress
 
 func _ready() -> void:
+	if not Night.get_current_night().radioActive:
+		process_mode = Node.PROCESS_MODE_DISABLED
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
 	EventBus.on_change_state.connect(_on_camera_change_state)
 	EventBus.flashlight_triggered.connect(_flashlight_triggered)

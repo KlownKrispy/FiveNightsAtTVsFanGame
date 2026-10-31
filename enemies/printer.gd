@@ -20,7 +20,11 @@ func _ready() -> void:
 	Night.minute_passed.connect(_minute_passed)
 
 func _night_changed() -> void:
-	_workload = Night.get_current_night().printerWorkload
+	if Night.get_current_night().printerActive:
+		_workload = Night.get_current_night().printerWorkload
+	else:
+		_workload = 0
+		
 
 func _minute_passed() -> void:
 	if _errored:

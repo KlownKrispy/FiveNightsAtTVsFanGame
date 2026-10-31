@@ -12,6 +12,7 @@ var windPerSecond: float:
 @onready var windAmount: float = maxWind
 @onready var wind_grace_timer: Timer = $WindGraceTimer
 @onready var wind_progress: TextureProgressBar = $WindButton/WindProgress
+@onready var wind_button: Button = $WindButton
 
 func _ready() -> void:
 	Night.night_changed.connect(_night_changed)
@@ -36,8 +37,13 @@ func _process(delta: float) -> void:
 		EventBus.computer_error_silence.emit()
 
 func _night_changed():
-	windAmount = Night.get_current_night().computerInitialWindAmount
-	wind_progress.max_value = maxWind
+	if Night.get_current_night().computerActive:
+		windAmount = Night.get_current_night().computerInitialWindAmount
+		wind_progress.max_value = maxWind
+		process_mode = Node.PROCESS_MODE_INHERIT
+	else:
+		wind_button.visible = false
+		process_mode = Node.PROCESS_MODE_DISABLED
 
 func _on_wind_button_button_up() -> void:
 	_winding = false

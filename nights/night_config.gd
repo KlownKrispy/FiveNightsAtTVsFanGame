@@ -2,6 +2,7 @@ class_name NightConfig
 extends Resource
 
 #region Time
+@export_group("Time")
 ## Number of minutes since 12AM, negative should work
 @export var nightTimeStart: int = 0
 ## Number of minutes the night lasts normally
@@ -11,7 +12,8 @@ extends Resource
 #endregion Time
 
 #region Radio
-@export_category("Radio")
+@export_group("Radio", "radio")
+@export var radioActive: bool = true
 @export var radioMoveChance := 0.3
 @export var radioMinMoveTime := 4.0
 @export var radioMaxMoveTime := 8.0
@@ -22,7 +24,8 @@ extends Resource
 #endregion Radio
 
 #region TV
-@export_category("TV")
+@export_group("TV", "tv")
+@export var tvActive: bool = true
 @export var tvMinMoveTime := 5.0
 @export var tvMaxMoveTime := 5.0
 @export var tvAttackTime := 10.0
@@ -31,7 +34,8 @@ extends Resource
 #endregion TV
 
 #region Computer
-@export_category("Computer")
+@export_group("Computer", "computer")
+@export var computerActive: bool = true
 @export var computerMaxWindSeconds: float = 30.0
 @export var computerInitialWindAmount: float = 30.0
 @export var computerWindGracePeriod: float = 5.0
@@ -39,7 +43,8 @@ extends Resource
 #endregion Computer
 
 #region Printer
-@export_category("Printer")
+@export_group("Printer", "printer")
+@export var printerActive: bool = true
 ## Maximum amount of errors Printer can have this night
 @export var printerMaxErrors: int = 5
 @export var printerWorkload: int = 4 * 60
@@ -50,8 +55,12 @@ extends Resource
 @export var printerErrorTimeVariation: float = 0.3
 var printerMinimumErrorTime: float:
 	get:
+		if not printerActive:
+			return nightLength + maxOvertime
 		return (1.0 - printerErrorTimeVariation) * (nightLength + maxOvertime) / (printerMaxErrors + 1.0)
 var printerMaximumErrorTime: float:
 	get:
+		if not printerActive:
+			return nightLength + maxOvertime
 		return (1.0 + printerErrorTimeVariation) * (nightLength + maxOvertime) / (printerMaxErrors + 1.0)
 #endregion
