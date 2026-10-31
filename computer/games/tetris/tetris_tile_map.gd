@@ -266,6 +266,7 @@ func _process(delta: float) -> void:
 
 signal game_over
 func _lose() -> void:
+	lose_sound.play()
 	MinigameTracker.add_tetris_lines(lines)
 	game_over.emit()
 	reset()
@@ -321,6 +322,17 @@ func get_drop_time(linesCleared: int) -> float:
 	var baseDifficulty := rate / (rate + effectiveLines)
 	return difficultyMultiplier * baseDifficulty
 
+var lineBonuses := {
+	0: 0,
+	1: 1,
+	2: 2,
+	3: 4,
+	4: 6,
+}
+@onready var score_low_sound: AudioStreamPlayer = $ScoreLowSound
+@onready var score_high_sound: AudioStreamPlayer = $ScoreHighSound
+@onready var lose_sound: AudioStreamPlayer = $LoseSound
+
 func _check_board() -> void:
 	var finishedRows: Array[int] = []
 	for y in boardSize.y:
@@ -334,7 +346,12 @@ func _check_board() -> void:
 		finishedRows.append(y)
 	if finishedRows.is_empty():
 		return
-	lines += finishedRows.size()
+	var linesCleared: int = finishedRows.size()
+	lines += lineBonuses[linesCleared]
+	if linesCleared in [1, 2]:
+		score_low_sound.play()
+	elif linesCleared in [3, 4]:
+		score_high_sound.play()
 	var unclearedLines: Array[int] = []
 	var ny := boardSize.y - 1
 	for y in range(boardSize.y-1, -1, -1):

@@ -219,13 +219,17 @@ theme = ExtResource("10_ie7wx")
 text = "More"
 
 [node name="ScoreSound" type="AudioStreamPlayer" parent="." unique_id=586905784]
+process_mode = 3
 stream = ExtResource("11_fyf8g")
 volume_db = -10.0
 pitch_scale = 2.0
+bus = &"Minigames & Computer"
 
 [node name="DeathSound" type="AudioStreamPlayer" parent="." unique_id=795805191]
+process_mode = 3
 stream = ExtResource("12_e2vsb")
 volume_db = -10.0
+bus = &"Minigames & Computer"
 
 [connection signal="died" from="Bird" to="." method="_on_bird_died"]
 [connection signal="scored" from="Bird" to="." method="_on_bird_scored"]

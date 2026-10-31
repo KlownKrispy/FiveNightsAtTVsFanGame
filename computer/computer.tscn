@@ -36,10 +36,13 @@
 [ext_resource type="Texture2D" uid="uid://qawd02i3l7wk" path="res://curiosities/horse/frame_9.png" id="23_5x8jy"]
 [ext_resource type="Texture2D" uid="uid://dl7quujxv2p2a" path="res://curiosities/horse/frame_10.png" id="24_m5u5i"]
 [ext_resource type="Theme" uid="uid://buyfdbvctdoyp" path="res://computer/ui_assets/cameras_button.tres" id="25_5ijsp"]
+[ext_resource type="AudioStream" uid="uid://caduo34nvexqh" path="res://computer/sfx/bit1.wav" id="25_fimyt"]
 [ext_resource type="Texture2D" uid="uid://bmtsaa0qu0ipg" path="res://curiosities/horse/frame_11.png" id="25_gs2b6"]
 [ext_resource type="Script" uid="uid://2ajmq6ckmuwc" path="res://computer/games/flappy/flappy_container.gd" id="25_gy3kk"]
 [ext_resource type="PackedScene" uid="uid://7cycbldm48iw" path="res://computer/games/flappy/flappy.tscn" id="26_gy3kk"]
+[ext_resource type="AudioStream" uid="uid://7ychhcf4k6lf" path="res://computer/sfx/bit3.wav" id="26_iikfk"]
 [ext_resource type="Texture2D" uid="uid://tq6p6tro6ibj" path="res://curiosities/horse/frame_12.png" id="26_r0onp"]
+[ext_resource type="AudioStream" uid="uid://bye0qpke5keoj" path="res://computer/sfx/bit0.wav" id="27_iikfk"]
 [ext_resource type="Texture2D" uid="uid://kyt73sy5omu7" path="res://curiosities/horse/frame_13.png" id="27_jpdj4"]
 [ext_resource type="Texture2D" uid="uid://cbhbhavk2minu" path="res://curiosities/horse/frame_14.png" id="28_1irca"]
 [ext_resource type="Texture2D" uid="uid://dpftigehn687l" path="res://curiosities/horse/frame_15.png" id="29_lcjwl"]
@@ -946,6 +949,27 @@ text = "HOLD"
 position = Vector2(0, 27)
 tile_set = ExtResource("23_5ijsp")
 
+[node name="ScoreLowSound" type="AudioStreamPlayer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=1860735753]
+process_mode = 3
+stream = ExtResource("25_fimyt")
+volume_db = -10.0
+bus = &"Minigames & Computer"
+
+[node name="ScoreHighSound" type="AudioStreamPlayer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=2145072023]
+process_mode = 3
+stream = ExtResource("26_iikfk")
+volume_db = -10.0
+pitch_scale = 2.0
+bus = &"Minigames & Computer"
+
+[node name="LoseSound" type="AudioStreamPlayer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=1239332517]
+process_mode = 3
+stream = ExtResource("27_iikfk")
+volume_db = -10.0
+pitch_scale = 0.94
+max_polyphony = 2
+bus = &"Minigames & Computer"
+
 [node name="Flappy" type="Node2D" parent="GamesUI" unique_id=1133491391]
 process_mode = 4
 visible = false
@@ -1068,14 +1092,17 @@ expand_mode = 1
 libraries/ = SubResource("AnimationLibrary_b2r4i")
 
 [node name="ComputerSFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1902216441]
+bus = &"Minigames & Computer"
 
 [node name="ComputerClickDownSound" type="AudioStreamPlayer" parent="." unique_id=1713585805]
 stream = ExtResource("124_hjpxv")
 max_polyphony = 4
+bus = &"Minigames & Computer"
 
 [node name="ComputerClickUpSound" type="AudioStreamPlayer" parent="." unique_id=318802364]
 stream = ExtResource("125_hjpxv")
 max_polyphony = 4
+bus = &"Minigames & Computer"
 
 [node name="ComputerAmbience" type="AudioStreamPlayer" parent="." unique_id=269375623]
 stream = ExtResource("128_b2r4i")
@@ -1083,6 +1110,7 @@ volume_db = -35.0
 pitch_scale = 0.75
 autoplay = true
 max_polyphony = 4
+bus = &"Ambience"
 parameters/looping = true
 
 [connection signal="pressed" from="UI/PowerButton" to="." method="_on_power_button_pressed"]
