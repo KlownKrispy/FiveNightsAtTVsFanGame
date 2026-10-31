@@ -20,18 +20,33 @@ func reset() -> void:
 	position = _initialPosition
 	animated_sprite_2d.play("default")
 
+func _jump() -> void:
+	if dead:
+		return
+	if velocity.y > 0:
+			velocity = jumpVelocity
+	else:
+		velocity += jumpVelocity
+	if velocity.y < -500:
+		velocity.y = -500
+	animated_sprite_2d.play("flap")
+	timeSinceFlap = 0
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is not InputEventMouseButton:
+		return
+	var mevent: InputEventMouseButton = event
+	if not mevent.pressed:
+		return
+	if mevent.button_index != MOUSE_BUTTON_LEFT:
+		return
+	_jump()
+
 func _physics_process(delta: float) -> void:
 	timeSinceFlap += delta
 	velocity += gravity * delta
-	if Input.is_action_just_pressed("flappy_flap") and not dead:
-		if velocity.y > 0:
-			velocity = jumpVelocity
-		else:
-			velocity += jumpVelocity
-		if velocity.y < -500:
-			velocity.y = -500
-		animated_sprite_2d.play("flap")
-		timeSinceFlap = 0
+	if Input.is_action_just_pressed("flappy_flap"):
+		_jump()
 	move_and_slide()
 	rotation = PI/4.0 * minf(timeSinceFlap, 1) / 1
 	if not dead and (is_on_ceiling() or is_on_wall() or is_on_floor()):

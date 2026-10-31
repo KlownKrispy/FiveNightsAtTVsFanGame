@@ -710,7 +710,6 @@ centered = false
 visible = false
 
 [node name="GamesUI" type="Control" parent="." unique_id=14513545]
-visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
@@ -970,6 +969,22 @@ pitch_scale = 0.94
 max_polyphony = 2
 bus = &"Minigames & Computer"
 
+[node name="PauseLabel" type="Label" parent="GamesUI/Tetris/TetrisTileMap" unique_id=81178129]
+offset_left = -21.0
+offset_top = 130.0
+offset_right = 192.0
+offset_bottom = 175.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Starting in 3..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseTimer" type="Timer" parent="GamesUI/Tetris/TetrisTileMap" unique_id=1129794169]
+process_mode = 3
+one_shot = true
+
 [node name="Flappy" type="Node2D" parent="GamesUI" unique_id=1133491391]
 process_mode = 4
 visible = false
@@ -988,6 +1003,22 @@ size = Vector2i(667, 440)
 
 [node name="FlappyReal" parent="GamesUI/Flappy/SubViewport" unique_id=283084781 instance=ExtResource("26_gy3kk")]
 position = Vector2(8, 32)
+
+[node name="PauseLabel" type="Label" parent="GamesUI/Flappy" unique_id=1761941769]
+offset_left = 234.0
+offset_top = 192.0
+offset_right = 447.0
+offset_bottom = 237.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "Starting in 3..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="PauseTimer" type="Timer" parent="GamesUI/Flappy" unique_id=355437750]
+process_mode = 3
+one_shot = true
 
 [node name="MailUI" type="Control" parent="." unique_id=1032281496]
 visible = false
@@ -1136,8 +1167,10 @@ parameters/looping = true
 [connection signal="game_over" from="GamesUI/Tetris/TetrisTileMap" to="GamesUI" method="_on_tetris_tile_map_game_over"]
 [connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/DropTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_drop_timer_timeout"]
 [connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/LockTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_lock_timer_timeout"]
+[connection signal="timeout" from="GamesUI/Tetris/TetrisTileMap/PauseTimer" to="GamesUI/Tetris/TetrisTileMap" method="_on_pause_timer_timeout"]
 [connection signal="gui_input" from="GamesUI/Flappy/Sprite2D" to="GamesUI/Flappy" method="_on_sprite_2d_gui_input"]
 [connection signal="game_quit" from="GamesUI/Flappy/SubViewport/FlappyReal" to="GamesUI" method="_on_flappy_real_game_quit"]
+[connection signal="timeout" from="GamesUI/Flappy/PauseTimer" to="GamesUI/Flappy" method="_on_pause_timer_timeout"]
 [connection signal="hidden" from="MailUI" to="." method="_on_mail_ui_hidden"]
 [connection signal="pressed" from="MailUI/MailExitButton" to="MailUI" method="_on_mail_exit_button_pressed"]
 [connection signal="hidden" from="HorseUI" to="." method="_on_horse_ui_hidden"]

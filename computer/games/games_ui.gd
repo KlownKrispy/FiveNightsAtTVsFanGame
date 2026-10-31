@@ -8,9 +8,9 @@ func pause() -> void:
 		flappy.process_mode = Node.PROCESS_MODE_DISABLED
 func unpause() -> void:
 	if tetris.visible:
-		tetris.process_mode = Node.PROCESS_MODE_INHERIT
+		tetris.get_child(0).unpause()
 	if flappy.visible:
-		flappy.process_mode = Node.PROCESS_MODE_INHERIT
+		flappy.unpause()
 
 func _on_games_exit_button_pressed() -> void:
 	visible = false

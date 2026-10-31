@@ -68,6 +68,27 @@ func _generate_new_piece() -> void:
 		if get_cell_atlas_coords(pos) != Vector2i(-1, -1):
 			_lose()
 		set_cell(pos, 0, Vector2i(tileIndex, 0))
+@onready var pause_label: Label = $PauseLabel
+@onready var pause_timer: Timer = $PauseTimer
+var pauseTime: int = 3
+var pauseTimeCurrent: int = 3
+func unpause():
+	pauseTimeCurrent = pauseTime
+	var remainingSeconds := pauseTimeCurrent
+	pause_label.text = "Starting in %d..." % remainingSeconds
+	pause_label.visible = true
+	pause_timer.start(1.0)
+func _unpause() -> void:
+	get_parent().process_mode = Node.PROCESS_MODE_INHERIT
+	pause_label.visible = false
+func _on_pause_timer_timeout() -> void:
+	pauseTimeCurrent -= 1
+	var remainingSeconds := pauseTimeCurrent
+	pause_label.text = "Starting in %d..." % remainingSeconds
+	if pauseTimeCurrent <= 0:
+		_unpause()
+	else:
+		pause_timer.start(1.0)
 
 func _generate_new_piece_at(pieceType: Piece, topMid: Vector2i) -> Array[Vector2i]:
 	# First entry is the origin of the rotation!
