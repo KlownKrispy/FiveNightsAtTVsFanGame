@@ -710,6 +710,7 @@ centered = false
 visible = false
 
 [node name="GamesUI" type="Control" parent="." unique_id=14513545]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
