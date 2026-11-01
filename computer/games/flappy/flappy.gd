@@ -1,6 +1,8 @@
 
 extends Node2D
 
+var gameOverScreenUp := false
+
 @onready var pipes: Node2D = $Pipes
 @onready var bird: CharacterBody2D = $Bird
 
@@ -20,6 +22,7 @@ func _on_bird_died() -> void:
 	pipes.update_score(score)
 	pipes.process_mode = Node.PROCESS_MODE_DISABLED
 	game_over_window.visible = true
+	gameOverScreenUp = true
 
 @onready var score_label: Label = $ScoreLabel
 @onready var score_sound: AudioStreamPlayer = $ScoreSound
@@ -35,9 +38,11 @@ func _on_bird_scored() -> void:
 signal game_quit
 func _on_quit_button_pressed() -> void:
 	game_over_window.visible = false
+	gameOverScreenUp = false
 	reset()
 	game_quit.emit()
 
 func _on_replay_button_pressed() -> void:
 	game_over_window.visible = false
+	gameOverScreenUp = false
 	reset()

@@ -72,6 +72,9 @@ func _generate_new_piece() -> void:
 @onready var pause_timer: Timer = $PauseTimer
 var pauseTime: int = 3
 var pauseTimeCurrent: int = 3
+func pause():
+	pause_timer.stop()
+	process_mode = Node.PROCESS_MODE_DISABLED
 func unpause():
 	pauseTimeCurrent = pauseTime
 	var remainingSeconds := pauseTimeCurrent

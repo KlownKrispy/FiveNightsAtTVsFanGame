@@ -12,8 +12,16 @@ func _on_sprite_2d_gui_input(event: InputEvent) -> void:
 @onready var pause_label: Label = $PauseLabel
 @onready var pause_timer: Timer = $PauseTimer
 var pauseTime: int = 3
+@onready var flappy_real: Node2D = $SubViewport/FlappyReal
 var pauseTimeCurrent: int = 3
+func pause():
+	pause_timer.stop()
+	process_mode = Node.PROCESS_MODE_DISABLED
 func unpause():
+	# Skip wait if we're in gameover state
+	if flappy_real.gameOverScreenUp:
+		_unpause()
+		return
 	pauseTimeCurrent = pauseTime
 	var remainingSeconds := pauseTimeCurrent
 	pause_label.text = "Starting in %d..." % remainingSeconds

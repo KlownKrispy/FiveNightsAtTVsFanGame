@@ -3,9 +3,9 @@ extends Control
 
 func pause() -> void:
 	if tetris.visible:
-		tetris.process_mode = Node.PROCESS_MODE_DISABLED
+		tetris.get_child(0).pause()
 	if flappy.visible:
-		flappy.process_mode = Node.PROCESS_MODE_DISABLED
+		flappy.pause()
 func unpause() -> void:
 	if tetris.visible:
 		tetris.get_child(0).unpause()
