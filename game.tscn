@@ -32,10 +32,10 @@ ambient_light_source = 2
 ambient_light_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 ambient_light_energy = 0.01
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_qhcbd"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_f1jbl"]
 allow_unpress = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_f1jbl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_vaj68"]
 viewport_path = NodePath("GamesUI/Flappy/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
@@ -946,19 +946,19 @@ size = Vector2i(683, 512)
 [node name="Computer" parent="SubViewport" unique_id=1946148648 instance=ExtResource("2_boyg6")]
 
 [node name="CamerasTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="3" unique_id=89113343]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_f1jbl")
 
 [node name="GamesTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="4" unique_id=615822567]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_f1jbl")
 
 [node name="MailTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="5" unique_id=1237005857]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_f1jbl")
 
 [node name="HorseTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="7" unique_id=1092353379]
-button_group = SubResource("ButtonGroup_qhcbd")
+button_group = SubResource("ButtonGroup_f1jbl")
 
 [node name="Sprite2D" parent="SubViewport/Computer/GamesUI/Flappy" parent_id_path=PackedInt32Array(1946148648, 1133491391) index="0" unique_id=1162206074]
-texture = SubResource("ViewportTexture_f1jbl")
+texture = SubResource("ViewportTexture_vaj68")
 
 [node name="ComputerScreenCollider" type="Area3D" parent="SubViewport/Computer" unique_id=1669292061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9833543, -1.8165946)
@@ -1103,6 +1103,13 @@ fov = 37.849285
 
 [node name="CubicleCamera" parent="World/GameCameraViewport" unique_id=1859055145 instance=ExtResource("3_feb5d")]
 transform = Transform3D(0.7071068, 0.35355338, -0.61237246, 0, 0.8660254, 0.50000006, 0.7071068, -0.35355338, 0.61237246, -9.5, 4, 0.5)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="World/GameCameraViewport/CubicleCamera" unique_id=1837960571]
+transform = Transform3D(0.7071068, 0.35355368, -0.6123723, 0, 0.86602515, 0.5000005, 0.7071068, -0.35355368, 0.6123723, -7.499996, 2.999998, -1.4999999)
+top_level = true
+light_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
+light_energy = 0.01
+omni_range = 2.0
 
 [node name="BossCamera" parent="World/GameCameraViewport" unique_id=851016336 instance=ExtResource("3_feb5d")]
 transform = Transform3D(1, 0, 0, 0, 0.8660254, 0.5, 0, -0.5, 0.8660254, -10, 4, -7.5)
