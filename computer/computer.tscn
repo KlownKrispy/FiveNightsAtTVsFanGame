@@ -137,8 +137,10 @@
 [ext_resource type="AudioStream" uid="uid://rwu2lrs0ry3a" path="res://computer/sfx/click_up.wav" id="125_hjpxv"]
 [ext_resource type="Script" uid="uid://b70wpbbpnx8eg" path="res://computer/warning_indicator_computer.gd" id="125_wdkpg"]
 [ext_resource type="AudioStream" uid="uid://dpdyiw8uqh3du" path="res://cc0_assets/hard_drive.mp3" id="128_b2r4i"]
+[ext_resource type="AudioStream" uid="uid://dsuyoyh85me4o" path="res://cc0_assets/cannon_miss.ogg" id="135_6m6p2"]
 [ext_resource type="Script" uid="uid://ntodbxwdplsm" path="res://computer/warning_indicator_printer.gd" id="135_a30f1"]
 [ext_resource type="Texture2D" uid="uid://dirvlb3bqvrwv" path="res://curiosities/feseb.png" id="136_huurv"]
+[ext_resource type="AudioStream" uid="uid://5p3yjw87rfi5" path="res://computer/sfx/bell1.wav" id="138_dhd6l"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4omk"]
 texture = ExtResource("13_c1yk6")
@@ -503,7 +505,7 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.25, 0.5),
 "transitions": PackedFloat32Array(1.035265, 1, 1),
-"update": 0,
+"update": 1,
 "values": [Color(1, 0.55, 0, 1), Color(1, 0, 0, 1), Color(1, 0.55, 0, 1)]
 }
 
@@ -1181,6 +1183,12 @@ expand_mode = 1
 root_node = NodePath("../..")
 libraries/ = SubResource("AnimationLibrary_dhd6l")
 
+[node name="ErrorSound" type="AudioStreamPlayer" parent="WarningIndicatorComputer" unique_id=657204348]
+stream = ExtResource("135_6m6p2")
+volume_db = -10.0
+pitch_scale = 1.25
+bus = &"Minigames & Computer"
+
 [node name="WarningIndicatorPrinter" type="TextureRect" parent="." unique_id=1623123280]
 visible = false
 z_index = 99
@@ -1205,6 +1213,11 @@ expand_mode = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="WarningIndicatorPrinter" unique_id=2116452034]
 libraries/ = SubResource("AnimationLibrary_b2r4i")
+
+[node name="ErrorSound" type="AudioStreamPlayer" parent="WarningIndicatorPrinter" unique_id=752986685]
+stream = ExtResource("138_dhd6l")
+pitch_scale = 1.5
+bus = &"Minigames & Computer"
 
 [node name="ComputerSFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1902216441]
 bus = &"Minigames & Computer"

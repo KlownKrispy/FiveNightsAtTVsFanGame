@@ -1,4 +1,5 @@
 extends TextureRect
+@onready var error_sound: AudioStreamPlayer = $ErrorSound
 
 func _ready() -> void:
 	EventBus.computer_error_silence.connect(_computer_error_silence)
@@ -13,7 +14,9 @@ func _computer_error_silence() -> void:
 func _computer_low() -> void:
 	visible = true
 	animation_player.play("warning")
+	error_sound.play()
 
 func _computer_empty() -> void:
 	visible = true
 	animation_player.play("urgent")
+	error_sound.play()
