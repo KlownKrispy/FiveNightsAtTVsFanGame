@@ -1,4 +1,4 @@
-extends AnimatedSprite3D
+extends Node3D
 
 var minMoveTime: float:
 	get: return Night.get_current_night().tvMinMoveTime

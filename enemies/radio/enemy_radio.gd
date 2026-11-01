@@ -1,4 +1,4 @@
-extends AnimatedSprite3D
+extends Node3D
 
 var minMoveTime: float:
 	get: return Night.get_current_night().radioMinMoveTime
@@ -16,6 +16,7 @@ var damageFromFlashlight: float:
 	get: return Night.get_current_night().radioDamageFromFlashlight
 
 @onready var health := maxHealth
+@onready var model: MeshInstance3D = $Radio
 
 @onready var move_timer: Timer = $MoveTimer
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
@@ -26,7 +27,14 @@ var damageFromFlashlight: float:
 @export var currentState := "idle"
 @onready var enemy_progress: ProgressBar = $EnemyProgress
 
+const FACE_SURFACE_ID: int = 0
+
+@export var materialAsleep: Material = null
+@export var materialHalfAsleep: Material = null
+@export var materialAwake: Material = null
+
 func _ready() -> void:
+	model.set_surface_override_material(FACE_SURFACE_ID, materialAsleep)
 	if not Night.get_current_night().radioActive:
 		process_mode = Node.PROCESS_MODE_DISABLED
 	move_timer.start(randf_range(minMoveTime, maxMoveTime))
@@ -42,6 +50,7 @@ func _process(delta: float) -> void:
 		move_timer.start(randf_range(minMoveTime, maxMoveTime))
 		enemy_progress.visible = false
 		health = maxHealth
+		model.set_surface_override_material(FACE_SURFACE_ID, materialAsleep)
 		return
 	health = clampf(health + regen * delta, 0, maxHealth)
 	enemy_progress.max_value = maxHealth
@@ -84,6 +93,12 @@ func move() -> void:
 		EventBus.showUIButtons = false
 		EventBus.forceCameraForward = true
 		lose_sound_player.play()
+	if currentState == "idle":
+		model.set_surface_override_material(FACE_SURFACE_ID, materialAsleep)
+	if currentState == "move_1":
+		model.set_surface_override_material(FACE_SURFACE_ID, materialHalfAsleep)
+	if currentState in ["move_2", "move_3", "lose"]:
+		model.set_surface_override_material(FACE_SURFACE_ID, materialAwake)
 	if _is_on_attack_state() and EventBus.currentCameraState == EventBus.CameraState.LEFT:
 		enemy_progress.visible = true
 
