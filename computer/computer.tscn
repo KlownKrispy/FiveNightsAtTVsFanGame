@@ -135,8 +135,10 @@
 [ext_resource type="Texture2D" uid="uid://dnvpopl8q5ynr" path="res://computer/ui_assets/panel.png" id="124_nm60v"]
 [ext_resource type="Texture2D" uid="uid://b5psynkn0ub5l" path="res://curiosities/besef.png" id="125_1q1fk"]
 [ext_resource type="AudioStream" uid="uid://rwu2lrs0ry3a" path="res://computer/sfx/click_up.wav" id="125_hjpxv"]
-[ext_resource type="Script" uid="uid://b70wpbbpnx8eg" path="res://computer/error_button.gd" id="125_wdkpg"]
+[ext_resource type="Script" uid="uid://b70wpbbpnx8eg" path="res://computer/warning_indicator_computer.gd" id="125_wdkpg"]
 [ext_resource type="AudioStream" uid="uid://dpdyiw8uqh3du" path="res://cc0_assets/hard_drive.mp3" id="128_b2r4i"]
+[ext_resource type="Script" uid="uid://ntodbxwdplsm" path="res://computer/warning_indicator_printer.gd" id="135_a30f1"]
+[ext_resource type="Texture2D" uid="uid://dirvlb3bqvrwv" path="res://curiosities/feseb.png" id="136_huurv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a4omk"]
 texture = ExtResource("13_c1yk6")
@@ -473,12 +475,67 @@ animations = [{
 "speed": 120.0
 }]
 
+[sub_resource type="Animation" id="Animation_huurv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WarningIndicatorComputer/besef:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 0.55, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dhd6l"]
+resource_name = "urgent"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WarningIndicatorComputer/besef:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1.035265, 1, 1),
+"update": 0,
+"values": [Color(1, 0.55, 0, 1), Color(1, 0, 0, 1), Color(1, 0.55, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6m6p2"]
+resource_name = "warning"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("WarningIndicatorComputer/besef:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.55, 0, 1), Color(1, 0.55, 0, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhd6l"]
+_data = {
+&"RESET": SubResource("Animation_huurv"),
+&"urgent": SubResource("Animation_dhd6l"),
+&"warning": SubResource("Animation_6m6p2")
+}
+
 [sub_resource type="Animation" id="Animation_wdkpg"]
 length = 0.001
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("besef:modulate")
+tracks/0/path = NodePath("feseb:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -496,7 +553,7 @@ step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("besef:modulate")
+tracks/0/path = NodePath("feseb:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -512,7 +569,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("besef:modulate")
+tracks/0/path = NodePath("feseb:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -1098,7 +1155,7 @@ text = "There is no horse
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="WarningIndicator" type="TextureRect" parent="." unique_id=784634114]
+[node name="WarningIndicatorComputer" type="TextureRect" parent="." unique_id=784634114]
 visible = false
 z_index = 99
 offset_left = 619.0
@@ -1110,7 +1167,7 @@ texture = ExtResource("124_nm60v")
 script = ExtResource("125_wdkpg")
 metadata/_edit_group_ = true
 
-[node name="besef" type="TextureRect" parent="WarningIndicator" unique_id=2066526578]
+[node name="besef" type="TextureRect" parent="WarningIndicatorComputer" unique_id=2066526578]
 modulate = Color(1, 0.55, 0, 1)
 layout_mode = 0
 offset_left = 2.0
@@ -1120,7 +1177,33 @@ offset_bottom = 30.0
 texture = ExtResource("125_1q1fk")
 expand_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningIndicator" unique_id=394390127]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningIndicatorComputer" unique_id=1683777256]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_dhd6l")
+
+[node name="WarningIndicatorPrinter" type="TextureRect" parent="." unique_id=1623123280]
+visible = false
+z_index = 99
+offset_left = 587.0
+offset_top = 448.0
+offset_right = 619.0
+offset_bottom = 480.0
+theme = ExtResource("19_0xhlx")
+texture = ExtResource("124_nm60v")
+script = ExtResource("135_a30f1")
+metadata/_edit_group_ = true
+
+[node name="feseb" type="TextureRect" parent="WarningIndicatorPrinter" unique_id=149804473]
+modulate = Color(1, 0.55, 0, 1)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 2.0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("136_huurv")
+expand_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="WarningIndicatorPrinter" unique_id=2116452034]
 libraries/ = SubResource("AnimationLibrary_b2r4i")
 
 [node name="ComputerSFXPlayer" type="AudioStreamPlayer" parent="." unique_id=1902216441]

@@ -9,14 +9,18 @@ func _ready() -> void:
 @onready var paper_button: Button = $PaperButton
 @onready var food_button: Button = $FoodButton
 
+var printerVisited := false
+
 var printerError: Printer.PrinterError = Printer.PrinterError.NONE
 var _lastCamID := "BossCamera"
 func handle_visibility(camID: String) -> void:
 	_lastCamID = camID
+	if camID == "PrinterCamera":
+		printerVisited = true
 	status_label.visible = (camID == "PrinterCamera")
-	ink_button.visible = (camID == "CubicleCamera") and printerError == Printer.PrinterError.LOW_INK
-	paper_button.visible = (camID == "StorageCamera") and printerError == Printer.PrinterError.LOW_PAPER
-	food_button.visible = (camID == "BreakRoomCamera") and printerError == Printer.PrinterError.LOW_HUNGER
+	ink_button.visible = (camID == "CubicleCamera") and printerError == Printer.PrinterError.LOW_INK and printerVisited
+	paper_button.visible = (camID == "StorageCamera") and printerError == Printer.PrinterError.LOW_PAPER and printerVisited
+	food_button.visible = (camID == "BreakRoomCamera") and printerError == Printer.PrinterError.LOW_HUNGER and printerVisited
 
 func _printer_errored(error: Printer.PrinterError) -> void:
 	printerError = error
@@ -38,6 +42,7 @@ func _resolve_error() -> void:
 	printerError = Printer.PrinterError.NONE
 	status_label.text = "All is well!"
 	handle_visibility(_lastCamID)
+	printerVisited = false
 
 func _on_ink_button_pressed() -> void:
 	_resolve_error()
