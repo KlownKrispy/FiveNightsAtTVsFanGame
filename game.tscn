@@ -1086,7 +1086,7 @@ transform = Transform3D(1, 7.450581e-09, -1.4901161e-08, -5.167009e-10, 0.939692
 fov = 37.849285
 
 [node name="CorridorCamera" parent="World/GameCameraViewport" unique_id=687431514 instance=ExtResource("3_feb5d")]
-transform = Transform3D(0.7392569, -0.26985216, 0.616992, 0.009789124, 0.9204112, 0.39082888, -0.67335236, -0.28288317, 0.683062, 9.5, 4, 4.5)
+transform = Transform3D(0.30353904, -0.3751405, 0.8758619, 0.009789155, 0.92041147, 0.39082903, -0.9527686, -0.110057935, 0.28305307, 9.5, 4, 4.5)
 fov = 37.849285
 
 [node name="BreakRoomCamera" parent="World/GameCameraViewport" unique_id=303749878 instance=ExtResource("3_feb5d")]
