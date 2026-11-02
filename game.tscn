@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpk1wa3h1m1gp" path="res://cameras/game_camera.tscn" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://cbap2audnaov1" path="res://screen_glow.gd" id="4_7jktm"]
 [ext_resource type="PackedScene" uid="uid://cpqn6n6ehqia7" path="res://models/cubicle.glb" id="4_x5p1p"]
+[ext_resource type="Material" uid="uid://b28jx6ei2jgve" path="res://models/puterbeige.tres" id="5_vaj68"]
 [ext_resource type="Material" uid="uid://bigdoktngqca2" path="res://floor_mat.tres" id="6_qhcbd"]
 [ext_resource type="Texture2D" uid="uid://djxrgyy31o04c" path="res://models/bossfloor.png" id="7_vaj68"]
 [ext_resource type="Material" uid="uid://bgtu8rp7pkeag" path="res://break_floor.tres" id="8_vaj68"]
@@ -251,7 +252,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 1.977, -1.429), Vector3(0, 2, 0)]
+"values": [Vector3(0, 1.977, -1.4626367), Vector3(0, 2, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_7jktm"]
@@ -308,7 +309,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector3(0, 2, 0), Vector3(0, 1.977, -1.4289446)]
+"values": [Vector3(0, 2, 0), Vector3(0, 1.977, -1.463)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_e2o6t"]
@@ -1016,8 +1017,24 @@ size = Vector3(0.322, 1.41521, 0.2)
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
 size = Vector3(0.322, 1.41521, 0.2)
 
+[node name="ComputerBox" type="CSGBox3D" parent="World/cubicle/Table" unique_id=1602062981]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("5_vaj68")
+
+[node name="Keyboard" type="CSGBox3D" parent="World/cubicle/Table" unique_id=1034816394]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("5_vaj68")
+
+[node name="Mouse" type="CSGBox3D" parent="World/cubicle/Table" unique_id=1309382114]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("5_vaj68")
+
 [node name="Computer" type="CSGCombiner3D" parent="World/cubicle/Table" unique_id=1071616667]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("5_vaj68")
 use_collision = true
 collision_layer = 3
 collision_mask = 0
@@ -1041,6 +1058,13 @@ flip_h = true
 pixel_size = 0.0007813
 texture = SubResource("ViewportTexture_ryrav")
 script = ExtResource("4_7jktm")
+
+[node name="SpotLight3D" type="OmniLight3D" parent="World/cubicle/Table/Computer/ScreenGlow" unique_id=1204151917]
+transform = Transform3D(1, 0, 1.7682974e-07, 0, 1, 0, -1.7682974e-07, 0, 1, -8.719894e-09, 0, -0.09974396)
+light_color = Color(0.86, 0.93700004, 1, 1)
+light_energy = 0.01
+omni_range = 0.75
+omni_attenuation = 3.0
 
 [node name="Box" type="CSGBox3D" parent="World/cubicle/Table/Computer" unique_id=2087001535]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)

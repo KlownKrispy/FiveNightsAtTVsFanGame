@@ -14,6 +14,7 @@ func _on_sprite_2d_gui_input(event: InputEvent) -> void:
 var pauseTime: int = 3
 @onready var flappy_real: Node2D = $SubViewport/FlappyReal
 var pauseTimeCurrent: int = 3
+var pauseDuration: float = 0.5
 func pause():
 	pause_timer.stop()
 	process_mode = Node.PROCESS_MODE_DISABLED
@@ -26,7 +27,7 @@ func unpause():
 	var remainingSeconds := pauseTimeCurrent
 	pause_label.text = "Starting in %d..." % remainingSeconds
 	pause_label.visible = true
-	pause_timer.start(1.0)
+	pause_timer.start(pauseDuration)
 func _unpause() -> void:
 	process_mode = Node.PROCESS_MODE_INHERIT
 	pause_label.visible = false
@@ -37,4 +38,4 @@ func _on_pause_timer_timeout() -> void:
 	if pauseTimeCurrent <= 0:
 		_unpause()
 	else:
-		pause_timer.start(1.0)
+		pause_timer.start(pauseDuration)
