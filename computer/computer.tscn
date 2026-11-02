@@ -841,7 +841,6 @@ theme = ExtResource("19_0xhlx")
 text = "Flappy"
 
 [node name="Minesweeper" type="Node2D" parent="GamesUI" unique_id=552437709]
-process_mode = 4
 visible = false
 position = Vector2(243, 52)
 script = ExtResource("13_pdqbt")
