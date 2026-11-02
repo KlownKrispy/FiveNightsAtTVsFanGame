@@ -30,7 +30,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 0)]
+"values": [Color(1, 1, 1, 0.1882353)]
 }
 
 [sub_resource type="Animation" id="Animation_5m2iq"]
@@ -96,7 +96,7 @@ texture = SubResource("ViewportTexture_iiass")
 centered = false
 
 [node name="NoiseOverlay" type="Sprite2D" parent="." unique_id=1241051938]
-modulate = Color(1, 1, 1, 0)
+modulate = Color(1, 1, 1, 0.1882353)
 self_modulate = Color(0.75, 0.75, 0.75, 1)
 material = SubResource("ShaderMaterial_l2shl")
 position = Vector2(8, 32)
