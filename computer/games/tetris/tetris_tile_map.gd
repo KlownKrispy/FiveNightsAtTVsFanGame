@@ -74,7 +74,7 @@ var pauseTime: int = 3
 var pauseTimeCurrent: int = 3
 func pause():
 	pause_timer.stop()
-	process_mode = Node.PROCESS_MODE_DISABLED
+	get_parent().process_mode = Node.PROCESS_MODE_DISABLED
 func unpause():
 	pauseTimeCurrent = pauseTime
 	var remainingSeconds := pauseTimeCurrent
