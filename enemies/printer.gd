@@ -1,5 +1,5 @@
 class_name Printer
-extends AnimatedSprite3D
+extends Node3D
 @onready var error_timer: Timer = $ErrorTimer
 
 var _errored := false

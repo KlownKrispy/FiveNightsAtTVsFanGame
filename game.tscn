@@ -23,8 +23,8 @@
 [ext_resource type="Script" uid="uid://dytrxkhcbfpbw" path="res://enemies/tv/enemy_tv.gd" id="15_7sc4i"]
 [ext_resource type="AudioStream" uid="uid://dg726xxq47x2n" path="res://enemies/concrete_walk.wav" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dp44d4ymdgua8" path="res://enemies/tv/tv_meow.wav" id="19_e36ub"]
+[ext_resource type="PackedScene" uid="uid://ycat7fiwpspw" path="res://models/printer.glb" id="20_vaj68"]
 [ext_resource type="Script" uid="uid://cf04bfgrkp1ci" path="res://enemies/printer.gd" id="21_hb5m1"]
-[ext_resource type="Texture2D" uid="uid://b0cjnfbmlkje2" path="res://enemies/printer.png" id="21_x5p1p"]
 
 [sub_resource type="Environment" id="Environment_v2341"]
 background_mode = 1
@@ -33,10 +33,10 @@ ambient_light_source = 2
 ambient_light_color = Color(0.5019608, 0.5019608, 0.5019608, 1)
 ambient_light_energy = 0.01
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_f1jbl"]
+[sub_resource type="ButtonGroup" id="ButtonGroup_i2p71"]
 allow_unpress = true
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_vaj68"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_xa8c5"]
 viewport_path = NodePath("GamesUI/Flappy/SubViewport")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
@@ -595,17 +595,6 @@ _data = {
 &"move_3": SubResource("Animation_bnpwn")
 }
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_tqooj"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("21_x5p1p")
-}],
-"loop": 1,
-"name": &"default",
-"speed": 5.0
-}]
-
 [sub_resource type="Animation" id="Animation_x5p1p"]
 length = 0.001
 tracks/0/type = "value"
@@ -947,19 +936,19 @@ size = Vector2i(683, 512)
 [node name="Computer" parent="SubViewport" unique_id=1946148648 instance=ExtResource("2_boyg6")]
 
 [node name="CamerasTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="3" unique_id=89113343]
-button_group = SubResource("ButtonGroup_f1jbl")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="GamesTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="4" unique_id=615822567]
-button_group = SubResource("ButtonGroup_f1jbl")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="MailTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="5" unique_id=1237005857]
-button_group = SubResource("ButtonGroup_f1jbl")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="HorseTab" parent="SubViewport/Computer/UI" parent_id_path=PackedInt32Array(1946148648, 1762670608) index="7" unique_id=1092353379]
-button_group = SubResource("ButtonGroup_f1jbl")
+button_group = SubResource("ButtonGroup_i2p71")
 
 [node name="Sprite2D" parent="SubViewport/Computer/GamesUI/Flappy" parent_id_path=PackedInt32Array(1946148648, 1133491391) index="0" unique_id=1162206074]
-texture = SubResource("ViewportTexture_vaj68")
+texture = SubResource("ViewportTexture_xa8c5")
 
 [node name="ComputerScreenCollider" type="Area3D" parent="SubViewport/Computer" unique_id=1669292061]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9833543, -1.8165946)
@@ -1360,10 +1349,14 @@ transform = Transform3D(0.99952894, -0.029111098, 0.009716205, 0.030630527, 0.96
 visible = false
 texture = ExtResource("14_215e1")
 
-[node name="Printer" type="AnimatedSprite3D" parent="Enemies" unique_id=382424022]
-transform = Transform3D(-1.4142135, 0, -1.4142135, 0, 2, 0, 1.4142135, 0, -1.4142135, -15, 1.6084214, -8)
-pixel_size = 0.001
-sprite_frames = SubResource("SpriteFrames_tqooj")
+[node name="SpotLight3D" type="SpotLight3D" parent="Enemies" unique_id=1042638014]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -16, 8, -9)
+shadow_enabled = true
+spot_range = 10.0
+spot_angle = 25.368065
+
+[node name="Printer" parent="Enemies" unique_id=813060425 instance=ExtResource("20_vaj68")]
+transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -15, 0, -8)
 script = ExtResource("21_hb5m1")
 
 [node name="ErrorTimer" type="Timer" parent="Enemies/Printer" unique_id=1376786939]
