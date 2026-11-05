@@ -36,10 +36,61 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-materials/extract=0
+materials/extract=2
 materials/extract_format=0
-materials/extract_path=""
-_subresources={}
+materials/extract_path="res://models/walls/"
+_subresources={
+"materials": {
+"Wall": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://models/walls/Wall.tres",
+"use_external/path": "uid://topjicgf2450"
+},
+"WallTrim": {
+"use_external/enabled": true,
+"use_external/fallback_path": "res://models/walls/WallTrim.tres",
+"use_external/path": "uid://c5e3adcpogsnc"
+}
+},
+"meshes": {
+"walls_Plane": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://models/walls/walls_Plane.res",
+"save_to_file/path": "uid://dta48jfy53sa0"
+},
+"walls_Plane_001": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://models/walls/walls_Plane_001.res",
+"save_to_file/path": "uid://c64wn35asfvox"
+},
+"walls_Plane_004": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://models/walls/walls_Plane_004.res",
+"save_to_file/path": "uid://dh73rwty282qo"
+},
+"walls_Plane_005": {
+"generate/lightmap_uv": 0,
+"generate/lods": 0,
+"generate/shadow_meshes": 0,
+"lods/normal_merge_angle": 20.0,
+"save_to_file/enabled": true,
+"save_to_file/fallback_path": "res://models/walls/walls_Plane_005.res",
+"save_to_file/path": "uid://2pjnhdjkkflu"
+}
+}
+}
 gltf/naming_version=2
 gltf/embedded_image_handling=1
 gltf/texture_map_mode=1

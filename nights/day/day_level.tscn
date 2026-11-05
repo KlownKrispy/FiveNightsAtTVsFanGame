@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://cscgi4nu3s6a"]
+
+[ext_resource type="Script" uid="uid://da66ro7o5rup5" path="res://first_person_controller.gd" id="1_1ertm"]
+[ext_resource type="PackedScene" uid="uid://jh2nvepwaycl" path="res://models/office_day.tscn" id="1_1s5hn"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_v2341"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_v2341"]
+
+[sub_resource type="Environment" id="Environment_v2341"]
+background_energy_multiplier = 0.0
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.1
+
+[node name="DayLevel" type="Node3D" unique_id=378685178]
+
+[node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=86488338]
+script = ExtResource("1_1ertm")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="CharacterBody3D" unique_id=625341705]
+visible = false
+mesh = SubResource("CapsuleMesh_v2341")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=708238889]
+shape = SubResource("CapsuleShape3D_v2341")
+
+[node name="Camera3D" type="Camera3D" parent="CharacterBody3D" unique_id=615622446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+current = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1287471978]
+environment = SubResource("Environment_v2341")
+
+[node name="OfficeDay" parent="." unique_id=300754981 instance=ExtResource("1_1s5hn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)

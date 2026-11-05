@@ -1,0 +1,50 @@
+[gd_scene format=3 uid="uid://dri8pae5w8vpx"]
+
+[ext_resource type="ArrayMesh" uid="uid://th03qmktsh6i" path="res://models/walls/walls_Plane_001.res" id="1_7ccyv"]
+[ext_resource type="ArrayMesh" uid="uid://d32nlp66u2xvj" path="res://models/walls/walls_Plane_004.res" id="2_f0wds"]
+[ext_resource type="ArrayMesh" uid="uid://8ufsr71sjpxn" path="res://models/walls/walls_Plane_005.res" id="3_njqbe"]
+[ext_resource type="ArrayMesh" uid="uid://cjocq0p54iqkv" path="res://models/walls/walls_Plane.res" id="4_o2mfu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7ccyv"]
+size = Vector3(0.25, 4, 2)
+
+[node name="Walls" type="Node3D" unique_id=1983486171]
+
+[node name="WallLowerClosed" type="MeshInstance3D" parent="." unique_id=1581446154]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+mesh = ExtResource("2_f0wds")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallLowerClosed" unique_id=1550959070]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallLowerClosed/StaticBody3D" unique_id=1260480761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
+shape = SubResource("BoxShape3D_7ccyv")
+
+[node name="WallUpperClosed" type="MeshInstance3D" parent="." unique_id=1178604920]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, -2)
+mesh = ExtResource("3_njqbe")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallUpperClosed" unique_id=76712619]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallUpperClosed/StaticBody3D" unique_id=1548309444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
+shape = SubResource("BoxShape3D_7ccyv")
+
+[node name="WallLower" type="MeshInstance3D" parent="." unique_id=1794069147]
+mesh = ExtResource("4_o2mfu")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallLower" unique_id=1222127575]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallLower/StaticBody3D" unique_id=957690301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
+shape = SubResource("BoxShape3D_7ccyv")
+
+[node name="WallUpper" type="MeshInstance3D" parent="." unique_id=743975198]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4, 0)
+mesh = ExtResource("1_7ccyv")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WallUpper" unique_id=837191883]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallUpper/StaticBody3D" unique_id=202319032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0, 0)
+shape = SubResource("BoxShape3D_7ccyv")
