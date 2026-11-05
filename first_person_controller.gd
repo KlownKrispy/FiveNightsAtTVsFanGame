@@ -3,7 +3,8 @@ extends CharacterBody3D
 
 @export var speed := 4.0
 @export var friction := 16.0
-@export var sensitivity := Vector2(0.5, 0.5)
+@export var sensitivity := Vector2(0.25, 0.25)
+@export var cameraUpdateSpeed := 100.0
 
 var lastMouseMotion := Vector2.ZERO
 var targetCameraAngle := Vector2.ZERO
@@ -32,6 +33,14 @@ func _physics_process(delta: float) -> void:
 	if lastMouseMotion != Vector2.ZERO:
 		targetCameraAngle += -lastMouseMotion * sensitivity * delta
 		targetCameraAngle.y = clampf(targetCameraAngle.y, -PI/2, PI/2)
-		rotation.y = targetCameraAngle.x
-		camera_3d.rotation.x = targetCameraAngle.y
 		lastMouseMotion = Vector2.ZERO
+	_update_camera_angle(delta)
+
+func _update_camera_angle(_delta: float) -> void:
+	rotation.y = targetCameraAngle.x
+	camera_3d.rotation.x = targetCameraAngle.y
+	return
+func _update_camera_angle_hmm(delta: float) -> void:
+	var weight := 1.0 - exp(-delta * cameraUpdateSpeed)
+	rotation.y = lerp_angle(rotation.y, targetCameraAngle.x, weight)
+	camera_3d.rotation.x = lerp_angle(camera_3d.rotation.x, targetCameraAngle.y, weight)
