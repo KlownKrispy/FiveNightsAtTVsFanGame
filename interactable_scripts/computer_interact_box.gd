@@ -1,4 +1,4 @@
 extends Area3D
 
-func interact(player: DayPlayer) -> void:
+func interact(_player: DayPlayer) -> void:
 	print("Nope!")

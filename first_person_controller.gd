@@ -28,7 +28,7 @@ func _interact() -> void:
 		return
 	if interact_ray.get_collider() is not Node3D:
 		return
-	var collider: Node3D = interact_ray.get_collider()
+	var collider: Node = interact_ray.get_collider()
 	while collider != get_tree().root:
 		if "interact" in collider:
 			if collider.interact is Callable:

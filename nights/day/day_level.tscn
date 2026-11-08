@@ -3,6 +3,14 @@
 [ext_resource type="Script" uid="uid://da66ro7o5rup5" path="res://first_person_controller.gd" id="1_1ertm"]
 [ext_resource type="PackedScene" uid="uid://jh2nvepwaycl" path="res://models/office_day.tscn" id="1_1s5hn"]
 [ext_resource type="Script" uid="uid://cl8tvd42qcyyd" path="res://interactable_scripts/computer_interact_box.gd" id="3_oogr8"]
+[ext_resource type="PackedScene" uid="uid://5qekm5ogakup" path="res://models/radio.glb" id="4_ov6oj"]
+[ext_resource type="Script" uid="uid://bi7gf7yvodv5a" path="res://nights/day/radio.gd" id="5_60rea"]
+[ext_resource type="PackedScene" uid="uid://ycat7fiwpspw" path="res://models/printer.glb" id="6_jvqor"]
+[ext_resource type="PackedScene" uid="uid://qf0fowfiqs8j" path="res://models/tv.glb" id="6_oxwrv"]
+[ext_resource type="Script" uid="uid://cd7xkrlhqjwcj" path="res://nights/day/tv.gd" id="7_lkfwx"]
+[ext_resource type="Script" uid="uid://1h46r73go8ow" path="res://nights/day/printer.gd" id="7_up3g4"]
+[ext_resource type="PackedScene" uid="uid://d2f8to61h1a3e" path="res://models/catbase.glb" id="10_62lsc"]
+[ext_resource type="Script" uid="uid://h1b2rpx7awr7" path="res://nights/day/computer.gd" id="11_50hqo"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v2341"]
 
@@ -16,6 +24,10 @@ ambient_light_energy = 0.1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_v2341"]
 size = Vector3(1.1809387, 1.0474243, 1.34729)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tqooj"]
+radius = 1.1274414
+height = 3.3291016
 
 [node name="DayLevel" type="Node3D" unique_id=378685178]
 
@@ -54,3 +66,57 @@ script = ExtResource("3_oogr8")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerInteractBox" unique_id=1303078854]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20359802, -0.01675415, -0.009094238)
 shape = SubResource("BoxShape3D_v2341")
+
+[node name="Interactables" type="Node" parent="." unique_id=2013560013]
+
+[node name="Radio" parent="." unique_id=1482656227 instance=ExtResource("4_ov6oj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.733205, -1.1503549, -2.1616254)
+script = ExtResource("5_60rea")
+
+[node name="Area3D" type="StaticBody3D" parent="Radio" unique_id=1058469589]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Radio/Area3D" unique_id=348121020]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
+shape = SubResource("CapsuleShape3D_tqooj")
+
+[node name="printer" parent="." unique_id=457683308 instance=ExtResource("6_jvqor")]
+transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, -17, -1, -1)
+script = ExtResource("7_up3g4")
+
+[node name="Area3D" type="StaticBody3D" parent="printer" unique_id=1740353178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="printer/Area3D" unique_id=1917740223]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
+shape = SubResource("CapsuleShape3D_tqooj")
+
+[node name="tv" parent="." unique_id=724366444 instance=ExtResource("6_oxwrv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.5967546, -1, 11.214305)
+script = ExtResource("7_lkfwx")
+
+[node name="Area3D" type="StaticBody3D" parent="tv" unique_id=998539275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="tv/Area3D" unique_id=2033043987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
+shape = SubResource("CapsuleShape3D_tqooj")
+
+[node name="computer" parent="." unique_id=2049070919 instance=ExtResource("10_62lsc")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1, 10)
+script = ExtResource("11_50hqo")
+
+[node name="Area3D" type="StaticBody3D" parent="computer" unique_id=14510298]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="computer/Area3D" unique_id=1186731893]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
+shape = SubResource("CapsuleShape3D_tqooj")

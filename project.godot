@@ -21,6 +21,7 @@ EventBus="*uid://duh5kkxnlh7vh"
 CameraRegistry="*uid://sa17ou5lwwbf"
 Night="*uid://dxor37wmh26iq"
 MinigameTracker="*uid://dfc5hbh18otvt"
+Dialogue="*uid://bnk8w4xl180fo"
 
 [display]
 
