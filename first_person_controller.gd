@@ -1,3 +1,4 @@
+class_name DayPlayer
 extends CharacterBody3D
 @onready var camera_3d: Camera3D = $Camera3D
 
@@ -20,6 +21,28 @@ func _input(event: InputEvent) -> void:
 		var rel := mevent.relative
 		lastMouseMotion += rel
 		return
+@onready var interact_ray: RayCast3D = $Camera3D/InteractRay
+
+func _interact() -> void:
+	if not interact_ray.is_colliding():
+		return
+	if interact_ray.get_collider() is not Node3D:
+		return
+	var collider: Node3D = interact_ray.get_collider()
+	while collider != get_tree().root:
+		if "interact" in collider:
+			if collider.interact is Callable:
+				break
+		collider = collider.get_parent()
+	if "interact" not in collider:
+		return
+	if collider.interact is not Callable:
+		return
+	collider.interact(self)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("interact"):
+		_interact()
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("fps_left", "fps_right", "fps_forward", "fps_backward")
