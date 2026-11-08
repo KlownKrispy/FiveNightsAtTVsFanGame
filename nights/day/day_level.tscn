@@ -83,7 +83,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
 shape = SubResource("CapsuleShape3D_tqooj")
 
 [node name="printer" parent="." unique_id=457683308 instance=ExtResource("6_jvqor")]
-transform = Transform3D(0.25881907, 0, 0.9659258, 0, 1, 0, -0.9659258, 0, 0.25881907, -17, -1, -1)
+transform = Transform3D(0.32352385, 0, 1.2074072, 0, 1.25, 0, -1.2074072, 0, 0.32352385, -17, -1, -1)
 script = ExtResource("7_up3g4")
 
 [node name="Area3D" type="StaticBody3D" parent="printer" unique_id=1740353178]

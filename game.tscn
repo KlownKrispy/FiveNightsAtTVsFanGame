@@ -1004,7 +1004,7 @@ spot_range = 10.0
 spot_angle = 25.368065
 
 [node name="Printer" parent="Enemies" unique_id=813060425 instance=ExtResource("20_vaj68")]
-transform = Transform3D(-0.7071068, 0, -0.7071067, 0, 1, 0, 0.7071067, 0, -0.7071068, -15, 0, -8)
+transform = Transform3D(-0.8838835, 0, -0.8838835, 0, 1.25, 0, 0.8838835, 0, -0.8838835, -14, 0, -7)
 script = ExtResource("21_hb5m1")
 
 [node name="ErrorTimer" type="Timer" parent="Enemies/Printer" unique_id=1376786939]
