@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://h7uvulea0hmq" path="res://UI/dialogue/dialogue_box.tscn" id="12_f25p1"]
 [ext_resource type="Script" uid="uid://qurbee2r30jk" path="res://nights/day/spooky_image.gd" id="14_2nq6w"]
 [ext_resource type="Script" uid="uid://rfxn6qs66ub2" path="res://nights/day/spooky_image_2.gd" id="15_m5png"]
+[ext_resource type="Texture2D" uid="uid://o611m864a36b" path="res://UI/crosshair.png" id="16_32ai0"]
 [ext_resource type="Script" uid="uid://dm5ax6iah3la5" path="res://nights/day/rigid_body_3d.gd" id="16_fpk27"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v2341"]
@@ -181,3 +182,13 @@ script = ExtResource("16_fpk27")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="OmniLight3D2/RigidBody3D" unique_id=782606375]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.566803, -0.077301025, 0.3310547)
 shape = SubResource("BoxShape3D_tqooj")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1158558681]
+offset_right = 1920.0
+offset_bottom = 1080.0
+
+[node name="Crosshair" type="TextureRect" parent="CenterContainer" unique_id=865518951]
+layout_mode = 2
+texture = ExtResource("16_32ai0")
+expand_mode = 3
+stretch_mode = 3
