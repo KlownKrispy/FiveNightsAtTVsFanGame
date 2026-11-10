@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://bcdvxyt6ocpps" path="res://models/walls/cubicle.tscn" id="7_leyn6"]
 [ext_resource type="PackedScene" uid="uid://cpk1wa3h1m1gp" path="res://cameras/game_camera.tscn" id="7_w3220"]
 [ext_resource type="MeshLibrary" uid="uid://csepd80b0ocw2" path="res://models/walls.glb" id="8_6kji4"]
+[ext_resource type="Script" uid="uid://dll4fm3ag7yj6" path="res://soder_button.gd" id="9_y48ni"]
+[ext_resource type="AudioStream" uid="uid://mb5x6jcijv2o" path="res://computer/sfx/quiet0.wav" id="10_ufmet"]
+[ext_resource type="AudioStream" uid="uid://dpfubhvn1j3rm" path="res://computer/sfx/click_down.wav" id="11_osguj"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2p71"]
 albedo_texture = ExtResource("5_ufmet")
@@ -25,6 +28,138 @@ albedo_color = Color(1, 1, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eow3j"]
 albedo_color = Color(0.35, 0.35, 0.35, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_w3220"]
+albedo_color = Color(0.39748234, 5.4147097e-07, 2.1658838e-07, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_e36ub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.4901123, 2.6671422, -0.052532196)]
+}
+
+[sub_resource type="Animation" id="Animation_xex6t"]
+resource_name = "disabled"
+
+[sub_resource type="Animation" id="Animation_aa0lp"]
+resource_name = "pressed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.4901123, 2.6671422, -0.052532196), Vector3(1.5618415, 2.6671422, -0.052532196), Vector3(1.4901123, 2.6671422, -0.052532196)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6kji4"]
+_data = {
+&"RESET": SubResource("Animation_e36ub"),
+&"disabled": SubResource("Animation_xex6t"),
+&"pressed": SubResource("Animation_aa0lp")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7oggu"]
+albedo_color = Color(0.4, 0.25333333, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.6333333, 0, 1)
+
+[sub_resource type="Animation" id="Animation_iu0sx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.49, 2.333, -0.053)]
+}
+
+[sub_resource type="Animation" id="Animation_4v2jo"]
+resource_name = "pressed"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.49, 2.333, -0.053), Vector3(1.562, 2.333, -0.053), Vector3(1.49, 2.333, -0.053)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pytmp"]
+_data = {
+&"RESET": SubResource("Animation_iu0sx"),
+&"pressed": SubResource("Animation_4v2jo")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_47i62"]
+albedo_color = Color(0, 0.27999994, 0.4, 1)
+emission_enabled = true
+emission = Color(6.3532593e-06, 0.626564, 0.8992809, 1)
+
+[sub_resource type="Animation" id="Animation_l1i01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.49, 2, -0.053)]
+}
+
+[sub_resource type="Animation" id="Animation_r62pu"]
+resource_name = "pressed"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.49, 2, -0.053), Vector3(1.562, 2, -0.053), Vector3(1.49, 2, -0.053)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f2mv6"]
+_data = {
+&"RESET": SubResource("Animation_l1i01"),
+&"pressed": SubResource("Animation_r62pu")
+}
 
 [node name="World" type="Node3D" unique_id=300754981]
 
@@ -347,3 +482,70 @@ data = {
 "cells": PackedInt32Array(-13, 65524, 0, -13, 65522, 0, -13, 65520, 0, -13, 65518, 0, -13, 65516, 0, -12, 65515, 1441792, -10, 65515, 1441792, -8, 65515, 1441792, -6, 65515, 1441792, -4, 65515, 1441792, -2, 65515, 1441792, -65536, 65515, 1441792, -65534, 65515, 1441792, -65533, 65516, 655360, -65533, 65518, 655360, -65533, 65520, 655360, -65533, 65522, 655360, -65533, 65524, 655360, -14, 65525, 1441792, -16, 65525, 1441792, -18, 65525, 1441792, -65532, 65525, 1441792, -65530, 65525, 1441792, -65528, 65525, 1441792, -65527, 65526, 655360, -65527, 65528, 655360, -65527, 65530, 655360, -65527, 2, 655360, -65527, 6, 655360, -65527, 8, 655360, -65527, 10, 655360, -65527, 12, 655360, -65527, 14, 655360, -65527, 16, 655360, -65528, 17, 1048576, -65530, 17, 1048576, -65532, 17, 1048576, -65534, 17, 1048576, -65536, 17, 1048576, -2, 17, 1048576, -4, 17, 1048576, -6, 17, 1048576, -8, 17, 1048576, -10, 17, 1048576, -12, 17, 1048576, -14, 17, 1048576, -16, 17, 1048576, -18, 17, 1048576, -19, 16, 0, -19, 14, 0, -19, 12, 0, -19, 10, 0, -19, 8, 0, -22, 5, 1048576, -26, 13, 1048578, -28, 13, 1048578, -30, 13, 1048578, -31, 10, 655362, -31, 8, 655362, -33, 4, 0, -33, 2, 0, -19, 65534, 0, -19, 65532, 0, -19, 65530, 0, -19, 65528, 0, -19, 65526, 0, -32, 1, 1048577, -32, 5, 1048577, -31, 6, 655362, -25, 6, 0, -24, 5, 1048577, -26, 1, 1048577, -20, 1, 1048577, -19, 0, 1, -19, 6, 1, -20, 5, 1048576, -65527, 65532, 655361, -65527, 0, 655361, -65526, 1, 1048576, -65524, 1, 1048576, -65522, 1, 1048576, -65521, 0, 655360, -65522, 65531, 1441792, -65524, 65531, 1441792, -65526, 65531, 1441792, -65521, 65534, 655360, -65521, 65532, 655360, -3, 6, 655360, -3, 8, 655361, -2, 5, 1048576, -65536, 5, 1048576, -65534, 5, 1048576, -65532, 5, 1048576, -65530, 5, 1048576, -65528, 5, 1048576, -65527, 4, 655360, -25, 8, 2, -31, 12, 655362, -12, 65525, 1441792, -10, 65525, 1441793, -6, 65525, 1441793, -4, 65525, 1441792, -2, 65525, 1441792, -65536, 65525, 1441792, -65534, 65525, 1441792, -3, 12, 655361, -3, 14, 655360, -3, 16, 655360, 196616, 65525, 1441794, 196614, 65525, 1441794, 196612, 65525, 1441794, 196610, 65525, 1441794, 196608, 65525, 1441794, 262142, 65525, 1441794, 262140, 65525, 1441794, 196611, 65524, 655362, 196611, 65522, 655362, 196611, 65520, 655362, 196611, 65518, 655362, 196611, 65516, 655362, 196608, 65515, 1441794, 262142, 65515, 1441794, 262140, 65515, 1441794, 262138, 65515, 1441794, 262136, 65515, 1441794, 262134, 65515, 1441794, 262132, 65515, 1441794, 262131, 65524, 2, 262131, 65522, 2, 262131, 65520, 2, 262131, 65518, 2, 262131, 65516, 2, 262132, 65525, 1441794, 262134, 65525, 1441794, 262138, 65525, 1441794, 262136, 65525, 1441795, 196617, 65534, 655363, 196617, 0, 655362, 196617, 65532, 655362, 196617, 65530, 655362, 196617, 65528, 655362, 196617, 65526, 655362, 196617, 2, 655362, 196617, 4, 655362, 196612, 5, 1048578, 196614, 5, 1048578, 196616, 5, 1048578, 196610, 5, 1048578, 196608, 5, 1048578, 262142, 5, 1048578, 262141, 16, 655362, 262141, 14, 655362, 262141, 12, 655362, 262141, 6, 655362, 262141, 8, 655362, 262141, 10, 655363, 262140, 17, 1048578, 262138, 17, 1048578, 262136, 17, 1048578, 262134, 17, 1048578, 262132, 17, 1048578, 262130, 17, 1048578, 262126, 17, 1048578, 262128, 17, 1048578, 262125, 16, 2, 262125, 14, 2, 262125, 12, 2, 262125, 10, 2, 262125, 8, 2, 262125, 6, 2, 262125, 4, 3, 262125, 2, 3, 262125, 0, 2, 262125, 65534, 2, 262125, 65532, 2, 262125, 65530, 2, 262125, 65528, 2, 262125, 65526, 2, 262126, 65525, 1441794, 262128, 65525, 1441794, 262130, 65525, 1441794, -31, 7, 655362, -31, 9, 655362, -25, 10, 2, -25, 12, 2, -262169, 8, 0, -262169, 10, 0, -262169, 12, 0, -262170, 13, 1048576, -262172, 13, 1048576, -262174, 13, 1048576, -262175, 12, 655360, -262175, 10, 655360, -262175, 8, 655360, 196610, 65515, 1441794)
 }
 metadata/_editor_floor_ = Vector3(0, 3, 0)
+
+[node name="SodaMachine" type="Node3D" parent="." unique_id=372093399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SodaMachine" unique_id=575737821]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7380371, 1.2797852, -0.052532196)
+use_collision = true
+size = Vector3(0.47607422, 3.5595703, 1.5875244)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SodaMachine/CSGBox3D" unique_id=1879539019]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07624054, 0.10196793, 0)
+operation = 2
+size = Vector3(0.38684082, 0.41882324, 1)
+
+[node name="SoderButton" type="CSGBox3D" parent="SodaMachine" unique_id=1282352010]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4901123, 2.6671422, -0.052532196)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.15698242, 0.25775146, 1)
+material = SubResource("StandardMaterial3D_w3220")
+script = ExtResource("9_y48ni")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SodaMachine/SoderButton" unique_id=7096954]
+libraries/ = SubResource("AnimationLibrary_6kji4")
+
+[node name="ErrorNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton" unique_id=718647584]
+stream = ExtResource("10_ufmet")
+
+[node name="ClickNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton" unique_id=1889031213]
+stream = ExtResource("11_osguj")
+
+[node name="SoderButton2" type="CSGBox3D" parent="SodaMachine" unique_id=1165140876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49, 2.333, -0.053)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.15698242, 0.25482178, 1)
+material = SubResource("StandardMaterial3D_7oggu")
+script = ExtResource("9_y48ni")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SodaMachine/SoderButton2" unique_id=1765350691]
+libraries/ = SubResource("AnimationLibrary_pytmp")
+
+[node name="ErrorNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton2" unique_id=1881063552]
+stream = ExtResource("10_ufmet")
+
+[node name="ClickNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton2" unique_id=1896454099]
+stream = ExtResource("11_osguj")
+
+[node name="SoderButton3" type="CSGBox3D" parent="SodaMachine" unique_id=861107910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49, 2, -0.053)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.15698242, 0.27093506, 1)
+material = SubResource("StandardMaterial3D_47i62")
+script = ExtResource("9_y48ni")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SodaMachine/SoderButton3" unique_id=974602620]
+libraries/ = SubResource("AnimationLibrary_f2mv6")
+
+[node name="ErrorNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton3" unique_id=2017249407]
+stream = ExtResource("10_ufmet")
+
+[node name="ClickNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton3" unique_id=302512712]
+stream = ExtResource("11_osguj")
