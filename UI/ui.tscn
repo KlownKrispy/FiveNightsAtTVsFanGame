@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://bx3kj0af5s45t" path="res://UI/ui.gd" id="1_e6gg6"]
 [ext_resource type="Texture2D" uid="uid://dnkqlijetmr5j" path="res://icon.svg" id="1_m6e0p"]
 [ext_resource type="Script" uid="uid://xpbk8nm6g7ci" path="res://UI/buttons/hover_button.gd" id="2_27fn8"]
+[ext_resource type="Script" uid="uid://c1k5glr7mogxb" path="res://UI/coins_panel.gd" id="4_3sbvi"]
+[ext_resource type="Texture2D" uid="uid://js8km225reqk" path="res://computer/ui_assets/tvos.png" id="5_nm1m0"]
 
 [node name="UI" type="Control" unique_id=2022876943]
 layout_mode = 3
@@ -52,6 +54,32 @@ size_flags_horizontal = 3
 texture = ExtResource("1_m6e0p")
 expand_mode = 1
 script = ExtResource("2_27fn8")
+
+[node name="CoinsPanel" type="Panel" parent="." unique_id=2096727295]
+visible = false
+layout_mode = 0
+offset_left = 1618.0
+offset_top = 952.0
+offset_right = 1920.0
+offset_bottom = 1079.0
+script = ExtResource("4_3sbvi")
+
+[node name="CoinIcon" type="TextureRect" parent="CoinsPanel" unique_id=542472331]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 14.0
+offset_right = 113.0
+offset_bottom = 103.0
+texture = ExtResource("5_nm1m0")
+
+[node name="Label" type="Label" parent="CoinsPanel" unique_id=1514955467]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 14.0
+offset_right = 232.0
+offset_bottom = 102.0
+theme_override_font_sizes/font_size = 64
+text = "0"
 
 [connection signal="mouse_entered" from="LeftButton" to="LeftButton" method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="LeftButton" to="LeftButton" method="_on_mouse_exited"]

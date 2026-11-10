@@ -23,11 +23,11 @@ func _input(event: InputEvent) -> void:
 		return
 @onready var interact_ray: RayCast3D = $Camera3D/InteractRay
 
-func _interact() -> void:
+func _interact() -> bool:
 	if not interact_ray.is_colliding():
-		return
+		return false
 	if interact_ray.get_collider() is not Node3D:
-		return
+		return false
 	var collider: Node = interact_ray.get_collider()
 	while collider != get_tree().root:
 		if "interact" in collider:
@@ -35,14 +35,16 @@ func _interact() -> void:
 				break
 		collider = collider.get_parent()
 	if "interact" not in collider:
-		return
+		return false
 	if collider.interact is not Callable:
-		return
+		return false
 	collider.interact(self)
+	return true
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("interact"):
-		_interact()
+		if not _interact():
+			Dialogue.hide()
 
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("fps_left", "fps_right", "fps_forward", "fps_backward")

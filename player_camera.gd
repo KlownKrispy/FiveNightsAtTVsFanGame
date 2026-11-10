@@ -59,10 +59,14 @@ func _process(_delta: float) -> void:
 	if interact_ray.is_colliding():
 		var object := interact_ray.get_collider()
 		# TODO
-		if object.name == "Computer" and Input.is_action_just_pressed("interact"):
+		if not Input.is_action_just_pressed("interact"):
+			return
+		if object.name == "Computer":
 			EventBus.on_change_state.emit(EventBus.CameraState.FORWARD, EventBus.CameraState.CAMERAS)
 			EventBus.showUIButtons = false
 			interact_ray.collision_mask = 0x4
+		elif "interact" in object:
+			object.interact()
 	else:
 		Input.set_custom_mouse_cursor(null)
 
@@ -102,3 +106,7 @@ func _on_camera_animator_animation_finished(_anim_name: StringName) -> void:
 	if _changingToForward:
 		interact_ray.enabled = true
 		interact_ray.collision_mask = 0x2
+	if EventBus.currentCameraState == EventBus.CameraState.RIGHT:
+		interact_ray.enabled = true
+		interact_ray.collision_mask = 0x2
+		

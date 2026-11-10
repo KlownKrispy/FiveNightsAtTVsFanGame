@@ -1,0 +1,27 @@
+[gd_resource type="Theme" format=3 uid="uid://bcay3yimd1jjd"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bos6u"]
+content_margin_left = 16.0
+content_margin_top = 16.0
+content_margin_right = 16.0
+content_margin_bottom = 16.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+corner_radius_top_left = 32
+corner_radius_top_right = 32
+corner_radius_bottom_right = 32
+corner_radius_bottom_left = 32
+corner_detail = 20
+
+[sub_resource type="SystemFont" id="SystemFont_f25p1"]
+font_names = PackedStringArray("Monospace")
+
+[resource]
+Panel/styles/panel = SubResource("StyleBoxFlat_bos6u")
+PanelContainer/styles/panel = SubResource("StyleBoxFlat_bos6u")
+RichTextLabel/fonts/bold_font = SubResource("SystemFont_f25p1")
+RichTextLabel/fonts/normal_font = SubResource("SystemFont_f25p1")

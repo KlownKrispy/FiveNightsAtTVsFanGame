@@ -29,16 +29,19 @@ func _change_state(newState: EventBus.CameraState) -> void:
 	state = newState
 	changing = true
 	_update_buttons()
+@onready var coins_panel: Panel = $CoinsPanel
 
 func _update_buttons() -> void:
 	# default to invisible
 	var buttonVisibility = {left_button: false, right_button: false, up_button: false, down_button: false}
+	coins_panel.visible = false
 	if EventBus.showUIButtons and not changing:
 		match state:
 			EventBus.CameraState.LEFT:
 				buttonVisibility[right_button] = true
 			EventBus.CameraState.RIGHT:
 				buttonVisibility[left_button] = true
+				coins_panel.visible = true
 			EventBus.CameraState.FORWARD:
 				buttonVisibility[left_button] = true
 				buttonVisibility[right_button] = true

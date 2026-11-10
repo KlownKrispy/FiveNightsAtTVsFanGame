@@ -1,0 +1,162 @@
+[gd_scene format=3 uid="uid://h7uvulea0hmq"]
+
+[ext_resource type="Script" uid="uid://cs5yd7kkpe4qu" path="res://UI/dialogue/dialogue_box.gd" id="1_a48kx"]
+[ext_resource type="Theme" uid="uid://bcay3yimd1jjd" path="res://UI/dialogue/dialogue_main_style.tres" id="1_bos6u"]
+[ext_resource type="Texture2D" uid="uid://b5psynkn0ub5l" path="res://curiosities/besef.png" id="1_j20wu"]
+[ext_resource type="Shader" uid="uid://chifq81gjtsp1" path="res://computer/cameras/white_noise.gdshader" id="4_a0is1"]
+[ext_resource type="Texture2D" uid="uid://b7eadamb48ac4" path="res://white.png" id="5_yfrlg"]
+[ext_resource type="AudioStream" uid="uid://bhcakky3fgo5" path="res://computer/sfx/thegreen.wav" id="6_yfrlg"]
+[ext_resource type="AudioStream" uid="uid://moovseyaiahp" path="res://computer/sfx/quiet1.wav" id="7_tbm30"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_a48kx"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+thickness = 4
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tbm30"]
+shader = ExtResource("4_a0is1")
+
+[sub_resource type="Animation" id="Animation_yl1e1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_obldf"]
+resource_name = "start"
+length = 3.0000000000000004
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0.32156864), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_v0uhm"]
+_data = {
+&"RESET": SubResource("Animation_yl1e1"),
+&"start": SubResource("Animation_obldf")
+}
+
+[node name="DialogueBox" type="Control" unique_id=819988699]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 640.0
+offset_bottom = 640.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a48kx")
+
+[node name="PanelContainer" type="Panel" parent="." unique_id=1457382429]
+layout_mode = 0
+offset_left = 32.0
+offset_top = 614.0
+offset_right = 1888.0
+offset_bottom = 1048.0
+theme = ExtResource("1_bos6u")
+
+[node name="PortraitPanel" type="Panel" parent="PanelContainer" unique_id=1686151707]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 400.0
+offset_bottom = 400.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.0
+metadata/_edit_group_ = true
+
+[node name="CharacterPortrait" type="TextureRect" parent="PanelContainer/PortraitPanel" unique_id=990172541]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 376.0
+offset_bottom = 373.0
+texture = ExtResource("1_j20wu")
+expand_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer" unique_id=34321649]
+layout_mode = 0
+offset_left = 415.0
+offset_top = 16.0
+offset_right = 1832.0
+offset_bottom = 418.0
+metadata/_edit_group_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer/HBoxContainer" unique_id=294848591]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CharacterName" type="RichTextLabel" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=65491584]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 64
+theme_override_font_sizes/bold_font_size = 64
+theme_override_font_sizes/bold_italics_font_size = 64
+theme_override_font_sizes/italics_font_size = 64
+theme_override_font_sizes/mono_font_size = 64
+text = "BESEF"
+fit_content = true
+
+[node name="HSeparator" type="HSeparator" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=399416531]
+layout_mode = 2
+theme_override_constants/separation = 16
+theme_override_styles/separator = SubResource("StyleBoxLine_a48kx")
+
+[node name="Dialogue" type="RichTextLabel" parent="PanelContainer/HBoxContainer/VBoxContainer" unique_id=1572827478]
+layout_mode = 2
+theme_override_font_sizes/normal_font_size = 32
+theme_override_font_sizes/bold_font_size = 64
+theme_override_font_sizes/bold_italics_font_size = 32
+theme_override_font_sizes/italics_font_size = 32
+theme_override_font_sizes/mono_font_size = 32
+bbcode_enabled = true
+text = "Besef besef besef [b]BESEF[/b] besef besef. Besef besef besef besef. Besef. Besef besef [b]BESEF[/b] besef. Besef besef. Besef, besef besef besef, besef besef. [b]Bes[/b]ef. Besef besef. Besef besef besef besef besef besef besef besef besef besef besef besef besef besef besef."
+fit_content = true
+visible_characters = 0
+visible_ratio = 0.0
+
+[node name="NoiseOverlay" type="Sprite2D" parent="." unique_id=1679111422]
+visible = false
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.48, 0.75, 0.4845, 1)
+material = SubResource("ShaderMaterial_tbm30")
+position = Vector2(4.7683716e-07, 1.9073486e-06)
+scale = Vector2(1919.9999, 1079.9999)
+texture = ExtResource("5_yfrlg")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="NoiseOverlay" unique_id=136214503]
+libraries/ = SubResource("AnimationLibrary_v0uhm")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="NoiseOverlay" unique_id=84358339]
+stream = ExtResource("6_yfrlg")
+bus = &"Minigames & Computer"
+
+[node name="DialogueTimer" type="Timer" parent="." unique_id=997955095]
+wait_time = 0.05
+autostart = true
+
+[node name="TalkSound" type="AudioStreamPlayer" parent="." unique_id=553139031]
+stream = ExtResource("7_tbm30")
+max_polyphony = 32
+
+[connection signal="finished" from="NoiseOverlay/AudioStreamPlayer" to="." method="_on_audio_stream_player_finished"]
+[connection signal="timeout" from="DialogueTimer" to="." method="_on_dialogue_timer_timeout"]

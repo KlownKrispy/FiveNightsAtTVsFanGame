@@ -19,6 +19,7 @@ func reset() -> void:
 	dead = false
 	position = _initialPosition
 	animated_sprite_2d.play("default")
+	velocity = Vector2.ZERO
 
 func _jump() -> void:
 	if dead:

@@ -17,8 +17,11 @@
 [ext_resource type="Script" uid="uid://dytrxkhcbfpbw" path="res://enemies/tv/enemy_tv.gd" id="15_7sc4i"]
 [ext_resource type="AudioStream" uid="uid://dg726xxq47x2n" path="res://enemies/concrete_walk.wav" id="17_e8heu"]
 [ext_resource type="AudioStream" uid="uid://dp44d4ymdgua8" path="res://enemies/tv/tv_meow.wav" id="19_e36ub"]
+[ext_resource type="Script" uid="uid://dll4fm3ag7yj6" path="res://soder_button.gd" id="20_e36ub"]
 [ext_resource type="PackedScene" uid="uid://ycat7fiwpspw" path="res://models/printer.glb" id="20_vaj68"]
 [ext_resource type="Script" uid="uid://cf04bfgrkp1ci" path="res://enemies/printer.gd" id="21_hb5m1"]
+[ext_resource type="AudioStream" uid="uid://mb5x6jcijv2o" path="res://computer/sfx/quiet0.wav" id="21_x5p1p"]
+[ext_resource type="AudioStream" uid="uid://dpfubhvn1j3rm" path="res://computer/sfx/click_down.wav" id="22_x5p1p"]
 
 [sub_resource type="Environment" id="Environment_v2341"]
 background_mode = 1
@@ -896,6 +899,138 @@ _data = {
 [sub_resource type="ViewportTexture" id="ViewportTexture_hb5m1"]
 viewport_path = NodePath("SubViewport")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2341"]
+albedo_color = Color(0.39748234, 5.4147097e-07, 2.1658838e-07, 1)
+emission_enabled = true
+emission = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_e36ub"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.4901123, 2.6671422, -0.052532196)]
+}
+
+[sub_resource type="Animation" id="Animation_xex6t"]
+resource_name = "disabled"
+
+[sub_resource type="Animation" id="Animation_aa0lp"]
+resource_name = "pressed"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.4901123, 2.6671422, -0.052532196), Vector3(1.5618415, 2.6671422, -0.052532196), Vector3(1.4901123, 2.6671422, -0.052532196)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_iu0sx"]
+_data = {
+&"RESET": SubResource("Animation_e36ub"),
+&"disabled": SubResource("Animation_xex6t"),
+&"pressed": SubResource("Animation_aa0lp")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_boyg6"]
+albedo_color = Color(0.4, 0.25333333, 0, 1)
+emission_enabled = true
+emission = Color(1, 0.6333333, 0, 1)
+
+[sub_resource type="Animation" id="Animation_iu0sx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.49, 2.333, -0.053)]
+}
+
+[sub_resource type="Animation" id="Animation_4v2jo"]
+resource_name = "pressed"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.49, 2.333, -0.053), Vector3(1.562, 2.333, -0.053), Vector3(1.49, 2.333, -0.053)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l1i01"]
+_data = {
+&"RESET": SubResource("Animation_iu0sx"),
+&"pressed": SubResource("Animation_4v2jo")
+}
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_e36ub"]
+albedo_color = Color(0, 0.27999994, 0.4, 1)
+emission_enabled = true
+emission = Color(6.3532593e-06, 0.626564, 0.8992809, 1)
+
+[sub_resource type="Animation" id="Animation_l1i01"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1.49, 2, -0.053)]
+}
+
+[sub_resource type="Animation" id="Animation_r62pu"]
+resource_name = "pressed"
+length = 0.5
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(1.49, 2, -0.053), Vector3(1.562, 2, -0.053), Vector3(1.49, 2, -0.053)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_klri6"]
+_data = {
+&"RESET": SubResource("Animation_l1i01"),
+&"pressed": SubResource("Animation_r62pu")
+}
+
 [node name="Game" type="Node3D" unique_id=1193476600]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1535573128]
@@ -1079,6 +1214,72 @@ light_color = Color(0.86, 0.93700004, 1, 1)
 light_energy = 0.01
 omni_range = 0.75
 omni_attenuation = 3.0
+
+[node name="SodaMachine" type="Node3D" parent="." unique_id=915447334]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SodaMachine" unique_id=77147180]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7380371, 1.2797852, -0.052532196)
+use_collision = true
+size = Vector3(0.47607422, 3.5595703, 1.5875244)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="SodaMachine/CSGBox3D" unique_id=1823354836]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.07624054, 0.10196793, 0)
+operation = 2
+size = Vector3(0.38684082, 0.41882324, 1)
+
+[node name="SoderButton" type="CSGBox3D" parent="SodaMachine" unique_id=846071984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.4901123, 2.6671422, -0.052532196)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.15698242, 0.25775146, 1)
+material = SubResource("StandardMaterial3D_v2341")
+script = ExtResource("20_e36ub")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SodaMachine/SoderButton" unique_id=604029684]
+libraries/ = SubResource("AnimationLibrary_iu0sx")
+
+[node name="ErrorNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton" unique_id=1284779217]
+stream = ExtResource("21_x5p1p")
+
+[node name="ClickNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton" unique_id=1072812002]
+stream = ExtResource("22_x5p1p")
+
+[node name="SoderButton2" type="CSGBox3D" parent="SodaMachine" unique_id=1767033211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49, 2.333, -0.053)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.15698242, 0.25482178, 1)
+material = SubResource("StandardMaterial3D_boyg6")
+script = ExtResource("20_e36ub")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SodaMachine/SoderButton2" unique_id=1435286205]
+libraries/ = SubResource("AnimationLibrary_l1i01")
+
+[node name="ErrorNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton2" unique_id=1142266051]
+stream = ExtResource("21_x5p1p")
+
+[node name="ClickNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton2" unique_id=1195008521]
+stream = ExtResource("22_x5p1p")
+
+[node name="SoderButton3" type="CSGBox3D" parent="SodaMachine" unique_id=576071086]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.49, 2, -0.053)
+use_collision = true
+collision_layer = 2
+collision_mask = 2
+size = Vector3(0.15698242, 0.27093506, 1)
+material = SubResource("StandardMaterial3D_e36ub")
+script = ExtResource("20_e36ub")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="SodaMachine/SoderButton3" unique_id=1683790397]
+libraries/ = SubResource("AnimationLibrary_klri6")
+
+[node name="ErrorNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton3" unique_id=511649133]
+stream = ExtResource("21_x5p1p")
+
+[node name="ClickNoise" type="AudioStreamPlayer" parent="SodaMachine/SoderButton3" unique_id=1710510208]
+stream = ExtResource("22_x5p1p")
 
 [connection signal="animation_finished" from="PlayerCamera/CameraAnimator" to="PlayerCamera" method="_on_camera_animator_animation_finished"]
 [connection signal="timeout" from="Enemies/Radio/MoveTimer" to="Enemies/Radio" method="_on_move_timer_timeout"]

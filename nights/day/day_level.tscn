@@ -11,6 +11,10 @@
 [ext_resource type="Script" uid="uid://1h46r73go8ow" path="res://nights/day/printer.gd" id="7_up3g4"]
 [ext_resource type="PackedScene" uid="uid://d2f8to61h1a3e" path="res://models/catbase.glb" id="10_62lsc"]
 [ext_resource type="Script" uid="uid://h1b2rpx7awr7" path="res://nights/day/computer.gd" id="11_50hqo"]
+[ext_resource type="PackedScene" uid="uid://h7uvulea0hmq" path="res://UI/dialogue/dialogue_box.tscn" id="12_f25p1"]
+[ext_resource type="Script" uid="uid://qurbee2r30jk" path="res://nights/day/spooky_image.gd" id="14_2nq6w"]
+[ext_resource type="Script" uid="uid://rfxn6qs66ub2" path="res://nights/day/spooky_image_2.gd" id="15_m5png"]
+[ext_resource type="Script" uid="uid://dm5ax6iah3la5" path="res://nights/day/rigid_body_3d.gd" id="16_fpk27"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_v2341"]
 
@@ -29,13 +33,24 @@ size = Vector3(1.1809387, 1.0474243, 1.34729)
 radius = 1.1274414
 height = 3.3291016
 
+[sub_resource type="ViewportTexture" id="ViewportTexture_fpk27"]
+viewport_path = NodePath("../OmniLight3D2/Sprite3D2/SubViewportMirror")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m5png"]
+viewport_path = NodePath("OmniLight3D2/Sprite3D/SubViewport")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v2341"]
+viewport_path = NodePath("OmniLight3D2/Sprite3D2/SubViewportMirror")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
+size = Vector3(7.417053, 5.5220337, 0.33789063)
+
 [node name="DayLevel" type="Node3D" unique_id=378685178]
 
 [node name="CharacterBody3D" type="CharacterBody3D" parent="." unique_id=86488338]
 script = ExtResource("1_1ertm")
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="CharacterBody3D" unique_id=625341705]
-visible = false
 mesh = SubResource("CapsuleMesh_v2341")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D" unique_id=708238889]
@@ -57,66 +72,112 @@ environment = SubResource("Environment_v2341")
 [node name="OfficeDay" parent="." unique_id=300754981 instance=ExtResource("1_1s5hn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 
-[node name="ComputerInteractBox" type="Area3D" parent="." unique_id=749889789]
+[node name="Interactables" type="Node" parent="." unique_id=2013560013]
+
+[node name="ComputerInteractBox" type="Area3D" parent="Interactables" unique_id=749889789]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -2)
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("3_oogr8")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="ComputerInteractBox" unique_id=1303078854]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/ComputerInteractBox" unique_id=1303078854]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20359802, -0.01675415, -0.009094238)
 shape = SubResource("BoxShape3D_v2341")
 
-[node name="Interactables" type="Node" parent="." unique_id=2013560013]
-
-[node name="Radio" parent="." unique_id=1482656227 instance=ExtResource("4_ov6oj")]
+[node name="Radio" parent="Interactables" unique_id=1482656227 instance=ExtResource("4_ov6oj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.733205, -1.1503549, -2.1616254)
 script = ExtResource("5_60rea")
 
-[node name="Area3D" type="StaticBody3D" parent="Radio" unique_id=1058469589]
+[node name="Area3D" type="StaticBody3D" parent="Interactables/Radio" unique_id=1058469589]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Radio/Area3D" unique_id=348121020]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/Radio/Area3D" unique_id=348121020]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
 shape = SubResource("CapsuleShape3D_tqooj")
 
-[node name="printer" parent="." unique_id=457683308 instance=ExtResource("6_jvqor")]
+[node name="printer" parent="Interactables" unique_id=457683308 instance=ExtResource("6_jvqor")]
 transform = Transform3D(0.32352385, 0, 1.2074072, 0, 1.25, 0, -1.2074072, 0, 0.32352385, -17, -1, -1)
 script = ExtResource("7_up3g4")
 
-[node name="Area3D" type="StaticBody3D" parent="printer" unique_id=1740353178]
+[node name="Area3D" type="StaticBody3D" parent="Interactables/printer" unique_id=1740353178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="printer/Area3D" unique_id=1917740223]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/printer/Area3D" unique_id=1917740223]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
 shape = SubResource("CapsuleShape3D_tqooj")
 
-[node name="tv" parent="." unique_id=724366444 instance=ExtResource("6_oxwrv")]
+[node name="tv" parent="Interactables" unique_id=724366444 instance=ExtResource("6_oxwrv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.5967546, -1, 11.214305)
 script = ExtResource("7_lkfwx")
 
-[node name="Area3D" type="StaticBody3D" parent="tv" unique_id=998539275]
+[node name="Area3D" type="StaticBody3D" parent="Interactables/tv" unique_id=998539275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="tv/Area3D" unique_id=2033043987]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/tv/Area3D" unique_id=2033043987]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
 shape = SubResource("CapsuleShape3D_tqooj")
 
-[node name="computer" parent="." unique_id=2049070919 instance=ExtResource("10_62lsc")]
+[node name="computer" parent="Interactables" unique_id=2049070919 instance=ExtResource("10_62lsc")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1, 10)
 script = ExtResource("11_50hqo")
 
-[node name="Area3D" type="StaticBody3D" parent="computer" unique_id=14510298]
+[node name="Area3D" type="StaticBody3D" parent="Interactables/computer" unique_id=14510298]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="computer/Area3D" unique_id=1186731893]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/computer/Area3D" unique_id=1186731893]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
 shape = SubResource("CapsuleShape3D_tqooj")
+
+[node name="DialogueBox" parent="." unique_id=819988699 instance=ExtResource("12_f25p1")]
+visible = false
+mirrorTexture = SubResource("ViewportTexture_fpk27")
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=231816399]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1, 6.6125984)
+visible = false
+light_color = Color(0.3499999, 1, 0, 1)
+light_energy = 0.5
+shadow_enabled = true
+distance_fade_enabled = true
+
+[node name="Sprite3D" type="Sprite3D" parent="OmniLight3D2" unique_id=1140102542]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.03163576)
+modulate = Color(0.77254903, 1, 0.7607843, 1)
+texture = SubResource("ViewportTexture_m5png")
+script = ExtResource("14_2nq6w")
+
+[node name="SubViewport" type="SubViewport" parent="OmniLight3D2/Sprite3D" unique_id=12491159]
+size = Vector2i(600, 410)
+
+[node name="Camera3D" type="Camera3D" parent="OmniLight3D2/Sprite3D/SubViewport" unique_id=16185846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1, 6.3593016)
+
+[node name="Sprite3D2" type="Sprite3D" parent="OmniLight3D2" unique_id=1791725110]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.25940752)
+modulate = Color(0.772, 1, 0.76, 0.49019608)
+texture = SubResource("ViewportTexture_v2341")
+script = ExtResource("15_m5png")
+
+[node name="SubViewportMirror" type="SubViewport" parent="OmniLight3D2/Sprite3D2" unique_id=427485526]
+size = Vector2i(600, 410)
+
+[node name="Camera3D" type="Camera3D" parent="OmniLight3D2/Sprite3D2/SubViewportMirror" unique_id=1596153467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1, 6.3670726)
+
+[node name="RigidBody3D" type="StaticBody3D" parent="OmniLight3D2" unique_id=1230437766]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.550755)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("16_fpk27")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="OmniLight3D2/RigidBody3D" unique_id=782606375]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.566803, -0.077301025, 0.3310547)
+shape = SubResource("BoxShape3D_tqooj")
