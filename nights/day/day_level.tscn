@@ -4,13 +4,10 @@
 [ext_resource type="PackedScene" uid="uid://jh2nvepwaycl" path="res://models/office_day.tscn" id="1_1s5hn"]
 [ext_resource type="Script" uid="uid://cl8tvd42qcyyd" path="res://interactable_scripts/computer_interact_box.gd" id="3_oogr8"]
 [ext_resource type="PackedScene" uid="uid://5qekm5ogakup" path="res://models/radio.glb" id="4_ov6oj"]
-[ext_resource type="Script" uid="uid://bi7gf7yvodv5a" path="res://nights/day/radio.gd" id="5_60rea"]
 [ext_resource type="PackedScene" uid="uid://ycat7fiwpspw" path="res://models/printer.glb" id="6_jvqor"]
 [ext_resource type="PackedScene" uid="uid://qf0fowfiqs8j" path="res://models/tv.glb" id="6_oxwrv"]
-[ext_resource type="Script" uid="uid://cd7xkrlhqjwcj" path="res://nights/day/tv.gd" id="7_lkfwx"]
-[ext_resource type="Script" uid="uid://1h46r73go8ow" path="res://nights/day/printer.gd" id="7_up3g4"]
+[ext_resource type="Script" uid="uid://d0via8ooso34k" path="res://nights/day/dialogue_npc.gd" id="7_fpk27"]
 [ext_resource type="PackedScene" uid="uid://d2f8to61h1a3e" path="res://models/catbase.glb" id="10_62lsc"]
-[ext_resource type="Script" uid="uid://h1b2rpx7awr7" path="res://nights/day/computer.gd" id="11_50hqo"]
 [ext_resource type="PackedScene" uid="uid://h7uvulea0hmq" path="res://UI/dialogue/dialogue_box.tscn" id="12_f25p1"]
 [ext_resource type="Script" uid="uid://qurbee2r30jk" path="res://nights/day/spooky_image.gd" id="14_2nq6w"]
 [ext_resource type="Script" uid="uid://rfxn6qs66ub2" path="res://nights/day/spooky_image_2.gd" id="15_m5png"]
@@ -87,7 +84,9 @@ shape = SubResource("BoxShape3D_v2341")
 
 [node name="Radio" parent="Interactables" unique_id=1482656227 instance=ExtResource("4_ov6oj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.733205, -1.1503549, -2.1616254)
-script = ExtResource("5_60rea")
+script = ExtResource("7_fpk27")
+dialogues = Array[String](["I wish I had a good sleep mask... my eyes are really light-sensitive...", "Can't you move cubicles? Your computer screen's lights are messing me up."])
+npcName = "radio"
 
 [node name="Area3D" type="StaticBody3D" parent="Interactables/Radio" unique_id=1058469589]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -100,7 +99,9 @@ shape = SubResource("CapsuleShape3D_tqooj")
 
 [node name="printer" parent="Interactables" unique_id=457683308 instance=ExtResource("6_jvqor")]
 transform = Transform3D(0.32352385, 0, 1.2074072, 0, 1.25, 0, -1.2074072, 0, 0.32352385, -17, -1, -1)
-script = ExtResource("7_up3g4")
+script = ExtResource("7_fpk27")
+dialogues = Array[String](["It’s always nice to get a good stretch before work... my back hurts from sitting down for so long.", "... you better not keep me waiting, I need my ink and papers..."])
+npcName = "printer"
 
 [node name="Area3D" type="StaticBody3D" parent="Interactables/printer" unique_id=1740353178]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -113,7 +114,9 @@ shape = SubResource("CapsuleShape3D_tqooj")
 
 [node name="tv" parent="Interactables" unique_id=724366444 instance=ExtResource("6_oxwrv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.5967546, -1, 11.214305)
-script = ExtResource("7_lkfwx")
+script = ExtResource("7_fpk27")
+dialogues = Array[String](["I'm gonna give printer the orange soda... they say it's cheese flavored, hehehehe..."])
+npcName = "tv"
 
 [node name="Area3D" type="StaticBody3D" parent="Interactables/tv" unique_id=998539275]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
@@ -124,16 +127,18 @@ collision_mask = 3
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
 shape = SubResource("CapsuleShape3D_tqooj")
 
-[node name="computer" parent="Interactables" unique_id=2049070919 instance=ExtResource("10_62lsc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1, 10)
-script = ExtResource("11_50hqo")
+[node name="internet" parent="Interactables" unique_id=2049070919 instance=ExtResource("10_62lsc")]
+transform = Transform3D(-0.8660254, 0, 0.50000006, 0, 1, 0, -0.50000006, 0, -0.8660254, -8, -1, 12)
+script = ExtResource("7_fpk27")
+dialogues = Array[String](["[b]Wowie!!![/b] I sure do love the internet!!! I hope there are no economical consequences to its meteoric rise!!!"])
+npcName = "internet"
 
-[node name="Area3D" type="StaticBody3D" parent="Interactables/computer" unique_id=14510298]
+[node name="Area3D" type="StaticBody3D" parent="Interactables/internet" unique_id=14510298]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/computer/Area3D" unique_id=1186731893]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Interactables/internet/Area3D" unique_id=1186731893]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.33544922, 0)
 shape = SubResource("CapsuleShape3D_tqooj")
 

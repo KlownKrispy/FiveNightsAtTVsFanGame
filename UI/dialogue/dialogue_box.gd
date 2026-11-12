@@ -74,6 +74,7 @@ func _add_character() -> void:
 	if not dialogueOpen:
 		return
 	if dialogue.visible_ratio >= 1.0:
+		Dialogue.set_dialogue_finished()
 		return
 	dialogue.visible_characters += charactersPerTick
 	var ch := dialogue.get_parsed_text()[dialogue.visible_characters - 1]
