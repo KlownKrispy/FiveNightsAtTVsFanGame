@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dll4fm3ag7yj6" path="res://soder_button.gd" id="9_y48ni"]
 [ext_resource type="AudioStream" uid="uid://mb5x6jcijv2o" path="res://computer/sfx/quiet0.wav" id="10_ufmet"]
 [ext_resource type="AudioStream" uid="uid://dpfubhvn1j3rm" path="res://computer/sfx/click_down.wav" id="11_osguj"]
+[ext_resource type="Texture2D" uid="uid://b7eadamb48ac4" path="res://white.png" id="12_ufmet"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i2p71"]
 albedo_texture = ExtResource("5_ufmet")
@@ -18,6 +19,9 @@ uv1_scale = Vector3(0.5, 0.5, 0.5)
 uv1_triplanar = true
 uv1_world_triplanar = true
 texture_filter = 2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ufmet"]
+size = Vector3(3.8256836, 2.350708, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7jktm"]
 transparency = 1
@@ -342,6 +346,735 @@ size = Vector3(0.533, 0.4, 0.1)
 [node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Table/Computer" unique_id=421024885]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
 size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Tables" type="Node3D" parent="EtcCubicles/cubicle22" unique_id=1259001001]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -1, 1, -4.371139e-08)
+
+[node name="Table" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=249885287]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1.5, 10)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=1562378437]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=1117525723]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=1605750193]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=1733745323]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=998148309]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=2035298550]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=605543644]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table/Computer" unique_id=1864189183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table/Computer" unique_id=1464467050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table/Computer" unique_id=954360284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table/Computer" unique_id=231038588]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=2122359304]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table" unique_id=1185902654]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table/StaticBody3D" unique_id=1011010971]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table2" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=66360969]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -1.5, 10)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=1490751344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=906417497]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=655862808]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=1237641806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=1347371368]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=1025069550]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=1229057008]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2/Computer" unique_id=522382155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2/Computer" unique_id=1843913195]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2/Computer" unique_id=1893180824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table2/Computer" unique_id=866360118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=313581020]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table2" unique_id=673253060]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table2/StaticBody3D" unique_id=1367205303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table3" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=1175208089]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -1.5, 6)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=1016572527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=1148825273]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=1359169015]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=522365791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=2086709125]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=2096714471]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=425230419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3/Computer" unique_id=1346133103]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3/Computer" unique_id=1996292394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3/Computer" unique_id=1036780659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table3/Computer" unique_id=776237926]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=1228149665]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table3" unique_id=680911507]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table3/StaticBody3D" unique_id=366203005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table4" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=627891764]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1.5, 6)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=511850068]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=1002594825]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=2640695]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=397852303]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=1056143162]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=1721329587]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=735080348]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4/Computer" unique_id=1445695674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4/Computer" unique_id=164062664]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4/Computer" unique_id=331911737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table4/Computer" unique_id=382632886]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=863402986]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table4" unique_id=976295043]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table4/StaticBody3D" unique_id=1241136536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table5" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=2062364653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1.5, -2)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=1592495273]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=505721856]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=2001455322]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=1779207614]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=2020217393]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=276305489]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=546767237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5/Computer" unique_id=156950353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5/Computer" unique_id=422887471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5/Computer" unique_id=1340134923]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table5/Computer" unique_id=393660773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=503574197]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table5" unique_id=344743897]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table5/StaticBody3D" unique_id=541410057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table6" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=583470846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -1.5, -2)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=649414825]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=72029723]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=19851541]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=1139744333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=432442789]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=539986764]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=120267182]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6/Computer" unique_id=1034937832]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6/Computer" unique_id=1116339574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6/Computer" unique_id=927988494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table6/Computer" unique_id=519499787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=581724332]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table6" unique_id=1055258707]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table6/StaticBody3D" unique_id=56053735]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table7" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=787545095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, -1.5, -6)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=1162380763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=1719256463]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=1936146794]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=175902216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=1320487831]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=853814342]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=918550677]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7/Computer" unique_id=1393846217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7/Computer" unique_id=369048119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7/Computer" unique_id=979765522]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table7/Computer" unique_id=825361470]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=432040095]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table7" unique_id=1703908000]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table7/StaticBody3D" unique_id=842874258]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table8" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=1480881609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -1.5, -6)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=73052632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=1390191635]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=158703013]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=972954331]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=1226528716]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=1469628601]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=2079422963]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8/Computer" unique_id=155498275]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8/Computer" unique_id=893300668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8/Computer" unique_id=929999911]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table8/Computer" unique_id=2069631405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=132200061]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table8" unique_id=1929556226]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table8/StaticBody3D" unique_id=1484846344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table9" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=1849972603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.5, -6)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=1671623244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=519670081]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=441914208]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=772533724]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=1875342640]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=1377292595]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=812337269]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9/Computer" unique_id=250750586]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9/Computer" unique_id=899656038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9/Computer" unique_id=846999336]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table9/Computer" unique_id=1571790292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=1634027027]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table9" unique_id=1813599127]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table9/StaticBody3D" unique_id=1987172043]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table10" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=1103529307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1.5, -6)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=482298972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=1451403974]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=232159822]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=522208546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=1438962849]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=273891842]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=1752262189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10/Computer" unique_id=1981419582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10/Computer" unique_id=59741408]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10/Computer" unique_id=715878844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table10/Computer" unique_id=2034512872]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=1262081879]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table10" unique_id=761032024]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table10/StaticBody3D" unique_id=1254854554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
+
+[node name="Table11" type="Node3D" parent="EtcCubicles/cubicle22/Tables" unique_id=1104619536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, -1.5, -2)
+
+[node name="TableSurface" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=1733392377]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0396955)
+size = Vector3(3.5, 0.1, 1.3847656)
+
+[node name="Leg1" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=312010867]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="Leg2" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=1304353193]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.589, -0.753, 0)
+size = Vector3(0.322, 1.41521, 0.2)
+
+[node name="ComputerBox" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=641638307]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.57370955, 0.4003563, -0.15476012)
+size = Vector3(0.35717773, 0.7368164, 0.7631836)
+material = ExtResource("2_83d8p")
+
+[node name="Keyboard" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=356107609]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.0025307536, 0.07173324, 0.41920006)
+size = Vector3(0.35717773, 0.045166016, 0.70874023)
+material = ExtResource("2_83d8p")
+
+[node name="Mouse" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=345690424]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.4768104, 0.07173324, 0.4792689)
+size = Vector3(0.23425293, 0.045166016, 0.15887451)
+material = ExtResource("2_83d8p")
+
+[node name="Computer" type="CSGCombiner3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=1526873529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.16300714, -0.038230658)
+material_override = ExtResource("2_83d8p")
+use_collision = true
+collision_layer = 3
+collision_mask = 0
+
+[node name="Monitor" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11/Computer" unique_id=356355238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0)
+size = Vector3(0.667, 0.5, 0.5)
+
+[node name="Stand" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11/Computer" unique_id=1379630418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3507123, 0)
+size = Vector3(0.178, 0.1, 0.1)
+
+[node name="ScreenHole" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11/Computer" unique_id=717621595]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.64, 0.251)
+operation = 2
+size = Vector3(0.533, 0.4, 0.1)
+
+[node name="Box" type="CSGBox3D" parent="EtcCubicles/cubicle22/Tables/Table11/Computer" unique_id=808724343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26300716, 0)
+size = Vector3(0.5, 0.1, 0.5)
+
+[node name="Sprite3D" type="Sprite3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=964192355]
+transform = Transform3D(55.385, 0, 0, 0, 42.82, 0, 0, 0, 1, 0, 0.48164868, 0.17267132)
+modulate = Color(0.20152658, 0.20152658, 0.20152658, 1)
+shaded = true
+texture = ExtResource("12_ufmet")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="EtcCubicles/cubicle22/Tables/Table11" unique_id=1921004289]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="EtcCubicles/cubicle22/Tables/Table11/StaticBody3D" unique_id=1251562651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01928711, -0.3505249, 0)
+shape = SubResource("BoxShape3D_ufmet")
 
 [node name="BreakRoom" type="Node3D" parent="." unique_id=440142805]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, -3, 9)

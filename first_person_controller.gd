@@ -49,11 +49,16 @@ func _process(_delta: float) -> void:
 func _physics_process(delta: float) -> void:
 	var direction := Input.get_vector("fps_left", "fps_right", "fps_forward", "fps_backward")
 	if direction == Vector2.ZERO:
-		velocity = velocity.move_toward(Vector3.ZERO, delta * friction)
+		velocity.x = lerpf(velocity.x, 0, delta * friction)
+		velocity.z = lerpf(velocity.z, 0, delta * friction)
 	else:
 		var direction3D = Vector3(direction.x, 0, direction.y)
 		direction3D *= speed
-		velocity = basis * direction3D
+		var vec: Vector3 = basis * direction3D
+		velocity.x = vec.x
+		velocity.z = vec.z
+	if not is_on_floor():
+		velocity += get_gravity() * delta
 	move_and_slide()
 	if lastMouseMotion != Vector2.ZERO:
 		targetCameraAngle += -lastMouseMotion * sensitivity * delta

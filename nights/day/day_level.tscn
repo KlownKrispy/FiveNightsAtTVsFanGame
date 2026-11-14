@@ -31,7 +31,7 @@ size = Vector3(1.1809387, 1.0474243, 1.34729)
 radius = 1.1274414
 height = 3.3291016
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_fpk27"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_f25p1"]
 viewport_path = NodePath("../OmniLight3D2/Sprite3D2/SubViewportMirror")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_m5png"]
@@ -42,6 +42,18 @@ viewport_path = NodePath("OmniLight3D2/Sprite3D2/SubViewportMirror")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_tqooj"]
 size = Vector3(7.417053, 5.5220337, 0.33789063)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1tboe"]
+size = Vector3(28, 0.1, 28)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_47owa"]
+size = Vector3(6, 0.1, 6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7qbgi"]
+size = Vector3(16, 0.1, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2s3bm"]
+size = Vector3(14, 0.1, 4)
 
 [node name="DayLevel" type="Node3D" unique_id=378685178]
 
@@ -68,7 +80,7 @@ collide_with_areas = true
 environment = SubResource("Environment_v2341")
 
 [node name="OfficeDay" parent="." unique_id=300754981 instance=ExtResource("1_1s5hn")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0074911118, 2, -0.00392437)
 
 [node name="Interactables" type="Node" parent="." unique_id=2013560013]
 
@@ -144,7 +156,7 @@ shape = SubResource("CapsuleShape3D_tqooj")
 
 [node name="DialogueBox" parent="." unique_id=819988699 instance=ExtResource("12_f25p1")]
 visible = false
-mirrorTexture = SubResource("ViewportTexture_fpk27")
+mirrorTexture = SubResource("ViewportTexture_f25p1")
 
 [node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=231816399]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27, 1, 6.6125984)
@@ -197,3 +209,21 @@ layout_mode = 2
 texture = ExtResource("16_32ai0")
 expand_mode = 3
 stretch_mode = 3
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1288598595]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=368512965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, 3)
+shape = SubResource("BoxShape3D_1tboe")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Floor" unique_id=434825346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13, -1, -2)
+shape = SubResource("BoxShape3D_47owa")
+
+[node name="CollisionShape3D3" type="CollisionShape3D" parent="Floor" unique_id=610667155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, -1, -16)
+shape = SubResource("BoxShape3D_7qbgi")
+
+[node name="CollisionShape3D4" type="CollisionShape3D" parent="Floor" unique_id=1535635786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -1, 3)
+shape = SubResource("BoxShape3D_2s3bm")

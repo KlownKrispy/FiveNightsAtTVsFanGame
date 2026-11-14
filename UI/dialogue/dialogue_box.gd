@@ -53,7 +53,7 @@ func _show_dialogue(character: String, text: String) -> void:
 var portraits: Dictionary[String, Texture2D] = {
 	"unknown": preload("res://UI/dialogue/character_portraits/unknown.png"),
 	"the green": null,
-	"computer": preload("res://UI/dialogue/character_portraits/computer.png"),
+	"computer": preload("res://UI/dialogue/character_portraits/internet.png"),
 	"printer": preload("res://UI/dialogue/character_portraits/printer.png"),
 	"tv": preload("res://UI/dialogue/character_portraits/tv.png"),
 	"radio": preload("res://UI/dialogue/character_portraits/radio.png"),
